@@ -58,9 +58,10 @@ provider, ledger, and future Codex adapter must not collapse into one module.
 
 ## Status
 
-Step 1 is in setup and hypothesis-frontier evaluation. No winner is committed
-until the three independent input strategies have been compared and the
-commitment gate has returned a bounded decision.
+The three independent input strategies have been compared. The commitment
+gate returned `COMMIT_H1`, and the transcript-first vertical slice is
+implemented. Local correctness and semantic smoke checks are complete; the
+project is stopped at `PRINCIPAL_REVIEW`.
 
 Human-facing HTML reports are produced in Chinese. Code identifiers and
 protocol field names remain English.
