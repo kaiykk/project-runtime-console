@@ -1,0 +1,15 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+node_modules/
+dist/
+build/
+coverage/
+.playwright-cli/
+output/
+screenshots/
+*.log
+*.key
+*.pem
+secrets/
