@@ -1,0 +1,10 @@
+### Ran Playwright code
+```js
+await page.getByRole('button', { name: 'Fit View' }).click();
+```
+### Page
+- Page URL: https://app.thoughtdag.workers.dev/
+- Page Title: ThoughtDAG
+- Console: 1 errors, 0 warnings
+### Snapshot
+- [Snapshot](.playwright-cli/page-2026-10-06T06-15-32-336Z.yml)

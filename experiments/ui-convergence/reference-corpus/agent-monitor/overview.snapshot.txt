@@ -1,0 +1,63 @@
+### Open tabs
+- 0: [ThoughtDAG](https://app.thoughtdag.workers.dev/)
+- 1: [Project Runtime Console](http://127.0.0.1:8876/)
+- 2: (current) [Agent Monitor](http://127.0.0.1:5173/)
+### Page
+- Page URL: http://127.0.0.1:5173/
+- Page Title: Agent Monitor
+- Console: 1 errors, 0 warnings
+### Snapshot
+```yaml
+- generic [ref=e3]:
+  - complementary [ref=e4]:
+    - generic [ref=e5]: Agent Monitor
+    - generic [ref=e7]:
+      - button "Overview ⌘ 1" [ref=e8] [cursor=pointer]:
+        - text: Overview
+        - generic [ref=e9]: ⌘ 1
+      - button "Agent topology 0" [ref=e10] [cursor=pointer]:
+        - text: Agent topology
+        - generic [ref=e11]: "0"
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]: Recent runs
+        - generic [ref=e15]: "0"
+      - generic [ref=e16]: No runs discovered yet.
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e20]:
+          - strong [ref=e21]: Watcher paused
+          - generic [ref=e22]: monitor connected
+        - button "Demo" [ref=e23] [cursor=pointer]
+      - generic [ref=e24]: Click an agent to inspect its normalized trace.
+  - main [ref=e26]:
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - generic [ref=e29]: Workspace
+        - generic [ref=e30]: /
+        - generic [ref=e31]: Agent activity
+      - generic [ref=e32]:
+        - 'button "Theme: Green" [ref=e34] [cursor=pointer]':
+          - generic [ref=e35]: Theme
+          - generic [ref=e36]: Green
+        - 'button "Provider: All providers" [ref=e38] [cursor=pointer]':
+          - generic [ref=e39]: Provider
+          - generic [ref=e40]: All providers
+        - 'button "Run: Select a run" [disabled] [ref=e42]':
+          - generic [ref=e43]: Run
+          - generic [ref=e44]: Select a run
+        - generic [ref=e45]: OFFLINE
+    - generic [ref=e49]:
+      - generic [ref=e50]:
+        - generic [ref=e51]:
+          - heading "Agent topology" [level=1] [ref=e52]
+          - paragraph [ref=e53]: Select a run to load its agents
+        - generic [ref=e54]:
+          - generic [ref=e55]: Waiting for monitor
+          - button "Search agents" [ref=e61] [cursor=pointer]
+      - generic [ref=e67]:
+        - heading "No native monitor connected" [level=2] [ref=e68]
+        - paragraph [ref=e69]: The desktop bridge is not available in this browser session. Connect the monitor bridge or load a sample graph to explore the workspace.
+        - button "Load demo mode" [ref=e70] [cursor=pointer]
+        - generic [ref=e73]: Demo mode uses local sample data and is clearly marked above.
+```

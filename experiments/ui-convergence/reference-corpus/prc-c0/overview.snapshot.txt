@@ -1,0 +1,49 @@
+### Open tabs
+- 0: [ThoughtDAG](https://app.thoughtdag.workers.dev/)
+- 1: (current) [Project Runtime Console](http://127.0.0.1:8876/)
+### Page
+- Page URL: http://127.0.0.1:8876/
+- Page Title: Project Runtime Console
+### Snapshot
+```yaml
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - generic [ref=e4]:
+      - heading "Project Runtime Console" [level=1] [ref=e5]
+      - paragraph [ref=e6]: Codex 原生运行时观察
+    - generic [ref=e7]: 运行记录
+    - generic [ref=e8]: 正在读取运行记录...
+    - generic [ref=e10]:
+      - text: 观察器
+      - strong [ref=e11]: 已连接
+  - complementary [ref=e12]:
+    - generic [ref=e13]:
+      - heading "Agent 拓扑" [level=2] [ref=e14]
+      - generic [ref=e15]: "0"
+    - generic [ref=e16]: 选择一个 Run
+  - main [ref=e18]:
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - text: 项目 / Run / Agent /
+          - strong [ref=e22]: Trace
+        - heading "尚未选择 Run" [level=2] [ref=e23]
+      - generic [ref=e24]: UNKNOWN
+    - generic [ref=e25]:
+      - generic [ref=e26]:
+        - text: 实时来源：
+        - strong [ref=e27]: Codex app-server
+        - text: · Shadow Judgment：
+        - strong [ref=e28]: 关闭
+      - button "刷新" [ref=e29] [cursor=pointer]
+    - generic [ref=e30]:
+      - generic [ref=e31]: 运行时 Trace
+      - generic [ref=e32]: 选择 Agent 后显示原生 trace item。
+    - generic [ref=e34]:
+      - generic [ref=e35]:
+        - heading "选中的事件" [level=3] [ref=e36]
+        - generic [ref=e37]: 选择一个 trace item。
+      - generic [ref=e38]:
+        - heading "运行时事实" [level=3] [ref=e39]
+        - generic [ref=e40]: 暂无数据
+```
