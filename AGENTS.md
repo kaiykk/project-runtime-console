@@ -70,32 +70,63 @@ bootstrap route.
 
 ## Governance Invariants
 
-Freeze protects against premature drift; evolution protects against frozen
-mistakes. Classify evaluation failures as follows:
+### Eval -> Evolve
+
+```text
+Freeze protects against premature drift;
+Evolution protects against frozen mistakes.
+```
+
+Evaluation failures must first be classified:
 
 ```text
 IMPLEMENTATION_FAILURE
-  -> repair the current frame
+  -> repair inside the current frame
 MODEL_ASSUMPTION_FAILURE
   -> bounded model repair
 FRAME_CONTRADICTION
   -> FRAME_REOPEN_CANDIDATE
 ```
 
-Only the Human Principal may `AMEND` or `SUPERSEDE` a frozen frame. Reviewer
-verdicts and passing tests do not silently change a frozen boundary.
+`FRAME_REOPEN_CANDIDATE` may be triggered by:
 
-For semantics owned by an external system, use this authority order:
+- new Human Principal intent;
+- new upstream or mature prior-art evidence;
+- evidence that a frozen assumption blocks the North Star.
+
+Reviewers may propose reopening. Managers may not silently reinterpret frozen
+rules. Only the Human Principal may `AMEND` or `SUPERSEDE` a frozen frame.
+
+Every amendment must record:
 
 ```text
-official upstream contract/source
-  -> mature prior art
-  -> local compatibility validation
-  -> hypothesis search only for unresolved gaps
+TRIGGER
+OLD_RULE
+NEW_RULE
+EVIDENCE
+UNCHANGED_BOUNDARIES
+PRINCIPAL_AUTHORITY
 ```
 
-Do not create a new large governance framework to compensate for an unverified
-upstream fact.
+After ratification, version the frame, freeze it again, and resume the
+interrupted work rather than restarting it. Reviewer verdicts and passing tests
+do not silently change a frozen boundary.
+
+### UPSTREAM-FIRST
+
+Before experimentally rediscovering semantics owned by an external system,
+use this authority order:
+
+```text
+official contract/source
+  -> mature prior art
+  -> local compatibility check
+  -> only unresolved gaps enter hypothesis search
+```
+
+Do not create a new large governance framework or a rediscovery probe to
+compensate for an unverified upstream fact. Record the checked upstream
+version/protocol surface and keep unresolved compatibility as `UNKNOWN`.
 
 ## Reporting
 
