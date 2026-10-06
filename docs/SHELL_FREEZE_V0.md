@@ -1,6 +1,7 @@
 # Shell Freeze v0
 
-**Status:** Human-frozen for Step 1
+**Status:** Human-amended for UI Convergence R1; runtime and authority
+boundaries remain frozen
 
 ## Primary Information Architecture
 
@@ -37,15 +38,27 @@ workflow or a hypothesis-management surface.
 - Control Plane
 - Skill UI
 - Memory UI
-- ThoughtDAG canvas
+- ThoughtDAG-inspired graph-first Runtime Canvas as a bounded Presentation /
+  Interaction Layer, subject to `docs/ui-frame-change-v1.md`
 - Hive UI
 - Active interventions
 
 Sandcastle hypothesis branches are development tooling only. They must not
 appear in the product information architecture.
 
+The following remain forbidden in the authorized Runtime Canvas presentation:
+
+- ThoughtDAG product ontology;
+- editable runtime lineage or user-created runtime relationships;
+- ThoughtDAG context-edge semantics;
+- memory or model-context semantics;
+- arbitrary user-created nodes or edges;
+- any Control Plane, intervention, orchestration, or workflow surface.
+
 ## Boundary
 
-This freeze does not authorize implementation of every allowed surface. Step 1
-only needs enough Agent Monitor-style shell to show one real tool-result trace
-event and its attached shadow judgment.
+This document still does not authorize implementation of every allowed
+surface. The UI Convergence R1 amendment authorizes a presentation/interaction
+exploration only. It does not modify the PRC North Star, Codex Runtime Model,
+Runtime Identity Contract, Judgment Sidecar boundary, or Runtime Observer
+Independence requirement. Runtime edges remain observed facts.
