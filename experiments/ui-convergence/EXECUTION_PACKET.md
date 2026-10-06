@@ -70,5 +70,8 @@ winner 最多 refinement 两轮。每轮只处理前三个观察到的 UX/visual
 - Frame A / Pass A / Pass B：已完成，`FRAME_OK`，advisory only。
 - Upstream-first 与失败分类 invariant：已在 `fcdbdc1` 冻结。
 - ThoughtDAG / Agent Monitor / C0 reference capture：已完成；native Agent Monitor 真实 14-agent capture 已补充。
-- 三个独立 UI worktree、三变体实现与 review：尚未完成。
-- 最终状态：必须停止在 `PRINCIPAL_REVIEW`，不得自动 merge 或 promote。
+- 三个独立 UI worktree、三变体实现与 browser evidence：已完成；实现 commits
+  分别为 `6c171c9`、`6c71300`、`846b228`。
+- Visual / UX / Runtime Truth 的本地 evidence review：已完成；独立 reviewer
+  receipt 仍未声称存在，缺口已在最终 packet 中保留。
+- 最终状态：`PRINCIPAL_REVIEW`；不得自动 merge、refine 或 promote。

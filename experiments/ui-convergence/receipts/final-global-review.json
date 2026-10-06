@@ -1,0 +1,47 @@
+{
+  "receipt_type": "dsh_advisory_output_record",
+  "round_id": "PRC-UI-CONVERGENCE-R1-EXECUTION-20261006",
+  "checkpoint": "FINAL_GLOBAL_BOUNDARY_REVIEW",
+  "executor": "dsh",
+  "profile": "headless",
+  "dsh_version": "0.1.2-rc.1",
+  "permission_mode": "read-only",
+  "packet": "experiments/ui-convergence/HUMAN_REVIEW_PACKET_UI_R1.md",
+  "packet_sha256_reviewed": "682580c6cdb32d761b58abf531406cf86e563eff0728c61ce4193236cb7e326c",
+  "files_modified_by_auditor": [],
+  "exit_code": 0,
+  "governance_audit_receipt_issued": false,
+  "dsh_review_claim": false,
+  "verdict": {
+    "global_decision": "PRINCIPAL_REVIEW",
+    "advisory_only": true,
+    "winner_ratified": false,
+    "refinement_authorized": false,
+    "product_ui_approved": false
+  },
+  "review_scope": {
+    "reviewed": [
+      "experiments/ui-convergence/HUMAN_REVIEW_PACKET_UI_R1.md",
+      "experiments/ui-convergence/EXECUTION_PACKET.md",
+      "experiments/ui-convergence/REFERENCE_OBSERVATIONS.md",
+      "docs/NORTH_STAR.md",
+      "docs/SHELL_FREEZE_V0.md",
+      "docs/ui-frame-change-v1.md",
+      "experiments/ui-convergence/receipts/frame-pass-b.json",
+      "experiments/ui-convergence/receipts/round-start-global.json"
+    ],
+    "not_reviewed": [
+      "variant screenshots, snapshots and videos",
+      "source code and running browser sessions",
+      "runtime Observer backend",
+      "independent Visual / UX / Runtime Truth reviewer receipts"
+    ],
+    "cannot_conclude": [
+      "variant visual or UX quality",
+      "runtime-truth correctness beyond the packet's declared evidence",
+      "worktree isolation beyond the packet's declared commits",
+      "Product UI utility or readiness"
+    ]
+  },
+  "boundary_note": "The advisory review confirms the packet may stop at Principal Review; it does not select, merge, refine, promote, or ratify a UI winner."
+}
