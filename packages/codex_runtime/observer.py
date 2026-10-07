@@ -133,11 +133,28 @@ def _summary(value: Any, limit: int = 500) -> str | None:
         parts = [_summary(item, limit) for item in value]
         return " ".join(part for part in parts if part)[:limit] or None
     if isinstance(value, dict):
-        for key in ("text", "aggregatedOutput", "output", "command", "name"):
+        for key in ("text", "content", "aggregatedOutput", "output", "command", "name"):
             result = _summary(value.get(key), limit)
             if result:
                 return result
     return None
+
+
+def _content_text(item: dict[str, Any], limit: int = 1000) -> str | None:
+    content = item.get("content")
+    if not isinstance(content, list):
+        return None
+    parts: list[str] = []
+    for block in content:
+        if not isinstance(block, dict):
+            continue
+        text = block.get("text")
+        if isinstance(text, str) and text.strip():
+            parts.append(text.strip())
+    if not parts:
+        return None
+    compact = "\n".join(parts)
+    return compact[:limit] + ("..." if len(compact) > limit else "")
 
 
 def _native_evidence(item: dict[str, Any]) -> dict[str, Any] | None:
@@ -171,10 +188,29 @@ def _native_evidence(item: dict[str, Any]) -> dict[str, Any] | None:
     if item_type == "agentMessage":
         return {"kind": "agent_message", "text": _text(item.get("text"))}
 
+    if item_type == "userMessage":
+        return {"kind": "user_message", "text": _content_text(item)}
+
+    if item_type == "collabAgentToolCall":
+        receiver_ids = item.get("receiverThreadIds")
+        return {
+            "kind": "agent_dispatch",
+            "tool": _text(item.get("tool")),
+            "status": _status(item.get("status")),
+            "receiver_thread_ids": receiver_ids if isinstance(receiver_ids, list) else [],
+            "prompt": _text(item.get("prompt")),
+        }
+
     return None
 
 
-def _event(thread: dict[str, Any], turn: dict[str, Any], item: dict[str, Any]) -> dict[str, Any]:
+def _event(
+    thread: dict[str, Any],
+    turn: dict[str, Any],
+    item: dict[str, Any],
+    *,
+    turn_index: int | None = None,
+) -> dict[str, Any]:
     thread_id = _text(thread.get("id")) or "unknown-thread"
     turn_id = _text(turn.get("id"))
     item_id = _text(item.get("id")) or "unknown-item"
@@ -189,12 +225,16 @@ def _event(thread: dict[str, Any], turn: dict[str, Any], item: dict[str, Any]) -
         "provider_item_id": item_id,
         "call_id": call_id,
         "event_type": item_type,
-        "observed_at": item.get("completedAt") or item.get("startedAt"),
+        "observed_at": item.get("completedAt") or item.get("startedAt") or turn.get("startedAt"),
         "payload_ref": "in-memory native item; not persisted",
-        "summary": _summary(item),
+        "summary": _content_text(item) or _summary(item),
         "reconciliation": "RECONCILIATION_UNRESOLVED",
         "source": "codex.app-server",
         "turn_status": _status(turn.get("status")),
+        "turn_started_at": turn.get("startedAt"),
+        "turn_completed_at": turn.get("completedAt"),
+        "turn_duration_ms": turn.get("durationMs"),
+        "turn_index": turn_index,
     }
     native_evidence = _native_evidence(item)
     if native_evidence is not None:
@@ -303,7 +343,7 @@ class CodexRuntimeObserver:
         turns = thread.get("turns", [])
         events: list[dict[str, Any]] = []
         normalized_turns: list[dict[str, Any]] = []
-        for turn in turns if isinstance(turns, list) else []:
+        for turn_index, turn in enumerate(turns if isinstance(turns, list) else []):
             if not isinstance(turn, dict):
                 continue
             turn_id = _text(turn.get("id"))
@@ -319,7 +359,7 @@ class CodexRuntimeObserver:
             )
             for item in turn.get("items", []) if isinstance(turn.get("items"), list) else []:
                 if isinstance(item, dict):
-                    events.append(_event(thread, turn, item))
+                    events.append(_event(thread, turn, item, turn_index=turn_index))
         cursor, notifications = self.client.notifications_since(self._notification_cursor)
         self._notification_cursor = cursor
         return {

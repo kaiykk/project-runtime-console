@@ -627,9 +627,9 @@
      Keeping the demo declarations above makes the interaction shell inspectable
      in isolation, but the served page always uses PRC_DATA. */
   const PRC_DATA = __PRC_DATA__;
-  const NODES = PRC_DATA.nodes || DEMO_NODES;
-  const TOP = PRC_DATA.top || DEMO_TOP;
-  const SUBS = PRC_DATA.subs || DEMO_SUBS;
+  const NODES = PRC_DATA.nodes || {};
+  const TOP = Array.isArray(PRC_DATA.top) ? PRC_DATA.top : [];
+  const SUBS = PRC_DATA.subs || {};
   const RUN = PRC_DATA.run || {};
 
   /* ── deterministic spatial layout (graph never re-lays out) ───────── */
@@ -637,8 +637,9 @@
   const CARD_W = 372, CARD_H = 94, GAP_Y = 20, STEP = CARD_H + GAP_Y;
   const WORLDS = {};
 
+  function waveAt(i) { return WAVE[i % WAVE.length]; }
   TOP.forEach(function (id, i) {
-    const railX = RAIL_X + WAVE[i];
+    const railX = RAIL_X + waveAt(i);
     WORLDS[id] = { railX: railX, y: PAD + i * STEP, cy: PAD + i * STEP + CARD_H / 2, x: railX + CARD_GAP, i: i };
   });
   const WORLD_W = RAIL_X + Math.max.apply(null, WAVE) + CARD_GAP + CARD_W + PAD;
@@ -805,7 +806,7 @@
         '<div class="sec-head"><h3 class="sec-label">Outcome <span class="zh">· 结论</span></h3><span class="grow"></span>' +
         (ev ? '<button type="button" class="evchip" data-evchip aria-expanded="false">' + ev + ' evidence <span class="car">›</span></button>' : '') + '</div>' +
         '<p class="outcome">' + esc(n.outcome) + '</p>' +
-        '<p class="note"><b>语义边界</b> · 标题与说明来自显式用户请求锚点；不是 native runtime 的完成结论或因果解释。</p>' +
+        '<p class="note"><b>语义边界</b> · 标题来自 trajectory window 中的用户请求文本；活动计数由绑定 native records 派生，不是完成结论或因果解释。</p>' +
         (ev ? '<div class="evpeek"><p class="plabel">支持这条结论的证据</p><ul class="peek">' +
           n.evidence.map(function (e, i) {
             return '<li><button type="button" class="peekrow" data-ev="' + i + '">' +
@@ -824,7 +825,7 @@
               '<span class="ev-go">›</span></button></li>';
           }).join('') + '</ul></section>'
         : '<section class="sec"><h3 class="sec-label">Artifacts / Evidence <span class="zh">· 成果与证据</span></h3>' +
-          '<p class="note">该子阶段的结论不在本轮 fixture 范围内，因此没有可追索的证据条目。</p></section>') +
+          '<p class="note">当前没有可追索的 native evidence 条目。</p></section>') +
       '<button type="button" class="rawlink" data-raw><span>查看 raw evidence / trace</span><span class="go">最深一层 →</span></button>' +
       '<p class="note"><b>DERIVED_SUMMARY</b> · 该层只提供导航性 WorkStage 标签；支持关系仍以 native runtime records 为准。</p>' +
       '</div></div>';
@@ -933,7 +934,7 @@
       '<span><i class="glyph current"></i>当前</span><span><i class="glyph done"></i>已完成</span>' +
       '<span><i class="glyph parallel"></i>并行分支</span><span><i class="glyph shift"></i>方向修正</span>' +
       '<span><i class="glyph unknown"></i>未解析</span></div>' +
-      '<p class="note"><b>边界</b> · Agent、lineage、event identity 和 Raw Trace 来自 native observer；WorkStage 标题是显式用户请求锚点的派生导航标签，完成与因果仍为 NOT ESTABLISHED。</p>' +
+      '<p class="note"><b>边界</b> · Agent、lineage、event identity 和 Raw Trace 来自 native observer；WorkStage 标题来自 trajectory window 中的用户请求文本，活动计数由绑定 records 派生，完成与因果仍为 NOT ESTABLISHED。</p>' +
       '</div></div>';
   }
 
