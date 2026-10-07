@@ -872,6 +872,15 @@
     return node && Array.isArray(node.raw_events) ? node.raw_events : [];
   }
 
+  function rawEventByRef(ref) {
+    if (!ref) return null;
+    for (const id of Object.keys(NODES)) {
+      const event = rawEventsForNode(id).find(function (item) { return item.observation_id === ref; });
+      if (event) return event;
+    }
+    return null;
+  }
+
   function rawField(label, value) {
     if (value === null || value === undefined || value === '') return '';
     return '<li><span class="k">' + esc(label) + '</span><span class="v mono">' + esc(value) + '</span></li>';
@@ -903,14 +912,17 @@
   }
 
   function rawHTML() {
-    const owner = state.stack.length > 1 && state.stack[state.stack.length - 2].id ? state.stack[state.stack.length - 2].id : level1();
-    const records = rawEventsForNode(owner);
+    const parent = state.stack.length > 1 ? state.stack[state.stack.length - 2] : null;
+    const owner = parent && parent.id ? parent.id : level1();
+    const selectedRef = parent && parent.lvl === 3 ? parent.evidence_ref : null;
+    const selectedRecord = rawEventByRef(selectedRef);
+    const records = selectedRecord ? [selectedRecord] : rawEventsForNode(owner);
     return '<div class="pane-body">' + navHTML(owner ? fmtName(owner) : null) + '<div class="dscroll">' +
       '<div class="dhead"><div class="meta"><span class="ord">RAW</span><span class="tchip" style="color:var(--muted-ink)">最深一层</span></div>' +
       '<h2>Raw Evidence / Trace</h2>' +
       '<span class="statuschip">真实 observer records · read only</span></div>' +
       '<section class="sec"><h3 class="sec-label">Scope <span class="zh">· 范围</span></h3>' +
-      '<p class="outcome">这里列出该 WorkStage 所绑定的 observer 原始记录。它们是追索终点，不是对工作结果的额外解释。</p></section>' +
+      '<p class="outcome">' + (selectedRecord ? '这里列出当前 Evidence 所绑定的 observer 原始记录。它是追索终点，不是对工作结果的额外解释。' : '这里列出该 WorkStage 所绑定的 observer 原始记录。它们是追索终点，不是对工作结果的额外解释。') + '</p></section>' +
       '<section class="sec"><h3 class="sec-label">Runtime records <span class="zh">· 原始记录</span></h3>' +
       (records.length ? records.map(rawRecordHTML).join('') : '<p class="note"><b>UNAVAILABLE</b> · 当前 WorkStage 没有可展示的绑定记录。</p>') + '</section>' +
       '</div></div>';
@@ -1094,7 +1106,13 @@
     const sub = e.target.closest('[data-sub]');
     if (sub) { push({ lvl: 2, id: sub.getAttribute('data-sub') }); return; }
     const ev = e.target.closest('[data-ev]');
-    if (ev) { push({ lvl: 3, ev: Number(ev.getAttribute('data-ev')) }); return; }
+    if (ev) {
+      const owner = state.stack[state.stack.length - 1];
+      const node = owner && NODES[owner.id];
+      const index = Number(ev.getAttribute('data-ev'));
+      push({ lvl: 3, ev: index, evidence_ref: node && node.evidence[index] ? node.evidence[index].evidence_ref : null });
+      return;
+    }
     if (e.target.closest('[data-raw]')) { push({ lvl: 4 }); return; }
     if (e.target.closest('[data-back]')) { pop(); return; }
     if (e.target.closest('[data-close]')) { clearAll(); }

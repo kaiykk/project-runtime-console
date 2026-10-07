@@ -68,6 +68,81 @@ class WorkStageProjectionTests(unittest.TestCase):
         self.assertEqual(first["branch_count"], 1)
         self.assertIn("live:child:turn-3:cmd-1", projected["raw_events"])
 
+    def test_child_dispatch_lineage_wins_over_late_child_event_time(self):
+        run = {
+            "run": {"run_id": "run-2", "source": "codex.app-server", "history_available": True},
+            "agents": [
+                {"runtime_agent_instance_id": "root", "parent_runtime_agent_instance_id": None},
+                {"runtime_agent_instance_id": "child", "parent_runtime_agent_instance_id": "root"},
+            ],
+            "events": [
+                {
+                    "observation_id": "root-anchor-1",
+                    "runtime_agent_instance_id": "root",
+                    "event_type": "userMessage",
+                    "observed_at": "2026-10-01T00:00:00Z",
+                    "native_evidence": {"kind": "user_message", "text": "先研究这个问题并记录证据。"},
+                },
+                {
+                    "observation_id": "dispatch-1",
+                    "runtime_agent_instance_id": "root",
+                    "event_type": "collabAgentToolCall",
+                    "observed_at": "2026-10-01T00:10:00Z",
+                    "native_evidence": {"kind": "agent_dispatch", "receiver_thread_ids": ["child"]},
+                },
+                {
+                    "observation_id": "root-anchor-2",
+                    "runtime_agent_instance_id": "root",
+                    "event_type": "userMessage",
+                    "observed_at": "2026-10-01T01:00:00Z",
+                    "native_evidence": {"kind": "user_message", "text": "切换到验证并保留原始记录。"},
+                },
+                {
+                    "observation_id": "child-event-1",
+                    "runtime_agent_instance_id": "child",
+                    "event_type": "agentMessage",
+                    "observed_at": "2026-10-01T01:10:00Z",
+                    "native_evidence": {"kind": "agent_message", "text": "child result"},
+                },
+            ],
+        }
+        projected = project_run(run)
+        self.assertEqual(projected["subs"]["stage-01"], ["stage-01-branch-01"])
+        self.assertEqual(projected["nodes"]["stage-01-branch-01"]["evidence"][0]["title"], "Agent message")
+
+    def test_stage_counts_use_all_child_events_while_evidence_remains_bounded(self):
+        events = [
+            {
+                "observation_id": "anchor",
+                "runtime_agent_instance_id": "root",
+                "event_type": "userMessage",
+                "observed_at": "2026-10-01T00:00:00Z",
+                "native_evidence": {"kind": "user_message", "text": "请执行这个验证任务并保留证据。"},
+            }
+        ]
+        for index in range(13):
+            events.append(
+                {
+                    "observation_id": f"child-{index}",
+                    "runtime_agent_instance_id": "child",
+                    "event_type": "agentMessage",
+                    "observed_at": f"2026-10-01T00:{index + 1:02d}:00Z",
+                    "native_evidence": {"kind": "agent_message", "text": f"message {index}"},
+                }
+            )
+        projected = project_run({
+            "run": {"run_id": "run-3"},
+            "agents": [
+                {"runtime_agent_instance_id": "root", "parent_runtime_agent_instance_id": None},
+                {"runtime_agent_instance_id": "child", "parent_runtime_agent_instance_id": "root"},
+            ],
+            "events": events,
+        })
+        branch = projected["nodes"]["stage-01-branch-01"]
+        self.assertIn("13 agent messages", branch["outcome"])
+        self.assertEqual(len(branch["raw_events"]), 13)
+        self.assertEqual(len(branch["evidence"]), 12)
+
 
 if __name__ == "__main__":
     unittest.main()

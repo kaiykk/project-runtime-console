@@ -137,10 +137,12 @@ def _significant(events: Iterable[dict[str, Any]]) -> list[dict[str, Any]]:
     return [event for event in events if event.get("event_type") in SIGNIFICANT_EVENT_TYPES]
 
 
-def _event_label(event: dict[str, Any]) -> tuple[str, str]:
+def _event_label(event: dict[str, Any], *, child_context: bool = False) -> tuple[str, str]:
     event_type = event.get("event_type") or "unknown"
     native = event.get("native_evidence") if isinstance(event.get("native_evidence"), dict) else {}
     if event_type == "userMessage":
+        if child_context:
+            return "Agent dispatch prompt", "该记录是 parent Agent 发给 child Agent 的 native dispatch prompt，不单独证明 Human 请求。"
         return "用户请求", "该记录保留了用户在此窗口提出的原始请求。"
     if event_type == "commandExecution":
         return "命令执行", f"native command status={native.get('status', 'UNAVAILABLE')} exit_code={native.get('exit_code', 'UNAVAILABLE')}。"
@@ -167,13 +169,13 @@ def _stage_outcome(events: list[dict[str, Any]], child_count: int) -> str:
     return "Observed " + ", ".join(observed) + "; outcome UNKNOWN / NOT ESTABLISHED."
 
 
-def _make_evidence(events: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def _make_evidence(events: list[dict[str, Any]], *, child_context: bool = False) -> list[dict[str, Any]]:
     evidence = []
     for event in events:
         ref = event.get("observation_id")
         if not ref:
             continue
-        title, supports = _event_label(event)
+        title, supports = _event_label(event, child_context=child_context)
         evidence.append(
             {
                 "type": "runtime-record",
@@ -218,6 +220,23 @@ def _nearest_stage_index(event: dict[str, Any], stages: list[dict[str, Any]]) ->
     return min(distances)[1] if distances else 0
 
 
+def _dispatch_stage_map(root_events: list[dict[str, Any]], stages: list[dict[str, Any]]) -> dict[str, int]:
+    """Bind child IDs to the root stage that natively dispatched them."""
+
+    result: dict[str, int] = {}
+    for index, stage in enumerate(stages):
+        next_start = stages[index + 1]["start_index"] if index + 1 < len(stages) else len(root_events)
+        for event in _significant(root_events[stage["start_index"] : next_start]):
+            if event.get("event_type") != "collabAgentToolCall":
+                continue
+            native = event.get("native_evidence")
+            receiver_ids = native.get("receiver_thread_ids") if isinstance(native, dict) else None
+            for child_id in receiver_ids if isinstance(receiver_ids, list) else []:
+                if isinstance(child_id, str):
+                    result[child_id] = index
+    return result
+
+
 def project_run(run: dict[str, Any]) -> dict[str, Any]:
     """Project one real run using generic trajectory windows, never target stages."""
 
@@ -247,6 +266,7 @@ def project_run(run: dict[str, Any]) -> dict[str, Any]:
     if not stages:
         stages = [{"anchors": [], "start_index": 0, "end_index": len(root_events), "start_time": None, "end_time": None}]
 
+    dispatch_stage_by_child = _dispatch_stage_map(root_events, stages)
     children_by_stage: defaultdict[int, list[dict[str, Any]]] = defaultdict(list)
     child_events_by_id: dict[str, list[dict[str, Any]]] = {}
     for agent in agents:
@@ -256,7 +276,10 @@ def project_run(run: dict[str, Any]) -> dict[str, Any]:
         child_events = _significant(_events_for_agent(events, agent_id))
         child_events_by_id[agent_id] = child_events
         if child_events:
-            children_by_stage[_nearest_stage_index(child_events[0], stages)].append(agent)
+            stage_index = dispatch_stage_by_child.get(agent_id)
+            if stage_index is None:
+                stage_index = _nearest_stage_index(child_events[0], stages)
+            children_by_stage[stage_index].append(agent)
 
     nodes: dict[str, dict[str, Any]] = {}
     top: list[str] = []
@@ -278,7 +301,7 @@ def project_run(run: dict[str, Any]) -> dict[str, Any]:
             child_id = f"{stage_id}-branch-{child_index:02d}"
             child_text = next((_native_text(event) for event in child_events if _native_text(event)), "")
             child_title = _title_from_text(child_text) if child_text else f"Agent branch {child_index:02d}"
-            child_evidence_events = child_events[:6]
+            child_evidence_events = child_events[:12]
             nodes[child_id] = {
                 "ord": f"{stage_index:02d}.{child_index:02d}",
                 "parent": stage_id,
@@ -288,16 +311,16 @@ def project_run(run: dict[str, Any]) -> dict[str, Any]:
                 "status": "unknown",
                 "outcome": _stage_outcome(child_events, 0),
                 "actions": ["查看该 branch 绑定的 native runtime records"],
-                "evidence": _make_evidence(child_evidence_events),
+                "evidence": _make_evidence(child_evidence_events, child_context=True),
                 "data_class": "DERIVED_SUMMARY",
                 "outcome_status": "NOT_ESTABLISHED",
                 "source_task_refs": [event.get("observation_id") for event in child_evidence_events if event.get("observation_id")],
-                "evidence_refs": [event.get("observation_id") for event in child_evidence_events if event.get("observation_id")],
-                "raw_events": [_safe_event(event) for event in child_evidence_events],
+                "evidence_refs": [event.get("observation_id") for event in child_events if event.get("observation_id")],
+                "raw_events": [_safe_event(event) for event in child_events],
                 "agent_id": agent_id,
             }
             sub_ids.append(child_id)
-            stage_events.extend(child_events[:6])
+            stage_events.extend(child_events)
         if sub_ids:
             subs[stage_id] = sub_ids
         anchor = stage_window["anchors"][0] if stage_window["anchors"] else None
@@ -324,7 +347,7 @@ def project_run(run: dict[str, Any]) -> dict[str, Any]:
             "source_anchor_ref": anchor.get("observation_id") if anchor else None,
             "source_task_refs": [event.get("observation_id") for event in stage_window["anchors"] if event.get("observation_id")],
             "evidence_refs": [event.get("observation_id") for event in evidence_events if event.get("observation_id")],
-            "raw_events": [_safe_event(event) for event in evidence_events],
+            "raw_events": [_safe_event(event) for event in stage_events],
             "branch_count": len(sub_ids),
         }
         top.append(stage_id)
