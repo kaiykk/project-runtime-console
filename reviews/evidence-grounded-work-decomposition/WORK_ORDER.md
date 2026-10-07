@@ -42,7 +42,7 @@ questions.
 
 ## Review subject
 
-- Commit: `93e246fdefdf9d734d2858fc0024a4c4a9528ae3`
+- Commit: `9bb2354f7764625cc1116735945a51fc8b54ba64`
 - Repository: `/Users/kai/Documents/project-runtime-console`
 - Launch: `PYTHONPATH=. python apps/console/server.py 4174`
 - URL: `http://127.0.0.1:4174/`
