@@ -29,9 +29,10 @@ The current compatibility result is `INCONCLUSIVE`: the local Trajectory probe p
 
 `apps/console/` serves the frozen V2.5 spatial map from a read-only Codex
 native observer. The current target is the historical run
-`01a0eca4-7029-7f92-b5a9-2006edb08721`. WorkStage labels are a bounded
-projection from explicit user-message anchors; every displayed native record
-keeps its observer identity and can be opened through
+`01a0eca4-7029-7f92-b5a9-2006edb08721`. WorkStage windows are derived
+generically from substantive root user-message anchors, transition signals,
+time gaps, and native child dispatch lineage; no target-run stage table is
+used. Every displayed native record keeps its observer identity and can be opened through
 `Outcome -> Evidence -> Raw Trace`.
 
 This slice is intentionally `PARTIAL`: runtime facts and raw evidence are

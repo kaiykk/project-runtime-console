@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-07
 **Project:** Project Runtime Console
-**Active round:** `V2.5 real-run vertical slice`
+**Active round:** `Evidence-grounded Work Decomposition`
 
 ## Repository State
 
@@ -66,13 +66,21 @@ overview displayed `27` agents, `26` children, `4251` native events, `69` turns,
 and available history. Raw Trace displayed real `userMessage`, `agentMessage`,
 and `commandExecution` records with native IDs and command completion state.
 
-The projection remains `PARTIAL`: WorkStage titles are derived navigation
-labels from explicit user-message anchors; native runtime does not establish
-the displayed work outcomes, complete causality, or contribution semantics.
-The five acceptance questions therefore cannot all be answered from this
-slice without unsupported interpretation.
+The projection uses generic trajectory windows rather than a target-run stage
+table. Root user-message anchors, transition signals, time gaps, and native
+`spawnAgent` receiver IDs determine stage and branch placement. Counts are
+computed from the full retained significant records; display evidence is
+bounded, while Raw Trace preserves the full node record set. Child dispatch
+prompts are labeled separately from Human requests. Completion, contribution,
+outcome, and causality remain `UNKNOWN / NOT ESTABLISHED`.
 
-Checkpoint: `frontend-v1-baseline-v2.5`.
+Independent DSH review of the implementation and live target run returned
+`PASS` for acceptance questions A-E. The reviewer confirmed 16 WorkStages, 26
+correctly spawn-bound child branches, zero count mismatches against retained
+raw events, and reversible Evidence -> Raw Trace navigation. The result is a
+bounded evidence-grounded decomposition, not a semantic WorkStage classifier.
+
+Checkpoints: `frontend-v1-baseline-v2.5`; implementation `9bb2354`.
 
 ## Validation
 
