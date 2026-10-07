@@ -1,2 +1,0 @@
-### Error
-Error: Ref e45868 not found in the current page snapshot. Try capturing new snapshot.

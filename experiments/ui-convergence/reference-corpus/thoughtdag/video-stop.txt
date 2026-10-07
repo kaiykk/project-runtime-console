@@ -1,2 +1,0 @@
-### Result
-- [Video](experiments/ui-convergence/reference-corpus/thoughtdag/interaction.webm)

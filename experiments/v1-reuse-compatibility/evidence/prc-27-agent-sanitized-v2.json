@@ -1,0 +1,2303 @@
+{
+  "fixture_version": "prc-27-agent-sanitized-v2",
+  "evidence_policy": {
+    "visible_datum_classes": [
+      "NATIVE_FACT",
+      "UNAVAILABLE"
+    ],
+    "derived_summary_allowed": false,
+    "raw_prompts_retained": false,
+    "raw_paths_retained": false,
+    "raw_commands_retained": false,
+    "reasoning_retained": false
+  },
+  "source": {
+    "kind": "read_only_prc_api",
+    "run_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+    "source_file": "local generated PRC API export; exact path withheld",
+    "note": "Native IDs, parent IDs, statuses, model labels, event categories, bounded command/file evidence and stable refs only."
+  },
+  "run": {
+    "run_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+    "project_id": "/Users/kai/Documents/Home Project",
+    "status": "notLoaded",
+    "history_available": true,
+    "agent_count": 27,
+    "event_count": 4186,
+    "root_count": 1,
+    "child_count": 26
+  },
+  "run_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+  "agents": [
+    {
+      "agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "parent_agent_id": null,
+      "role": "root",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 41,
+      "event_type_counts": {
+        "agentMessage": 336,
+        "collabAgentToolCall": 65,
+        "commandExecution": 1197,
+        "contextCompaction": 9,
+        "fileChange": 155,
+        "mcpToolCall": 7,
+        "reasoning": 1325,
+        "userMessage": 44,
+        "webSearch": 3
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3137",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3138",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3139",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 1303
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3137",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3138",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3139",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 1303
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3137"
+        },
+        {
+          "ref": "evidence_3138"
+        },
+        {
+          "ref": "evidence_3139"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a1070e-b4ac-7b40-8664-37697f6ed130",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 4,
+        "commandExecution": 15,
+        "reasoning": 8,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3160",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3165",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3166",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3160",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3165",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3166",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3160"
+        },
+        {
+          "ref": "evidence_3165"
+        },
+        {
+          "ref": "evidence_3166"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a106fe-b682-7f61-aab6-104532c34e42",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 3,
+        "commandExecution": 14,
+        "reasoning": 5,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3186",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3188",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3189",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3186",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3188",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3189",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3186"
+        },
+        {
+          "ref": "evidence_3188"
+        },
+        {
+          "ref": "evidence_3189"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a106f6-b197-7a50-ac3c-d54bc0ffb548",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 2,
+        "commandExecution": 6,
+        "reasoning": 2,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3199",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3200",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3201",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3199",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3200",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3201",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3199"
+        },
+        {
+          "ref": "evidence_3200"
+        },
+        {
+          "ref": "evidence_3201"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a106e8-389f-7581-99d7-7ecd528aca41",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 3,
+        "commandExecution": 9,
+        "reasoning": 14,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3215",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3218",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3219",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3215",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3218",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3219",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3215"
+        },
+        {
+          "ref": "evidence_3218"
+        },
+        {
+          "ref": "evidence_3219"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a106d1-8163-7061-acfe-8d45328d1fdd",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 2,
+        "commandExecution": 5,
+        "reasoning": 3,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3236",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3237",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3238",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3236",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3237",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3238",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3236"
+        },
+        {
+          "ref": "evidence_3237"
+        },
+        {
+          "ref": "evidence_3238"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a106a8-7225-7d90-a8e2-7dc6813f2ab2",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 3,
+        "commandExecution": 5,
+        "reasoning": 5,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3247",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3248",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3249",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3247",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3248",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3249",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3247"
+        },
+        {
+          "ref": "evidence_3248"
+        },
+        {
+          "ref": "evidence_3249"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a10679-f4c9-7e41-93e5-bd78de634f5a",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 6,
+        "commandExecution": 23,
+        "reasoning": 16,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3291",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3292",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3293",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3291",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3292",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3293",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3291"
+        },
+        {
+          "ref": "evidence_3292"
+        },
+        {
+          "ref": "evidence_3293"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a1066a-073b-7582-853d-026e9f7a71c2",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 4,
+        "commandExecution": 14,
+        "reasoning": 24,
+        "userMessage": 1,
+        "webSearch": 10
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3321",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3322",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3323",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3321",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3322",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3323",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3321"
+        },
+        {
+          "ref": "evidence_3322"
+        },
+        {
+          "ref": "evidence_3323"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a10217-c762-7552-9a8d-90ccbc65c48a",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 4,
+        "commandExecution": 12,
+        "reasoning": 13,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3370",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3372",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 2529
+        },
+        {
+          "evidence_ref": "evidence_3375",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 1132
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3370",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3372",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 2529
+        },
+        {
+          "ref": "evidence_3375",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 1132
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3370"
+        },
+        {
+          "ref": "evidence_3372"
+        },
+        {
+          "ref": "evidence_3375"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a1020e-5142-7d32-b31f-a07ce34c2b03",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 3,
+        "commandExecution": 15,
+        "reasoning": 13,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3404",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3406",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 1342
+        },
+        {
+          "evidence_ref": "evidence_3408",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 1856
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3404",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3406",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 1342
+        },
+        {
+          "ref": "evidence_3408",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 1856
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3404"
+        },
+        {
+          "ref": "evidence_3406"
+        },
+        {
+          "ref": "evidence_3408"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a10203-272f-7571-b4a8-ac94df82e105",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 6,
+        "commandExecution": 12,
+        "fileChange": 1,
+        "reasoning": 13,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3445",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3446",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3447",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3445",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3446",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3447",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3445"
+        },
+        {
+          "ref": "evidence_3446"
+        },
+        {
+          "ref": "evidence_3447"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a101fc-99e4-76e3-9dde-010d2be1ccc2",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 5,
+        "commandExecution": 11,
+        "fileChange": 1,
+        "reasoning": 16,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3471",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3478",
+          "event_type": "fileChange",
+          "native_evidence_kind": "file_change",
+          "turn_status": "completed",
+          "tool_name": "file_change",
+          "change_count": 1,
+          "file_change_refs": [
+            "file_change_001"
+          ]
+        },
+        {
+          "evidence_ref": "evidence_3481",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3471",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3481",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [
+        {
+          "ref": "file_change_001",
+          "evidence_ref": "evidence_3478"
+        }
+      ],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3471"
+        },
+        {
+          "ref": "evidence_3478"
+        },
+        {
+          "ref": "evidence_3481"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a101f2-866b-7850-95eb-6a6df8e6ff1a",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 5,
+        "commandExecution": 15,
+        "reasoning": 13,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3510",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3511",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3512",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3510",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3511",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3512",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3510"
+        },
+        {
+          "ref": "evidence_3511"
+        },
+        {
+          "ref": "evidence_3512"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a101a8-e805-7bd2-8c54-841efac5448c",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 12,
+        "commandExecution": 39,
+        "fileChange": 5,
+        "reasoning": 38,
+        "userMessage": 2
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3602",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 2433
+        },
+        {
+          "evidence_ref": "evidence_3607",
+          "event_type": "fileChange",
+          "native_evidence_kind": "file_change",
+          "turn_status": "completed",
+          "tool_name": "file_change",
+          "change_count": 2,
+          "file_change_refs": [
+            "file_change_002",
+            "file_change_003"
+          ]
+        },
+        {
+          "evidence_ref": "evidence_3610",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 4171
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3602",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 2433
+        },
+        {
+          "ref": "evidence_3610",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 4171
+        }
+      ],
+      "file_change_refs": [
+        {
+          "ref": "file_change_002",
+          "evidence_ref": "evidence_3607"
+        },
+        {
+          "ref": "file_change_003",
+          "evidence_ref": "evidence_3607"
+        }
+      ],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3602"
+        },
+        {
+          "ref": "evidence_3607"
+        },
+        {
+          "ref": "evidence_3610"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a101a2-a2b6-76a1-9e16-4bb76b5195c6",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 4,
+        "commandExecution": 10,
+        "fileChange": 1,
+        "reasoning": 6,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3629",
+          "event_type": "fileChange",
+          "native_evidence_kind": "file_change",
+          "turn_status": "completed",
+          "tool_name": "file_change",
+          "change_count": 1,
+          "file_change_refs": [
+            "file_change_004"
+          ]
+        },
+        {
+          "evidence_ref": "evidence_3632",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3633",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3632",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3633",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [
+        {
+          "ref": "file_change_004",
+          "evidence_ref": "evidence_3629"
+        }
+      ],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3629"
+        },
+        {
+          "ref": "evidence_3632"
+        },
+        {
+          "ref": "evidence_3633"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a101a1-761d-7540-b100-3d0fc5a2e00f",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 5,
+        "commandExecution": 9,
+        "fileChange": 1,
+        "reasoning": 9,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3652",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3655",
+          "event_type": "fileChange",
+          "native_evidence_kind": "file_change",
+          "turn_status": "completed",
+          "tool_name": "file_change",
+          "change_count": 1,
+          "file_change_refs": [
+            "file_change_005"
+          ]
+        },
+        {
+          "evidence_ref": "evidence_3658",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3652",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3658",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [
+        {
+          "ref": "file_change_005",
+          "evidence_ref": "evidence_3655"
+        }
+      ],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3652"
+        },
+        {
+          "ref": "evidence_3655"
+        },
+        {
+          "ref": "evidence_3658"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a10196-6677-7271-858b-94ec7a7f450d",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 6,
+        "commandExecution": 14,
+        "fileChange": 1,
+        "reasoning": 30,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3700",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3705",
+          "event_type": "fileChange",
+          "native_evidence_kind": "file_change",
+          "turn_status": "completed",
+          "tool_name": "file_change",
+          "change_count": 1,
+          "file_change_refs": [
+            "file_change_006"
+          ]
+        },
+        {
+          "evidence_ref": "evidence_3710",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3700",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3710",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [
+        {
+          "ref": "file_change_006",
+          "evidence_ref": "evidence_3705"
+        }
+      ],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3700"
+        },
+        {
+          "ref": "evidence_3705"
+        },
+        {
+          "ref": "evidence_3710"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a10197-f718-71a0-965b-97311fa3140b",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 7,
+        "commandExecution": 17,
+        "fileChange": 1,
+        "reasoning": 15,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3749",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3750",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3751",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3749",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3750",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3751",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3749"
+        },
+        {
+          "ref": "evidence_3750"
+        },
+        {
+          "ref": "evidence_3751"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a10191-d008-7503-a1b2-c8cf0f118886",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 5,
+        "commandExecution": 9,
+        "fileChange": 1,
+        "reasoning": 7,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3768",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3771",
+          "event_type": "fileChange",
+          "native_evidence_kind": "file_change",
+          "turn_status": "completed",
+          "tool_name": "file_change",
+          "change_count": 1,
+          "file_change_refs": [
+            "file_change_007"
+          ]
+        },
+        {
+          "evidence_ref": "evidence_3774",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3768",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3774",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [
+        {
+          "ref": "file_change_007",
+          "evidence_ref": "evidence_3771"
+        }
+      ],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3768"
+        },
+        {
+          "ref": "evidence_3771"
+        },
+        {
+          "ref": "evidence_3774"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a10166-7d1b-72a3-a86a-ef5aedf13e04",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 7,
+        "commandExecution": 37,
+        "fileChange": 1,
+        "reasoning": 15,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3832",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3833",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "failed",
+          "exit_code": 1,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3835",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3832",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3833",
+          "status": "failed",
+          "exit_code": 1,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3835",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3832"
+        },
+        {
+          "ref": "evidence_3833"
+        },
+        {
+          "ref": "evidence_3835"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a10164-b3a5-7922-9e50-27b1c1b01909",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 7,
+        "commandExecution": 15,
+        "fileChange": 1,
+        "reasoning": 12,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3869",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3870",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3871",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3869",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3870",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3871",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3869"
+        },
+        {
+          "ref": "evidence_3870"
+        },
+        {
+          "ref": "evidence_3871"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a10158-f840-74b0-a29a-02f99d827d84",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 7,
+        "commandExecution": 46,
+        "fileChange": 1,
+        "reasoning": 22,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_3946",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3947",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_3948",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_3946",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3947",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_3948",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_3946"
+        },
+        {
+          "ref": "evidence_3947"
+        },
+        {
+          "ref": "evidence_3948"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a10158-f8a3-7d73-a1bf-4bbdb7309452",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 7,
+        "commandExecution": 33,
+        "fileChange": 1,
+        "reasoning": 20,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_4007",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_4008",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_4010",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_4007",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_4008",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_4010",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_4007"
+        },
+        {
+          "ref": "evidence_4008"
+        },
+        {
+          "ref": "evidence_4010"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a10153-9899-7ce2-a8a1-78ded0f33760",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 5,
+        "commandExecution": 13,
+        "fileChange": 1,
+        "reasoning": 9,
+        "userMessage": 1
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_4037",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_4038",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_4039",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_4037",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_4038",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_4039",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_4037"
+        },
+        {
+          "ref": "evidence_4038"
+        },
+        {
+          "ref": "evidence_4039"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a100d0-a9b8-7c72-956c-781fb6afe452",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 8,
+        "commandExecution": 11,
+        "fileChange": 2,
+        "reasoning": 31,
+        "userMessage": 1,
+        "webSearch": 14
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_4104",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_4105",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_4106",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_4104",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_4105",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_4106",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_4104"
+        },
+        {
+          "ref": "evidence_4105"
+        },
+        {
+          "ref": "evidence_4106"
+        }
+      ]
+    },
+    {
+      "agent_id": "01a100d0-ab1f-7212-82ee-089097920970",
+      "parent_agent_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+      "role": "subagent",
+      "status": "notLoaded",
+      "model": "gpt-5.5",
+      "turn_count": 1,
+      "event_type_counts": {
+        "agentMessage": 9,
+        "commandExecution": 17,
+        "fileChange": 2,
+        "reasoning": 33,
+        "userMessage": 1,
+        "webSearch": 16
+      },
+      "proven_semantics": {
+        "intent": "UNAVAILABLE",
+        "contribution": "UNAVAILABLE",
+        "outcome": "UNAVAILABLE"
+      },
+      "selected_evidence": [
+        {
+          "evidence_ref": "evidence_4180",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 45802
+        },
+        {
+          "evidence_ref": "evidence_4183",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "evidence_ref": "evidence_4184",
+          "event_type": "commandExecution",
+          "native_evidence_kind": "command",
+          "turn_status": "completed",
+          "tool_name": "command",
+          "execution_status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "sanitized_commands": [
+        {
+          "ref": "evidence_4180",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 45802
+        },
+        {
+          "ref": "evidence_4183",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        },
+        {
+          "ref": "evidence_4184",
+          "status": "completed",
+          "exit_code": 0,
+          "duration_ms": 0
+        }
+      ],
+      "file_change_refs": [],
+      "evidence_refs": [
+        {
+          "ref": "evidence_4180"
+        },
+        {
+          "ref": "evidence_4183"
+        },
+        {
+          "ref": "evidence_4184"
+        }
+      ]
+    }
+  ],
+  "anonymized_file_change_ref_count": 7
+}

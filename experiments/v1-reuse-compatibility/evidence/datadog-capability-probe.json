@@ -1,0 +1,88 @@
+{
+  "probe": "datadog-trajectory-capability",
+  "checked_at": "2026-10-07",
+  "target_run_id": "01a0eca4-7029-7f92-b5a9-2006edb08721",
+  "target_run_shape": {
+    "agents": 27,
+    "root_agents": 1,
+    "subagents": 26,
+    "native_events": 4186,
+    "turns": 67,
+    "source": "codex.app-server"
+  },
+  "local_datadog_plugin": {
+    "path": "/Users/kai/.codex/.tmp/plugins/plugins/datadog",
+    "version": "10.0.0",
+    "mcp_url": "https://mcp.datadoghq.com/v1/mcp",
+    "available_local_cli": false,
+    "note": "The installed Datadog plugin exposes a remote MCP declaration only; it is not the local Trajectory CLI used by the successful probe."
+  },
+  "local_trajectory_probe": {
+    "result": "PARTIAL",
+    "version": "0.6.0",
+    "commit": "f03a74b21d31e9d95e491f35cc4646d5262e3f76",
+    "execution": "isolated temporary HOME with local Codex rollout corpus",
+    "remote_mcp_used": false,
+    "oauth_used": false,
+    "datadog_publish_performed": false,
+    "backfill_indexing": {
+      "result": "COMPLETED",
+      "rollout_files_seen": 86,
+      "sessions_indexed_in_bounded_batch": 64,
+      "target_session_recognized": true
+    },
+    "session_command": {
+      "operation": "trajectory patterns session 01a0eca4-7029-7f92-b5a9-2006edb08721 --json",
+      "result": "STRUCTURED_OUTPUT",
+      "output_path": "evidence/trajectory-patterns-session-01a0eca4-7029-7f92-b5a9-2006edb08721.json",
+      "observed": {
+        "client_source": "codex",
+        "turn_count": 42,
+        "subagent_invocations": 26,
+        "task_count": 0,
+        "tasks": null,
+        "total_tokens": 177900264,
+        "agent_work_cost_usd": 152.019541,
+        "commits": 19,
+        "markdown_files_written": 124,
+        "test_files_written": 9,
+        "file_changing_turns": 21
+      }
+    },
+    "estimate_command": {
+      "operation": "trajectory patterns estimate --since 2026-09-29 --json",
+      "result": "STRUCTURED_OUTPUT",
+      "output_path": "evidence/trajectory-patterns-estimate-2026-09-29.json",
+      "observed": {
+        "sessions": 14,
+        "already_classified": 0,
+        "unclassified_sessions": 14,
+        "turns_to_analyze": 135,
+        "estimated_cost_usd": 0.08405679999999999,
+        "provider_available": true
+      }
+    },
+    "segmentation_result": "NO_HUMAN_WORK_BOUNDARIES_OBSERVED"
+  },
+  "attempts": [
+    {
+      "operation": "patterns session 01a0eca4-7029-7f92-b5a9-2006edb08721 --json",
+      "result": "UNAVAILABLE",
+      "exit_code": 127,
+      "stdout_bytes": 0,
+      "stderr": "command not found: patterns"
+    },
+    {
+      "operation": "Datadog MCP initialize",
+      "result": "UNAVAILABLE",
+      "http_status": 401,
+      "response": "{\"errors\":[\"Unauthorized\"]}"
+    }
+  ],
+  "not_executed": [
+    "patterns analyze --yes",
+    "historical analyze"
+  ],
+  "evidence_boundary": "The local Trajectory probe produced real session, turn, subagent, cost, and deliverable evidence, but task_count is 0 and tasks is null. No Human work boundaries were produced. The local PRC observer export is not substituted for a Trajectory result.",
+  "secrets_or_raw_prompts_included": false
+}

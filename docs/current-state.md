@@ -1,119 +1,79 @@
 # Current State
 
-**Date:** 2026-10-06
+**Date:** 2026-10-07
 **Project:** Project Runtime Console
-**Active bounded round:** `PRC-V0-STEP-3-LIVE-RUNTIME-CONSOLE-20261006`
+**Active round:** `V2.5 real-run vertical slice`
 
-## UI Convergence Checkpoint
+## Repository State
 
-The Principal input `PRC-UI-CONVERGENCE-R1-20261006` was reviewed as a new
-Human-facing/model-shaping round request. The Principal subsequently issued a
-versioned `FRAME_EVOLUTION` amendment, recorded at
-`docs/ui-frame-change-v1.md`, which updates the presentation boundary in
-`docs/SHELL_FREEZE_V0.md` and `docs/capability-imports/THOUGHTDAG.md`.
-Runtime, identity, judgment, and observer-independence boundaries remain
-unchanged.
+The active tree was reduced to the Codex-native runtime substrate, the transcript/shadow judgment foundation, minimal tests, and the V1 compatibility evidence. Former console, graph prototypes, OpenDesign studies, identity experiments, governance packets, and other superseded temporary work are not part of the active tree. Git history remains the archive; no archive folder was created.
 
-The DSH round-start Global Review returned `GO_LOCAL` for exactly one action:
-`RUN_PASS_A_REFERENCE_PRECOMMIT_ONLY`. Pass A completed and produced
-`experiments/ui-convergence/REFERENCE_FIRST_PRECOMMIT.md`. After the Principal
-amendment, Pass B Frame Comparison reviewed the proposal and returned
-`FRAME_OK / EVIDENCE_GAP=NO / ADVISORY_ONLY=YES`. This permits preparation of
-the next bounded execution packet; it does not approve the UI or authorize
-unbounded implementation.
+## Runtime Foundation
 
-Current status: `PASS_B_COMPLETE__EXECUTION_PACKET_REQUIRED`.
+Retained runtime capabilities are:
 
-Do not start ThoughtDAG/Agent Monitor reference capture, the convergence
-harness, UI variants, refinement, or code changes until the next bounded
-execution packet is prepared and authorized. Receipts:
+- `packages/codex_runtime/`: read-only Codex app-server observation, native Thread identity, root-run grouping through `parentThreadId`, and native event projection.
+- `packages/runtime_events/`: transcript tool-result parsing and stable event identity.
+- `packages/judge_deepseek/`, `packages/judgment_sidecar/`, and `packages/judgment_ledger/`: bounded shadow judgment provider, receipt, sidecar, and replayable JSONL persistence.
 
-- `experiments/ui-convergence/receipts/round-start-global.json`
-- `experiments/ui-convergence/receipts/frame-pass-a.json`
-- `experiments/ui-convergence/receipts/frame-pass-b.json`
-- `experiments/ui-convergence/REFERENCE_FIRST_PRECOMMIT.md`
+No runtime, identity, lineage, or judgment semantics were changed by the cleanup.
 
-## Current Outcome
+## V1 Reuse Probe
 
-Step 3 implemented one read-only Codex-native Runtime Observer and one
-minimal Console surface. It remains a bounded implementation result, not a
-Human Principal ratification and not Product v0 completion.
+Target: real Codex Run `01a0eca4-7029-7f92-b5a9-2006edb08721`.
 
-The observer now:
+Observed native shape from the read-only app-server observer: `1 root / 26 children`, `4,251` native events, and `69` turns. The sanitized fixture is retained at `experiments/v1-reuse-compatibility/evidence/prc-27-agent-sanitized-v2.json`.
 
-- connects to the local Codex app-server through JSON-RPC;
-- requests all current Codex thread source kinds, including subagents;
-- follows `parentThreadId` to group descendants under the root Run while
-  preserving each Thread's native `sessionId`;
-- uses native Thread IDs for Agent identity and native Turn/item IDs for live
-  trace ownership;
-- reads history through `thread/read` with turns;
-- preserves native `notLoaded` instead of inferring `completed`;
-- exposes explicit `RECONCILIATION_UNRESOLVED` when no persisted
-  `canonical_event_id` relation has been established;
-- keeps `read_only=true`, `runtime_effect=NONE`, and
-  `SHOW_JUDGMENTS=false`.
+Trajectory local-only probe:
 
-## Evidence Result
+- Binary: Trajectory `0.6.0`, commit `f03a74b21d31e9d95e491f35cc4646d5262e3f76`.
+- Local backfill/indexing completed against the Codex rollout corpus in an isolated temporary home; no remote MCP, OAuth, or Datadog publishing was used.
+- `patterns session <ID> --json` produced real structured output: `codex`, `42` turns, `26` subagent invocations, `task_count: 0`, `19` commits, `124` Markdown files, and `9` test files in deliverable evidence.
+- `patterns estimate --since 2026-09-29 --json` produced a no-inference cost estimate for `14` unclassified sessions. `patterns analyze --yes` was not run.
 
-Confirmed or directly observed:
+The session report did not produce human work/task boundaries. Therefore the probe is `PARTIAL`: it confirms local Codex recognition, backfill, indexing, turn/subagent/deliverable extraction, but not the required Planning, Research, Validation, Correction, Prototype, or Review segmentation.
 
-- Codex CLI `0.153.4` exposes the checked app-server surface:
-  `initialize`, `thread/list`, `thread/read`, thread status, turn lifecycle,
-  and item lifecycle notifications.
-- A real app-server history Run with one root and two children was opened.
-  The Console displayed three Agents, correct root/child edges, and separate
-  trace rows for the selected child.
-- A larger real historical Run with 14 native Agents was also discovered;
-  this shows the source-kind and pagination repair reaches actual subagent
-  records beyond the three-Agent Gold Run.
-- Native `Thread.sessionId` values for child threads are distinct from the
-  root in the observed data. The logical Run grouping therefore uses the root
-  Thread session reached through `parentThreadId`; Agent identity is never
-  derived from `sessionId`.
-- The historical read path is available for the observed Runs. Live native
-  items remain explicitly unresolved against Step 1 persisted event IDs.
-- Focused and full test suite: `11/11` passed. Python compilation and
-  `git diff --check` passed.
+Evidence:
 
-## Partial / Not Proven
+- `experiments/v1-reuse-compatibility/evidence/trajectory-patterns-session-01a0eca4-7029-7f92-b5a9-2006edb08721.json`
+- `experiments/v1-reuse-compatibility/evidence/trajectory-patterns-estimate-2026-09-29.json`
+- `experiments/v1-reuse-compatibility/evidence/datadog-capability-probe.json`
+- `experiments/v1-reuse-compatibility/V1_REUSE_MATRIX.md`
+- `experiments/v1-reuse-compatibility/WORKSTAGE_COMPATIBILITY.md`
 
-- The Console can poll the app-server and consume native notification buffers,
-  but a controlled active Gold Run with a witnessed working-to-finished
-  transition was not completed in this round.
-- The Gold Run topology and history reopen are confirmed; the same run was
-  not captured end-to-end as live UI plus post-completion reopen evidence.
-- No DSH product Judge invocation was performed. No product provider receipt
-  exists, and no Shadow Judgment capability is claimed for Step 3.
-- No Agent Monitor behavioral comparison was completed.
-- Live native observation has no established relation to Step 1
-  `canonical_event_id`; the boundary remains
-  `RECONCILIATION_UNRESOLVED`.
+## Verdict
 
-## Governance Boundary
+Overall V1 reuse verdict remains `INCONCLUSIVE`. The Trajectory probe is stronger than the earlier command-not-found observation, but it still does not establish WorkStage compatibility.
 
-The round-start DSH receipt is retained at
-`experiments/runtime-observer/receipts/step3-round-start-global.json`.
-It authorizes this bounded observer implementation only. It does not review
-the final implementation, ratify the runtime model, authorize DSH Judge
-integration, or declare Product v0 success.
+## V2.5 Real-Run Vertical Slice
 
-## Next Action
+The frozen V2.5 interaction shell is now served at `apps/console/` and reads
+the target run through `CodexRuntimeObserver` at request time. The actual path
+is:
 
-Stop at `PRINCIPAL_REVIEW`. The Human Principal must decide whether the
-remaining controlled live-transition probe and the separately sequenced DSH
-Judge probe should receive a new bounded authorization. Do not enter a new
-phase automatically.
+```text
+Codex app-server (read-only)
+  -> native agents / turns / events
+  -> bounded user-anchor projection
+  -> V2.5 WorkStage spatial map
+  -> drawer Evidence
+  -> native Raw Trace records
+```
 
-## Evidence Pointers
+The browser probe verified the overview, stage selection, Evidence navigation,
+Raw Trace navigation, return navigation, and zoom using the real run. The
+overview displayed `27` agents, `26` children, `4251` native events, `69` turns,
+and available history. Raw Trace displayed real `userMessage`, `agentMessage`,
+and `commandExecution` records with native IDs and command completion state.
 
-- `experiments/runtime-observer/STEP3_EXECUTION_PACKET.md`
-- `experiments/runtime-observer/receipts/step3-execution.json`
-- `HUMAN_REVIEW_PACKET_STEP3.md`
-- `experiments/runtime-observer/receipts/gold-run-evidence.json`
-- `output/playwright/step3-gold-run-root.png`
-- `output/playwright/step3-gold-run-child.png`
-- `output/playwright/step3-child-trace.png`
+The projection remains `PARTIAL`: WorkStage titles are derived navigation
+labels from explicit user-message anchors; native runtime does not establish
+the displayed work outcomes, complete causality, or contribution semantics.
+The five acceptance questions therefore cannot all be answered from this
+slice without unsupported interpretation.
 
-No raw private transcript, secret, credential, or hidden reasoning is
-committed.
+Checkpoint: `frontend-v1-baseline-v2.5`.
+
+## Validation
+
+The retained Python smoke suite covers native observer projection, stable transcript event identity, shadow judgment, DSH receipt handling, and JSONL ledger replay.

@@ -1,189 +1,1178 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="data:,">
-    <title>Project Runtime Console</title>
-    <style>
-      :root {
-        color-scheme: dark;
-        --bg: #101419;
-        --panel: #171d24;
-        --panel-2: #1c242d;
-        --line: #2d3843;
-        --text: #e7edf3;
-        --muted: #93a1af;
-        --cyan: #55c7d9;
-        --green: #8fd694;
-        --amber: #f0c674;
-        --red: #ee8d8d;
-      }
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        min-width: 1024px;
-        background: var(--bg);
-        color: var(--text);
-        font: 13px/1.45 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      }
-      button {
-        border: 1px solid var(--line);
-        background: var(--panel-2);
-        color: var(--text);
-        padding: 7px 10px;
-        cursor: pointer;
-      }
-      button:hover, button.selected { border-color: var(--cyan); color: var(--cyan); }
-      .shell { display: grid; grid-template-columns: 220px 260px 1fr; min-height: 100vh; }
-      aside, main { border-right: 1px solid var(--line); }
-      .rail { padding: 16px; background: #0d1116; }
-      .rail h1 { margin: 0 0 18px; font-size: 14px; letter-spacing: 0; }
-      .rail .label, .section-title { color: var(--muted); font-size: 11px; text-transform: uppercase; }
-      .project { margin-top: 8px; border-left: 2px solid var(--cyan); padding: 10px 0 10px 10px; }
-      .run-item { margin-top: 12px; width: 100%; text-align: left; }
-      .topology { padding: 16px; background: var(--panel); }
-      .topology h2, main h2 { margin: 0; font-size: 15px; }
-      .tree { margin-top: 18px; padding-left: 10px; }
-      .tree-node { border-left: 1px solid var(--line); padding: 8px 0 8px 12px; }
-      .tree-node.active { border-left-color: var(--cyan); color: var(--cyan); }
-      .tree-node small { display: block; color: var(--muted); margin-top: 3px; }
-      main { border: 0; padding: 16px 20px 40px; overflow: auto; }
-      .header { display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line); padding-bottom: 14px; }
-      .crumb { color: var(--muted); }
-      .crumb strong { color: var(--text); }
-      .status { color: var(--green); border: 1px solid #416447; padding: 5px 8px; }
-      .trace { margin-top: 22px; }
-      .event { display: grid; grid-template-columns: 90px minmax(0, 1fr) 170px; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--line); }
-      .event:hover { background: rgba(85, 199, 217, .05); }
-      .event.selected { background: rgba(85, 199, 217, .10); }
-      .event .ordinal { color: var(--muted); }
-      .event .kind { color: var(--cyan); }
-      .event .tool { color: var(--text); margin-top: 4px; }
-      .event .preview { color: var(--muted); margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .judgment { border-left: 2px solid var(--amber); padding-left: 9px; }
-      .judgment .verdict { color: var(--amber); }
-      .judgment .meta { color: var(--muted); font-size: 11px; margin-top: 3px; }
-      .details { margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-      .panel { background: var(--panel); border: 1px solid var(--line); padding: 14px; min-height: 150px; }
-      .panel h3 { margin: 0 0 12px; font-size: 12px; color: var(--muted); }
-      pre { margin: 0; white-space: pre-wrap; word-break: break-word; color: #c9d4de; }
-      .ledger-row { padding: 8px 0; border-top: 1px solid var(--line); }
-      .ledger-row:first-child { border-top: 0; }
-      .empty { color: var(--muted); padding: 22px 0; }
-      @media (max-width: 1100px) {
-        body { min-width: 0; }
-        .shell { grid-template-columns: 180px 220px 1fr; }
-        .event { grid-template-columns: 70px minmax(0, 1fr) 140px; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="app" class="shell">
-      <aside class="rail">
-        <h1>Project Runtime Console</h1>
-        <div class="label">Project</div>
-        <div id="project" class="project">Loading...</div>
-        <div class="label" style="margin-top: 26px;">Run</div>
-        <button id="run-button" class="run-item">Loading...</button>
-      </aside>
-      <aside class="topology">
-        <h2>Agent Topology</h2>
-        <div id="topology" class="tree"></div>
-      </aside>
-      <main>
-        <div class="header">
-          <div>
-            <div class="crumb">Project / Run / <strong>Trace</strong></div>
-            <h2 id="run-title" style="margin-top: 7px;">Loading...</h2>
-          </div>
-          <div id="run-status" class="status">OBSERVED</div>
-        </div>
-        <section class="trace">
-          <div class="section-title">Runtime Trace · Shadow Judgment</div>
-          <div id="events"></div>
-        </section>
-        <section class="details">
-          <div class="panel">
-            <h3>Selected Event</h3>
-            <pre id="event-detail" class="empty">Select a trace event.</pre>
-          </div>
-          <div class="panel">
-            <h3>Judgment Ledger</h3>
-            <div id="ledger"></div>
-          </div>
-        </section>
-      </main>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PRC V2.5 · WorkStage Spatial Map — Living Drawer</title>
+<style>
+  /* ─── tokens — tech/utility direction, bound verbatim ──────────────── */
+  :root {
+    --bg:      oklch(98% 0.005 250);
+    --surface: oklch(100% 0 0);
+    --fg:      oklch(22% 0.02 240);
+    --muted:   oklch(50% 0.018 240);
+    --border:  oklch(90% 0.008 240);
+    --accent:  oklch(58% 0.16 145);
+
+    --font-display: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
+    --font-body:    -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
+    --font-mono:    'JetBrains Mono', 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+
+    /* semantic layer — one hue per meaning, never decoration */
+    --c-current:  var(--accent);              /* 当前阶段 */
+    --c-done:     oklch(56% 0.045 250);       /* 已完成 / 中性 */
+    --c-parallel: oklch(56% 0.125 292);       /* 并行分支 / Research */
+    --c-shift:    oklch(63% 0.115 68);        /* 方向修正 */
+    --c-evidence: oklch(55% 0.115 250);       /* 证据 / 追索 */
+    --c-unknown:  oklch(64% 0.012 250);       /* 未解析 */
+
+    /* inks — same hues pulled toward --fg so small text clears 4.5:1 */
+    --ink-current:  color-mix(in oklch, var(--c-current) 62%, var(--fg));
+    --ink-done:     color-mix(in oklch, var(--c-done) 62%, var(--fg));
+    --ink-parallel: color-mix(in oklch, var(--c-parallel) 62%, var(--fg));
+    --ink-shift:    color-mix(in oklch, var(--c-shift) 66%, var(--fg));
+    --ink-evidence: color-mix(in oklch, var(--c-evidence) 62%, var(--fg));
+
+    --muted-ink:     color-mix(in oklch, var(--muted) 82%, var(--fg));
+    --border-strong: color-mix(in oklch, var(--fg) 24%, var(--border));
+    --hairline:      color-mix(in oklch, var(--fg) 10%, var(--border));
+    --fg-soft:       color-mix(in oklch, var(--fg) 5%, var(--surface));
+    --flat:          color-mix(in oklch, var(--bg) 76%, var(--surface));
+
+    /* surfaces carry depth with layered shadow instead of a hairline box.
+       Pure-black rings (not a tinted neutral) so they sit correctly on any
+       background tone — the canvas is a gradient, a solid border is not. */
+    --edge:          inset 0 0 0 1px oklch(0 0 0 / 0.055),
+                     0 1px 2px -1px oklch(0 0 0 / 0.05),
+                     0 2px 6px -1px oklch(0 0 0 / 0.04);
+    --edge-hover:    inset 0 0 0 1px oklch(0 0 0 / 0.075),
+                     0 2px 4px -1px oklch(0 0 0 / 0.07),
+                     0 8px 18px -6px oklch(0 0 0 / 0.07);
+    --edge-recessed: inset 0 0 0 1px oklch(0 0 0 / 0.045);
+
+    --lift-1: 0 1px 1px color-mix(in oklch, var(--fg) 5%, transparent),
+              0 4px 10px -4px color-mix(in oklch, var(--fg) 10%, transparent);
+    --lift-2: 0 1px 1px color-mix(in oklch, var(--fg) 6%, transparent),
+              0 10px 22px -8px color-mix(in oklch, var(--fg) 16%, transparent),
+              0 26px 50px -30px color-mix(in oklch, var(--fg) 22%, transparent);
+    --lift-3: 0 1px 2px color-mix(in oklch, var(--fg) 8%, transparent),
+              0 24px 60px -16px color-mix(in oklch, var(--fg) 20%, transparent),
+              0 60px 120px -60px color-mix(in oklch, var(--fg) 28%, transparent);
+
+    --ease-out:    cubic-bezier(.22, 1, .36, 1);
+    --ease-spring: cubic-bezier(.34, 1.38, .64, 1);
+    --t-fast: 150ms;
+    --t-base: 260ms;
+    --t-slow: 420ms;
+
+    --dock-w: 400px;
+    --topbar-h: 52px;
+    --status-h: 44px;
+    --r: 8px;
+    --r-lg: 12px;
+    --r-xl: 16px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; height: 100%; }
+  body {
+    margin: 0; height: 100%;
+    background: var(--bg); color: var(--fg);
+    font-family: var(--font-body); font-size: 14px; line-height: 1.5;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+  }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; text-align: left; }
+  /* wrapping — headings balance, short body text avoids a dangling last line */
+  p, li { text-wrap: pretty; }
+  h1, h2, h3 { text-wrap: balance; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  .mono, .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+  /* ─── shell ───────────────────────────────────────────────────────── */
+  .console { height: 100%; display: grid; grid-template-rows: var(--topbar-h) minmax(0,1fr) var(--status-h); }
+
+  .topbar {
+    display: flex; align-items: center; gap: 16px; padding-inline: 18px;
+    background: color-mix(in oklch, var(--surface) 86%, transparent);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border); min-width: 0; z-index: 20;
+  }
+  .brand { display: flex; align-items: baseline; gap: 9px; min-width: 0; }
+  .brand .mark {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: .06em;
+    color: var(--fg); border: 1px solid var(--border-strong); border-radius: 5px; padding: 2px 5px;
+  }
+  .brand .name { font-family: var(--font-display); font-size: 14.5px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; }
+  .runid {
+    font-family: var(--font-mono); font-size: 11.5px; color: var(--muted-ink);
+    padding: 3px 9px; border: 1px solid var(--border); border-radius: 999px; white-space: nowrap;
+  }
+  .topbar .spacer { flex: 1 1 auto; min-width: 8px; }
+  .nowstage {
+    display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+    font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink);
+    padding: 4px 10px 4px 8px; border: 1px solid var(--border); border-radius: 999px;
+  }
+  .nowstage b { color: var(--ink-current); font-weight: 600; }
+  .ghostbtn {
+    position: relative;
+    display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 12px;
+    border-radius: var(--r); border: 1px solid var(--border); color: var(--muted-ink); font-size: 12.5px; white-space: nowrap;
+    transition: border-color var(--t-fast), color var(--t-fast), background var(--t-fast), box-shadow var(--t-fast), scale var(--t-fast) var(--ease-out);
+  }
+  .ghostbtn:active { scale: .96; }
+  .ghostbtn::after { content: ''; position: absolute; inset: -3px -2px; }
+  .ghostbtn:hover { border-color: var(--border-strong); color: var(--fg); background: var(--fg-soft); box-shadow: var(--lift-1); }
+  .ghostbtn[disabled] { opacity: .4; cursor: default; }
+  .ghostbtn[disabled]:hover { border-color: var(--border); background: none; color: var(--muted-ink); box-shadow: none; }
+
+  .stage { position: relative; min-height: 0; }
+
+  /* ─── canvas: one quiet field under the floating drawer ───────────── */
+  /* A single lighting model, not a stack of effects: key light from the
+     upper-left (the same direction every card shadow falls), ambient
+     fall-off toward the lower edge. No pattern, no vignette, no glow. */
+  .canvas {
+    position: absolute; inset: 0; overflow: hidden; touch-action: none; cursor: grab;
+    background:
+      radial-gradient(126% 84% at 24% -10%,
+        color-mix(in oklch, var(--surface) 66%, var(--bg)) 0%,
+        color-mix(in oklch, var(--surface) 20%, var(--bg)) 44%,
+        transparent 76%),
+      linear-gradient(179deg,
+        var(--bg) 0%,
+        color-mix(in oklch, var(--surface) 20%, var(--bg)) 32%,
+        color-mix(in oklch, var(--fg) 3.4%, var(--bg)) 100%);
+  }
+  .canvas.is-panning { cursor: grabbing; }
+
+  .world { position: absolute; top: 0; left: 0; transform-origin: 0 0; will-change: transform; }
+
+  .edges { position: absolute; top: 0; left: 0; overflow: visible; pointer-events: none; }
+  .edges path { fill: none; stroke: var(--hairline); stroke-width: 1.5; vector-effect: non-scaling-stroke; stroke-linecap: round; }
+  .edges path.seg-near { stroke: var(--border-strong); }
+  .edges path.prog { stroke: var(--c-current); stroke-width: 2; opacity: 0; transition: stroke-dashoffset var(--t-slow) var(--ease-out), opacity var(--t-base) ease; }
+  .edges path.flow {
+    stroke: var(--c-current); stroke-width: 2.5; opacity: .34; stroke-dasharray: 1 13;
+    animation: flow 3.4s linear infinite;
+  }
+  @keyframes flow { to { stroke-dashoffset: -56; } }
+
+  /* stop markers on the spine */
+  .stop {
+    position: absolute; width: 20px; height: 20px; border-radius: 50%; pointer-events: none;
+    display: grid; place-items: center; z-index: 2;
+    background: var(--surface); border: 1px solid var(--border-strong);
+    font-family: var(--font-mono); font-size: 10px; color: var(--muted-ink);
+    box-shadow: 0 1px 2px color-mix(in oklch, var(--fg) 8%, transparent);
+    transition: background var(--t-base) var(--ease-out), border-color var(--t-base), color var(--t-base),
+                box-shadow var(--t-base), transform var(--t-base) var(--ease-out);
+  }
+  .stop.is-sel { background: var(--fg); border-color: var(--fg); color: var(--bg); transform: scale(1.12); }
+  .stop.is-cur { border-color: var(--c-current); color: var(--ink-current); }
+  .stop.is-cur::after {
+    content: ''; position: absolute; inset: -5px; border-radius: 50%;
+    border: 1px solid var(--c-current); opacity: 0; animation: breathe 3.6s var(--ease-out) infinite;
+  }
+  @keyframes breathe { 0%, 100% { opacity: 0; transform: scale(.82); } 45% { opacity: .5; transform: scale(1); } }
+  .stop.is-sel.is-cur { color: var(--bg); }
+
+  /* ─── nodes ───────────────────────────────────────────────────────── */
+  .node { position: absolute; display: block; background: none; border: 0; padding: 0; color: var(--fg); z-index: 3; }
+  .node .n-glow {
+    position: absolute; inset: -34px; z-index: 0; border-radius: 26px; opacity: 0;
+    background: radial-gradient(closest-side, color-mix(in oklch, var(--node-c, var(--c-done)) 20%, transparent), transparent 100%);
+    transition: opacity var(--t-slow) ease;
+  }
+  .node .n-stack {
+    position: absolute; inset: 0; z-index: 1; border-radius: var(--r-lg);
+    box-shadow: inset 0 0 0 1px var(--hairline); background: color-mix(in oklch, var(--surface) 55%, var(--bg));
+    transform: translate(9px, 9px);
+    transition: transform var(--t-base) var(--ease-out), box-shadow var(--t-base), background var(--t-base);
+  }
+  .node .n-stack.b { transform: translate(5px, 5px); z-index: 2; background: color-mix(in oklch, var(--surface) 78%, var(--bg)); }
+  .node .n-body {
+    position: relative; z-index: 3; display: block; width: 100%; height: 100%;
+    padding: 12px 14px; border-radius: var(--r-lg); overflow: hidden;
+    background: var(--surface);
+    box-shadow: var(--edge);
+    transition: transform var(--t-base) var(--ease-out), box-shadow var(--t-base) var(--ease-out),
+                background var(--t-base), opacity var(--t-base);
+  }
+  .node .n-name {
+    display: block; font-family: var(--font-display); font-size: 14.5px; font-weight: 600;
+    line-height: 17px; letter-spacing: -.008em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .node .n-out {
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    margin-top: 4px; font-size: 12px; line-height: 16.2px; min-height: 32px; color: var(--muted-ink);
+  }
+  .node .n-status {
+    display: flex; align-items: center; gap: 7px; margin-top: 5px; line-height: 1;
+    font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink);
+  }
+  /* glyph shape carries the type too, so the system never depends on hue alone */
+  .glyph { width: 7px; height: 7px; border-radius: 50%; background: var(--c-done); flex: 0 0 auto; }
+  .glyph.current { background: var(--c-current); }
+  .glyph.parallel { background: none; border-radius: 1px; box-shadow: 0 0 0 1px var(--c-parallel) inset; }
+  .glyph.shift { border-radius: 1px; transform: rotate(45deg); background: var(--c-shift); }
+  .glyph.unknown { background: none; border: 1px dashed var(--c-unknown); width: 8px; height: 8px; }
+
+  /* hover — a small lift, never a colour change on text */
+  .node:hover .n-body { transform: translateY(-3px); box-shadow: var(--edge-hover), var(--lift-2); }
+  .node:hover .n-glow { opacity: .85; }
+  .node:hover .n-stack { transform: translate(11px, 11px); }
+  .node:hover .n-stack.b { transform: translate(6px, 6px); }
+
+  /* selected — scale + halo + lift; text colour is untouched */
+  .node.is-sel { z-index: 6; }
+  .node.is-sel .n-body {
+    transform: translateY(-2px) scale(1.02);
+    background: linear-gradient(180deg, var(--surface), color-mix(in oklch, var(--node-c, var(--c-current)) 7%, var(--surface)));
+    box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--node-c, var(--c-current)) 62%, var(--border)),
+                0 0 0 2px color-mix(in oklch, var(--node-c, var(--c-current)) 22%, transparent),
+                var(--lift-2);
+  }
+  .node.is-sel .n-glow { opacity: 1; }
+  .node.is-sel .n-stack { transform: translate(11px, 11px); }
+  .node.is-sel .n-stack.b { transform: translate(6px, 6px); }
+  .node.is-sel:hover .n-body { transform: translateY(-4px) scale(1.02); }
+  /* focus lives one level deeper — the node stays selected and gains an outer ring */
+  .node.has-focus .n-body { box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--node-c, var(--c-current)) 62%, var(--border)),
+                0 0 0 2px color-mix(in oklch, var(--node-c, var(--c-current)) 22%, transparent),
+                0 0 0 6px color-mix(in oklch, var(--node-c, var(--c-current)) 11%, transparent),
+                var(--lift-2); }
+
+  /* de-emphasis by depth, never by lowering text contrast */
+  .world.has-focus .node:not(.is-sel) .n-body { box-shadow: var(--edge-recessed); background: var(--flat); }
+  .world.has-focus .node:not(.is-sel) .n-stack { opacity: 0; }
+
+  /* ─── floating drawer ─────────────────────────────────────────────── */
+  .dock {
+    position: absolute; top: 16px; right: 16px; bottom: 16px; width: var(--dock-w);
+    display: flex; flex-direction: column; min-height: 0; z-index: 12;
+    background: color-mix(in oklch, var(--surface) 92%, transparent);
+    backdrop-filter: blur(18px);
+    border-radius: var(--r-xl);
+    box-shadow: inset 0 0 0 1px oklch(0 0 0 / 0.05), var(--lift-2);
+    transition: box-shadow var(--t-slow) var(--ease-out);
+  }
+  .dock.active { box-shadow: inset 0 0 0 1px oklch(0 0 0 / 0.075), var(--lift-3); }
+  .dock-view { position: relative; flex: 1 1 auto; min-height: 0; overflow: hidden; border-radius: var(--r-xl); }
+
+  .pane {
+    position: absolute; inset: 0; display: flex; flex-direction: column; min-height: 0;
+    background: transparent;
+  }
+  .pane-body { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+  .grow { flex: 1 1 auto; min-width: 0; }
+  .pane.in-push, .pane.in-pop { z-index: 2; }
+  .pane.anim { transition: transform var(--t-base) var(--ease-out), opacity var(--t-base) ease; }
+  .pane.anim-spring { transition: transform var(--t-slow) var(--ease-spring), opacity var(--t-base) ease; }
+  .pane.out { z-index: 1; pointer-events: none; transition-duration: 160ms; }
+
+  .dnav {
+    display: flex; align-items: center; gap: 8px; padding: 10px 12px 10px 14px;
+    border-bottom: 1px solid var(--border); min-height: 50px;
+  }
+  .dback {
+    display: inline-flex; align-items: center; gap: 7px; min-width: 0; padding: 5px 9px; margin-left: -4px;
+    border-radius: 999px; border: 1px solid transparent;
+    font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink);
+    transition: color var(--t-fast), background var(--t-fast), border-color var(--t-fast);
+  }
+  .dback:hover { color: var(--fg); background: var(--fg-soft); border-color: var(--border); }
+  .dback .arw { transition: transform var(--t-base) var(--ease-out); }
+  .dback:hover .arw { transform: translateX(-2px); }
+  .dback span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .dnav .kicker { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-ink); }
+  .dnav .grow { flex: 1 1 auto; }
+  .iconbtn {
+    position: relative;
+    width: 30px; height: 30px; display: grid; place-items: center; border-radius: 7px; flex: 0 0 auto;
+    border: 1px solid var(--border); color: var(--muted-ink); font-size: 13px; line-height: 1;
+    transition: border-color var(--t-fast), color var(--t-fast), background var(--t-fast), transform var(--t-fast), scale var(--t-fast) var(--ease-out);
+  }
+  .iconbtn:hover { border-color: var(--border-strong); color: var(--fg); background: var(--fg-soft); transform: scale(1.05); }
+  .iconbtn:active { scale: .96; }
+  .iconbtn::after { content: ''; position: absolute; inset: -5px; }
+
+  .dscroll { position: relative; flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 16px 18px 22px; }
+
+  .dhead .meta { display: flex; align-items: center; gap: 9px; margin-bottom: 9px; }
+  .ord { font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink); border: 1px solid var(--border); border-radius: 5px; padding: 1px 6px; }
+  .tchip { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .04em; color: var(--ink-done); }
+  .tchip.parallel { color: var(--ink-parallel); }
+  .tchip.shift { color: var(--ink-shift); }
+  .tchip.current { color: var(--ink-current); }
+  .tchip.unknown { color: var(--muted-ink); }
+  .dhead h2 { margin: 0; font-family: var(--font-display); font-size: 19px; font-weight: 600; line-height: 1.2; letter-spacing: -.014em; }
+  .data-badge { display: inline-flex; align-items: center; width: fit-content; margin-top: 7px; padding: 3px 6px; border: 1px solid var(--border); border-radius: 4px; color: var(--muted-ink); font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .04em; }
+  .statuschip { display: inline-flex; align-items: center; gap: 7px; margin-top: 10px; font-family: var(--font-mono); font-size: 10.5px; color: var(--muted-ink); }
+  .statuschip.current { color: var(--ink-current); }
+
+  .sec { padding-top: 17px; }
+  .sec + .sec { border-top: 1px solid var(--border); margin-top: 17px; }
+  .sec-head { display: flex; align-items: center; gap: 10px; margin-bottom: 2px; }
+  .sec-label { margin: 0; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-ink); }
+  .sec-label .zh { text-transform: none; letter-spacing: 0; }
+  .outcome { margin: 9px 0 0; font-size: 14.5px; line-height: 1.55; color: var(--fg); }
+  .actions { margin: 11px 0 0; padding: 0; list-style: none; }
+  .actions li { position: relative; padding-left: 15px; font-size: 13px; line-height: 1.5; color: var(--fg); }
+  .actions li + li { margin-top: 8px; }
+  .actions li::before { content: ''; position: absolute; left: 1px; top: 8.5px; width: 5px; height: 1px; background: var(--border-strong); }
+
+  .evchip {
+    display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border-radius: 999px;
+    border: 1px solid color-mix(in oklch, var(--c-evidence) 30%, var(--border));
+    background: color-mix(in oklch, var(--c-evidence) 8%, transparent);
+    font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-evidence); white-space: nowrap;
+    transition: transform var(--t-fast) var(--ease-out), background var(--t-fast), border-color var(--t-fast);
+  }
+  .evchip:hover { transform: translateY(-1px); background: color-mix(in oklch, var(--c-evidence) 14%, transparent); border-color: color-mix(in oklch, var(--c-evidence) 46%, var(--border)); }
+  .evchip::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--c-evidence); }
+  .evchip .car { font-size: 11px; transition: transform var(--t-base) var(--ease-out); }
+  .evchip[aria-expanded="true"] .car { transform: rotate(90deg); }
+
+  /* evidence attached to the claim — expands in place with a real height transition */
+  .evpeek {
+    height: 0; overflow: hidden; opacity: 0; visibility: hidden;
+    transition: height var(--t-base) var(--ease-out), opacity 200ms ease, visibility 0s linear var(--t-base);
+  }
+  .evpeek.open { visibility: visible; transition: height var(--t-base) var(--ease-out), opacity 200ms ease, visibility 0s; }
+  .evpeek .plabel { margin: 12px 0 0; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-evidence); }
+  .peek { margin: 8px 0 2px; padding: 0; list-style: none; }
+  .peek li + li { margin-top: 5px; }
+  .peekrow {
+    display: flex; align-items: center; gap: 9px; width: 100%; padding: 8px 10px; border-radius: var(--r-lg);
+    border: 1px dashed color-mix(in oklch, var(--c-evidence) 32%, var(--border));
+    background: color-mix(in oklch, var(--c-evidence) 5%, transparent);
+    transition: transform var(--t-fast) var(--ease-out), border-color var(--t-fast), background var(--t-fast);
+  }
+  .peekrow:hover { transform: translateX(2px); border-style: solid; background: color-mix(in oklch, var(--c-evidence) 10%, transparent); }
+  .peekrow .t { flex: 1 1 auto; min-width: 0; font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .peekrow .go { font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink); flex: 0 0 auto; }
+
+  .subs { margin: 11px 0 0; padding: 0; list-style: none; }
+  .subs li + li { margin-top: 6px; }
+  .subrow {
+    display: flex; align-items: center; gap: 11px; width: 100%; padding: 11px 12px;
+    border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--edge);
+    transition: transform var(--t-fast) var(--ease-out), box-shadow var(--t-fast);
+  }
+  .subrow:hover { transform: translateX(2px); box-shadow: var(--edge-hover); }
+  .subrow:hover .sub-go { transform: translateX(2px); }
+  .subrow .sub-ord { font-family: var(--font-mono); font-size: 10.5px; color: var(--muted-ink); flex: 0 0 auto; }
+  .subrow .sub-main { flex: 1 1 auto; min-width: 0; }
+  .subrow .sub-name { display: block; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .subrow .sub-out { display: block; margin-top: 2px; font-size: 11.5px; line-height: 1.4; color: var(--muted-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .subrow.unresolved .sub-name { color: var(--muted-ink); }
+  .subrow .sub-go { font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink); flex: 0 0 auto; transition: transform var(--t-fast) var(--ease-out); }
+
+  .ev { margin: 11px 0 0; padding: 0; list-style: none; }
+  .ev li + li { margin-top: 6px; }
+  .evrow {
+    display: flex; align-items: center; gap: 10px; width: 100%; padding: 11px 12px;
+    border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--edge);
+    transition: transform var(--t-fast) var(--ease-out), box-shadow var(--t-fast), background var(--t-fast);
+  }
+  .evrow:hover { transform: translateY(-1px); box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--c-evidence) 40%, var(--border)), var(--edge-hover); }
+  .evrow .ev-type, .ev-type-solo {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .05em; text-transform: uppercase;
+    color: var(--ink-evidence); border-radius: 4px; padding: 3px 6px; flex: 0 0 auto;
+    box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--c-evidence) 26%, var(--border));
+    background: color-mix(in oklch, var(--c-evidence) 7%, transparent);
+  }
+  .evrow .ev-title { font-size: 13px; flex: 1 1 auto; min-width: 0; }
+  .evrow .ev-go { font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink); flex: 0 0 auto; }
+  .rawlink {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%;
+    margin-top: 18px; padding: 13px 14px; border-radius: var(--r-lg);
+    background: var(--surface); box-shadow: var(--edge);
+    font-size: 12.5px; color: var(--fg);
+    transition: transform var(--t-fast) var(--ease-out), box-shadow var(--t-fast);
+  }
+  .rawlink:hover { transform: translateY(-1px); box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--c-evidence) 38%, var(--border)), var(--edge-hover); }
+  .rawlink .go { font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink); }
+  .note { margin: 16px 0 0; font-family: var(--font-mono); font-size: 11px; line-height: 1.6; color: var(--muted-ink); }
+  .note b { font-weight: 600; }
+  .sup { margin: 11px 0 0; padding: 11px 12px; border-radius: var(--r-lg); background: color-mix(in oklch, var(--c-evidence) 6%, transparent); border: 1px solid color-mix(in oklch, var(--c-evidence) 18%, var(--border)); }
+  .sup .k { display: block; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-evidence); margin-bottom: 4px; }
+  .sup .v { font-size: 13.5px; line-height: 1.5; color: var(--fg); }
+  .rawlist { margin: 12px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--border); }
+  .rawlist li { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 12.5px; }
+  .rawlist .k { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted-ink); }
+  .rawrecord { margin-top: 10px; padding: 10px; border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--edge); }
+  .rawrecord:first-child { margin-top: 0; }
+  .rawrecord-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; color: var(--muted-ink); font-size: 11px; }
+  .rawrecord-head .ev-type { color: var(--ink-evidence); }
+
+  .rail-empty { flex: 1 1 auto; padding: 18px; display: flex; flex-direction: column; gap: 14px; overflow-y: auto; min-height: 0; }
+  .rail-empty .kicker { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-ink); }
+  .rail-empty h2 { margin: 0; font-family: var(--font-display); font-size: 18px; font-weight: 600; letter-spacing: -.014em; }
+  .rail-empty p { margin: 0; font-size: 13px; line-height: 1.6; color: var(--muted-ink); }
+  .facts { border-top: 1px solid var(--border); margin: 0; padding: 0; list-style: none; }
+  .facts li { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 12.5px; }
+  .facts .k { color: var(--muted-ink); }
+  .facts .v { font-family: var(--font-mono); font-size: 11.5px; text-align: right; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 10.5px; color: var(--muted-ink); }
+
+  /* ─── breadcrumb (canvas overlay) ─────────────────────────────────── */
+  .crumbs {
+    position: absolute; top: 14px; left: 20px; z-index: 14;
+    display: flex; align-items: center; gap: 7px; max-width: calc(100% - 480px);
+    padding: 6px 12px; border-radius: 999px;
+    background: color-mix(in oklch, var(--surface) 84%, transparent);
+    backdrop-filter: blur(12px); box-shadow: inset 0 0 0 1px oklch(0 0 0 / 0.05), var(--lift-1);
+    font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink);
+  }
+  .crumbs button { position: relative; padding: 2px 4px; border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color var(--t-fast), background var(--t-fast); }
+  .crumbs button::after { content: ''; position: absolute; inset: -10px -4px; }
+  .crumbs button:hover { color: var(--fg); background: var(--fg-soft); }
+  .crumbs button[aria-current="true"] { color: var(--fg); font-weight: 600; }
+  .crumbs .sep { color: var(--border-strong); flex: 0 0 auto; }
+
+  /* ─── statusline ──────────────────────────────────────────────────── */
+  .statusline {
+    display: flex; align-items: center; gap: 14px; padding-inline: 18px;
+    background: color-mix(in oklch, var(--surface) 86%, transparent); backdrop-filter: blur(14px);
+    border-top: 1px solid var(--border); font-size: 12px; color: var(--muted-ink); min-width: 0; z-index: 20;
+  }
+  .statusline .spacer { flex: 1 1 auto; }
+  .statusline .fixnote, .statusline .count { font-family: var(--font-mono); font-size: 11px; white-space: nowrap; }
+  .zoomer { display: flex; align-items: center; gap: 6px; flex: 0 0 auto; }
+  .zoomer button {
+    position: relative;
+    height: 30px; min-width: 30px; padding: 0 10px; border: 1px solid var(--border); border-radius: var(--r);
+    display: grid; place-items: center; font-family: var(--font-mono); font-size: 12px; color: var(--muted-ink);
+    transition: border-color var(--t-fast), color var(--t-fast), background var(--t-fast), transform var(--t-fast), scale var(--t-fast) var(--ease-out);
+  }
+  .zoomer button::after { content: ''; position: absolute; inset: -5px -3px; }
+  .zoomer button:active { scale: .96; }
+  .zoomer button:hover { border-color: var(--border-strong); color: var(--fg); background: var(--fg-soft); transform: translateY(-1px); }
+  .zoomer .zval { font-family: var(--font-mono); font-size: 11px; min-width: 44px; text-align: center; }
+
+  /* ─── responsive ──────────────────────────────────────────────────── */
+  @media (max-width: 1220px) { :root { --dock-w: 348px; } .statusline .fixnote { display: none; } .crumbs { max-width: calc(100% - 420px); } }
+  @media (max-width: 1040px) { .runid, .nowstage { display: none; } }
+  @media (max-width: 900px) {
+    body { overflow: auto; }
+    .console { height: auto; min-height: 100%; grid-template-rows: auto auto auto; }
+    .topbar { flex-wrap: wrap; height: auto; padding: 10px 14px; gap: 10px 14px; }
+    .topbar .spacer { display: none; }
+    .ghostbtn { margin-left: auto; }
+    .stage { display: block; }
+    .canvas { position: relative; height: 58vh; min-height: 320px; }
+    .crumbs { max-width: calc(100% - 40px); }
+    .dock { position: relative; inset: auto; width: auto; margin: 12px; min-height: 320px; }
+    .dscroll { max-height: none; }
+    .statusline { flex-wrap: wrap; height: auto; padding: 8px 14px; gap: 8px 12px; }
+  }
+  @media (pointer: coarse) {
+    .ghostbtn, .zoomer button { height: 44px; min-width: 44px; }
+    .iconbtn { width: 44px; height: 44px; }
+    .subrow, .evrow, .rawlink { min-height: 44px; }
+    .dback { min-height: 44px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  }
+</style>
+</head>
+<body>
+<div class="console">
+
+  <header class="topbar" data-od-id="topbar">
+    <div class="brand">
+      <span class="mark">PRC</span>
+      <span class="name">Project Runtime Console</span>
     </div>
-    <script>
-      const state = { value: null, selected: null };
-      const byId = (id) => document.getElementById(id);
-      const text = (value) => value == null ? "" : String(value);
-      const preview = (value) => text(value).replace(/\s+/g, " ").slice(0, 120);
+    <span class="runid" data-od-id="run-id">run · real Codex history</span>
+    <span class="spacer"></span>
+    <span class="nowstage">投影状态 <b>PARTIAL · evidence-bound</b></span>
+    <button type="button" class="ghostbtn" id="reset" data-od-id="reset">重置视图</button>
+  </header>
 
-      function render() {
-        const data = state.value;
-        if (!data) return;
-        byId("project").textContent = data.project.name;
-        byId("run-button").textContent = data.run.id.slice(0, 26);
-        byId("run-title").textContent = `Run ${data.run.id}`;
-        byId("run-status").textContent = data.run.status;
-        byId("topology").innerHTML = data.agents.map(agent => `
-          <div class="tree-node active">
-            ${agent.label}
-            <small>${agent.status} · ${agent.relation_status}</small>
-          </div>
-        `).join("");
-        const judgmentMap = new Map(data.judgments.map(j => [j.canonical_event_id, j]));
-        byId("events").innerHTML = data.events.map((event, index) => {
-          const judgment = judgmentMap.get(event.event_id);
-          const selected = state.selected === event.event_id ? " selected" : "";
-          return `
-            <button class="event${selected}" data-event-id="${event.event_id}">
-              <div class="ordinal">#${text(event.source_ordinal)}</div>
-              <div>
-                <div class="kind">${event.event_type}</div>
-                <div class="tool">${text(event.tool_name) || "tool unknown"}</div>
-                <div class="preview">${preview(event.tool_output)}</div>
-              </div>
-              <div class="judgment">
-                <div class="verdict">${judgment ? judgment.verdict : "NO JUDGMENT"}</div>
-                <div class="meta">${judgment ? `${judgment.mode} · ${judgment.judge_provider}` : "unjudged"}</div>
-              </div>
-            </button>
-          `;
-        }).join("") || '<div class="empty">No correlated tool-result events.</div>';
-        document.querySelectorAll("[data-event-id]").forEach(button => {
-          button.addEventListener("click", () => {
-            state.selected = button.dataset.eventId;
-            render();
-          });
-        });
-        const selectedEvent = data.events.find(event => event.event_id === state.selected) || data.events[0];
-        const selectedJudgment = selectedEvent && judgmentMap.get(selectedEvent.event_id);
-        byId("event-detail").textContent = selectedEvent ? JSON.stringify({
-          canonical_event_id: selectedEvent.event_id,
-          source: selectedEvent.source,
-          tool: selectedEvent.tool_name,
-          correlation: selectedEvent.correlation_state,
-          shadow_judgment: selectedJudgment
-        }, null, 2) : "Select a trace event.";
-        byId("ledger").innerHTML = data.judgments.map(judgment => `
-          <div class="ledger-row">
-            <div style="color: var(--amber)">${judgment.verdict}</div>
-            <div>${judgment.decision_point} · ${judgment.mode}</div>
-            <div style="color: var(--muted)">${judgment.judge_provider} / ${judgment.judge_model}</div>
-          </div>
-        `).join("") || '<div class="empty">No judgments.</div>';
-      }
+  <div class="stage">
+    <main class="canvas" id="canvas" data-od-id="canvas" aria-label="Run spatial map">
+      <nav class="crumbs" id="crumbs" aria-label="位置" data-od-id="breadcrumb"></nav>
+      <div class="world" id="world" data-od-id="graph-world"></div>
+    </main>
+    <aside class="dock" id="dock" data-od-id="dock"></aside>
+  </div>
 
-      fetch("/api/state").then(response => response.json()).then(data => {
-        state.value = data;
-        state.selected = data.events[0] && data.events[0].event_id;
-        render();
-      }).catch(error => {
-        byId("events").textContent = `无法读取 demo state: ${error}`;
+  <footer class="statusline" data-od-id="statusline">
+    <span class="fixnote">CODEx NATIVE RUNTIME · 只读观察 · 派生 WorkStage</span>
+    <span class="spacer"></span>
+    <span class="count" id="count"></span>
+    <div class="zoomer" data-od-id="zoom-controls">
+      <button type="button" id="zoom-out" aria-label="缩小">−</button>
+      <span class="zval" id="zoom-val">100%</span>
+      <button type="button" id="zoom-in" aria-label="放大">+</button>
+      <button type="button" id="zoom-fit">适应窗口</button>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── retained demo data: replaced by the read-only server projection ── */
+  const DEMO_NODES = {
+    s1: {
+      ord: '01', name: 'Understand Runtime Problem', type: 'done', kind: '问题界定', status: 'done',
+      outcome: '确认需要观察真实 multi-agent runtime，而不是只看 transcript',
+      actions: ['复盘只看 transcript 的盲区：并行分支与真实调用顺序都不可见', '把观察对象定为一次 Run 内的 main / subagent 拓扑与阶段推进', '把「观察粒度」确立为本轮的核心问题'],
+      evidence: [
+        { type: 'note', title: '观察方式对比', note: 'transcript-only 与 runtime 观察各自能看到什么。', supports: '只看 transcript 不足以解释 multi-agent Run 的推进' },
+        { type: 'decision', title: '观察对象定为 runtime', note: '以真实 runtime 行为作为观察对象。', supports: '后续结论都需要 runtime 侧证据支撑' }
+      ]
+    },
+    s2: {
+      ord: '02', name: 'Research', type: 'parallel', kind: '并行分支', status: 'done',
+      outcome: '并行验证 Identity / ThoughtDAG / UI 三个方向',
+      actions: ['拆出三个互不依赖的方向，并行推进', '三个方向各自得出结论后回到同一决策点', '结论不一致时保留分歧，不强行合并'],
+      evidence: [
+        { type: 'record', title: '三方向并行记录', note: '三个方向的问题、方法与结论对照。', supports: '三条线可以并行验证且互不阻塞' },
+        { type: 'decision', title: '回到同一决策点', note: '三条线的结论汇总到同一处再决定下一步。', supports: '方向拆分没有造成结论分裂' }
+      ]
+    },
+    s3: {
+      ord: '03', name: 'Identity Correction', type: 'shift', kind: '方向修正', status: 'done',
+      outcome: '改用 Codex native thread contract',
+      actions: ['放弃自建 session_id 身份层', '采用 runtime 原生 thread 契约作为身份来源'],
+      evidence: [
+        { type: 'decision', title: '身份来源改为 runtime 原生契约', note: '承接 Identity Research 的推翻结论。', supports: '跨 runtime 的身份可以稳定对齐' },
+        { type: 'ref', title: 'Codex native thread contract', note: '身份对齐所依据的 runtime 契约。', supports: 'Identity 方向的最终方案' }
+      ]
+    },
+    s4: {
+      ord: '04', name: 'Runtime Observer', type: 'done', kind: '观测', status: 'done',
+      outcome: '真实 main/subagent topology 与 runtime evidence 已跑通',
+      actions: ['接入真实 runtime，采集 main / subagent 拓扑', '让每条结论都能回到对应的 runtime 记录'],
+      evidence: [
+        { type: 'system', title: 'Runtime Observer 跑通', note: '真实 runtime 拓扑可被采集。', supports: '后续结论有 runtime 侧证据' },
+        { type: 'evidence', title: 'topology + runtime records', note: '阶段推进与调用记录的对应关系。', supports: '观察粒度从 transcript 升到 runtime' }
+      ]
+    },
+    s5: {
+      ord: '05', name: 'UI Exploration', type: 'done', kind: '探索', status: 'done',
+      outcome: 'raw Agent/Turn/Event 不适合作为顶层信息对象',
+      actions: ['以 Agent / Turn / Event 为顶层对象尝试组织界面', '对照人理解一次 Run 时实际关注的单位'],
+      evidence: [
+        { type: 'exploration', title: '顶层对象候选', note: 'Agent / Turn / Event 作为顶层对象的尝试。', supports: '否定结论的依据' },
+        { type: 'conclusion', title: '不适合作为顶层', note: '原始执行单位与人的理解单位不一致。', supports: '顶层对象需要上移一层' }
+      ]
+    },
+    s6: {
+      ord: '06', name: 'Current Direction', type: 'current', kind: '当前方向', status: 'current',
+      outcome: '顶层对象应为 Human meaningful WorkStage / Outcome',
+      actions: ['把顶层信息对象改为 WorkStage / Outcome', '把 Agent / Turn / Event 保留为更深层的 evidence'],
+      evidence: [
+        { type: 'decision', title: '顶层对象定为 WorkStage / Outcome', note: '第一眼只呈现真正重要的工作阶段与结果。', supports: '本原型的信息架构' },
+        { type: 'pending', title: 'WorkStage 生成', note: '本轮不实现 WorkStage generation，也不实现 runtime ingestion。', supports: '当前原型的能力边界' }
+      ]
+    },
+    s2a: {
+      ord: '02a', parent: 's2', name: 'Identity Research', type: 'done', kind: '方向验证', status: 'done',
+      outcome: 'session_id 假设被推翻',
+      actions: ['以 session_id 作为跨 runtime 的身份锚点做验证', '在真实 runtime 行为上复现不一致', '记录假设失效的边界条件'],
+      evidence: [
+        { type: 'record', title: '假设推翻记录', note: 'session_id 在跨 runtime 场景下无法稳定标识同一身份。', supports: 'session_id 不能作为跨 runtime 的身份锚点' },
+        { type: 'conclusion', title: 'runtime-native identity', note: '身份层需要改用 runtime 原生契约。', supports: '转向 Codex native thread contract' }
+      ]
+    },
+    s2b: {
+      ord: '02b', parent: 's2', name: 'ThoughtDAG Study', type: 'done', kind: '方向验证', status: 'done',
+      outcome: 'spatial continuity 有价值，但 raw graph 在 74 steps 后过密',
+      actions: ['用空间连续性表达步骤之间的推进关系', '在长 Run 上检验可读的密度上限', '区分「结构正确」与「人能读懂」'],
+      evidence: [
+        { type: 'observation', title: '74 steps 密度上限', note: '超过约 74 steps 后节点密度不再可读。', supports: 'raw graph 不适合直接作为顶层视图' },
+        { type: 'conclusion', title: 'spatial continuity 部分成立', note: '保留空间连续性，放弃 raw graph 作为顶层表示。', supports: '顶层需要一个更聚合的信息对象' }
+      ]
+    },
+    s2c: {
+      ord: '02c', parent: 's2', name: 'UI Probe', type: 'done', kind: '方向验证', status: 'done',
+      outcome: 'topology 可见性改善，但 human comprehension 仍不足',
+      actions: ['直接绘制 main / subagent topology 观察可读性', '用真实 Run 检验人能否据此复述发生了什么'],
+      evidence: [
+        { type: 'probe', title: 'topology 可读性', note: '拓扑结构本身变得可见。', supports: '可见性确实改善' },
+        { type: 'conclusion', title: 'comprehension 仍不足', note: '看得见拓扑不等于能理解 Run 做了什么。', supports: '需要按人的工作单位重组信息' }
+      ]
+    },
+    s2d: {
+      ord: '02d', parent: 's2', name: '未定义子阶段', type: 'unknown', kind: '未解析', status: 'unknown',
+      outcome: 'fixture 未提供 outcome',
+      actions: [],
+      evidence: []
+    },
+    s2e: {
+      ord: '02e', parent: 's2', name: '未定义子阶段', type: 'unknown', kind: '未解析', status: 'unknown',
+      outcome: 'fixture 未提供 outcome',
+      actions: [],
+      evidence: []
+    }
+  };
+
+  const DEMO_TOP = ['s1', 's2', 's3', 's4', 's5', 's6'];
+  const DEMO_SUBS = { s2: ['s2a', 's2b', 's2c', 's2d', 's2e'] };
+  const STATUS_TEXT = { done: '已完成', current: '当前阶段', unknown: '未解析' };
+  const TYPE_TEXT = { done: '阶段', parallel: '并行分支', shift: '方向修正', current: '当前方向', unknown: '未解析' };
+  const TYPE_CLASS = { done: 'done', parallel: 'parallel', shift: 'shift', current: 'current', unknown: 'unknown' };
+
+  /* The server replaces this token with a projection from the native observer.
+     Keeping the demo declarations above makes the interaction shell inspectable
+     in isolation, but the served page always uses PRC_DATA. */
+  const PRC_DATA = __PRC_DATA__;
+  const NODES = PRC_DATA.nodes || DEMO_NODES;
+  const TOP = PRC_DATA.top || DEMO_TOP;
+  const SUBS = PRC_DATA.subs || DEMO_SUBS;
+  const RUN = PRC_DATA.run || {};
+
+  /* ── deterministic spatial layout (graph never re-lays out) ───────── */
+  const PAD = 44, RAIL_X = 64, WAVE = [0, 24, 40, 40, 24, 0], CARD_GAP = 34;
+  const CARD_W = 372, CARD_H = 94, GAP_Y = 20, STEP = CARD_H + GAP_Y;
+  const WORLDS = {};
+
+  TOP.forEach(function (id, i) {
+    const railX = RAIL_X + WAVE[i];
+    WORLDS[id] = { railX: railX, y: PAD + i * STEP, cy: PAD + i * STEP + CARD_H / 2, x: railX + CARD_GAP, i: i };
+  });
+  const WORLD_W = RAIL_X + Math.max.apply(null, WAVE) + CARD_GAP + CARD_W + PAD;
+  const WORLD_H = PAD + (TOP.length - 1) * STEP + CARD_H + PAD;
+
+  function spinePath(a, b) {
+    return 'M ' + a.railX + ' ' + a.cy + ' C ' + a.railX + ' ' + (a.cy + STEP / 2) + ', ' +
+      b.railX + ' ' + (b.cy - STEP / 2) + ', ' + b.railX + ' ' + b.cy;
+  }
+
+  /* ── state ────────────────────────────────────────────────────────── */
+  const state = { stack: [] };          /* [{lvl:1,id} | {lvl:2,id} | {lvl:3,ev} | {lvl:4}] */
+  const STORE = 'prc-workstage-spatialmap-v2';
+
+  const el = {
+    canvas: document.getElementById('canvas'),
+    world: document.getElementById('world'),
+    crumbs: document.getElementById('crumbs'),
+    dock: document.getElementById('dock'),
+    count: document.getElementById('count'),
+    zoomVal: document.getElementById('zoom-val'),
+    reset: document.getElementById('reset')
+  };
+
+  const esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
+  const top = function () { return state.stack.length ? state.stack[state.stack.length - 1] : null; };
+  const level1 = function () { return state.stack.length ? state.stack[0].id : null; };
+  const isAggregate = function (id) { return !!SUBS[id]; };
+  const fmtName = function (id) { return isAggregate(id) ? NODES[id].name + ' ×' + SUBS[id].length : NODES[id].name; };
+
+  /* ── build the map once ───────────────────────────────────────────── */
+  function buildWorld() {
+    let segs = '', progs = '';
+    for (let i = 0; i < TOP.length - 1; i++) {
+      const d = spinePath(WORLDS[TOP[i]], WORLDS[TOP[i + 1]]);
+      segs += '<path class="seg" data-seg="' + i + '" d="' + d + '"/>';
+      progs += '<path class="prog" data-prog="' + i + '" d="' + d + '"/>';
+    }
+    const svg = '<svg class="edges" width="' + WORLD_W + '" height="' + WORLD_H + '" viewBox="0 0 ' + WORLD_W + ' ' + WORLD_H + '" aria-hidden="true">' +
+      segs + progs + (TOP.length > 1
+        ? '<path class="flow" d="' + spinePath(WORLDS[TOP[TOP.length - 2]], WORLDS[TOP[TOP.length - 1]]) + '"/>'
+        : '') + '</svg>';
+
+    let html = svg;
+
+    TOP.forEach(function (id, i) {
+      const w = WORLDS[id];
+      html += '<span class="stop' + (NODES[id].status === 'current' ? ' is-cur' : '') + '" data-stop="' + id + '" style="left:' + (w.railX - 10) + 'px;top:' + (w.cy - 10) + 'px">' + (i + 1) + '</span>';
+    });
+
+    TOP.forEach(function (id) {
+      html += nodeHTML(id);
+    });
+
+    el.world.style.width = WORLD_W + 'px';
+    el.world.style.height = WORLD_H + 'px';
+    el.world.innerHTML = html;
+
+    Array.prototype.forEach.call(el.world.querySelectorAll('path.seg, path.prog'), function (p) {
+      const len = Math.ceil(p.getTotalLength()) + 1;
+      p.style.strokeDasharray = len;
+      if (p.classList.contains('prog')) p.style.strokeDashoffset = len;
+    });
+  }
+
+  function nodeHTML(id) {
+    const n = NODES[id], w = WORLDS[id];
+    const tc = TYPE_CLASS[n.type];
+    const stack = isAggregate(id) ? '<span class="n-stack"></span><span class="n-stack b"></span>' : '';
+    const statusText = STATUS_TEXT[n.status] + (n.type === 'parallel' ? ' · 并行分支' : n.type === 'shift' ? ' · 方向修正' : '');
+    return '<button type="button" class="node" data-node="' + id + '" data-od-id="node-' + id + '" aria-pressed="false" ' +
+      'style="left:' + w.x + 'px;top:' + w.y + 'px;width:' + CARD_W + 'px;height:' + CARD_H + 'px;--node-c:var(--c-' + tc + ')">' +
+      '<span class="n-glow"></span>' + stack +
+      '<span class="n-body">' +
+      '<span class="n-name">' + esc(fmtName(id)) + '</span>' +
+      '<span class="n-out">' + esc(n.outcome) + '</span>' +
+      '<span class="n-status"><i class="glyph ' + tc + '"></i>' + statusText + '</span>' +
+      '</span></button>';
+  }
+
+  /* ── viewport: transform = userOverride ?? fit(layout, size) ──────── */
+  const view = { x: 0, y: 0, z: 1 };
+  let override = null, tween = null;
+  const ZMIN = 0.45, ZMAX = 1.9;
+
+  function fitRect() {
+    const desktop = window.matchMedia('(min-width: 901px)').matches;
+    const dockW = desktop ? el.dock.offsetWidth + 16 + 26 : 0;
+    return { left: 24, top: 56, right: dockW + 24, bottom: desktop ? 20 : 12 };
+  }
+  function fitView() {
+    const r = fitRect();
+    const bw = Math.max(80, el.canvas.clientWidth - r.left - r.right);
+    const bh = Math.max(80, el.canvas.clientHeight - r.top - r.bottom);
+    const z = Math.max(ZMIN, Math.min(bw / WORLD_W, bh / WORLD_H, 1));
+    return { z: z, x: r.left + (bw - WORLD_W * z) / 2, y: r.top + (bh - WORLD_H * z) / 2 };
+  }
+  function applyView() {
+    const v = override || fitView();
+    view.x = v.x; view.y = v.y; view.z = v.z;
+    el.world.style.transform = 'translate(' + v.x + 'px,' + v.y + 'px) scale(' + v.z + ')';
+    el.zoomVal.textContent = Math.round(v.z * 100) + '%';
+  }
+  function glideTo(target, dur) {
+    const from = { x: view.x, y: view.y, z: view.z }, t0 = performance.now();
+    if (tween) cancelAnimationFrame(tween);
+    (function step(now) {
+      const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      override = { x: from.x + (target.x - from.x) * e, y: from.y + (target.y - from.y) * e, z: from.z + (target.z - from.z) * e };
+      applyView();
+      if (p < 1) tween = requestAnimationFrame(step); else tween = null;
+    })(t0);
+  }
+  function zoomBy(factor, cx, cy) {
+    const base = override || { x: view.x, y: view.y, z: view.z };
+    const z = Math.max(ZMIN, Math.min(ZMAX, base.z * factor)), k = z / base.z;
+    override = { z: z, x: cx - (cx - base.x) * k, y: cy - (cy - base.y) * k };
+    applyView();
+  }
+
+  /* ── drawer navigation stack ──────────────────────────────────────── */
+  function push(entry) { state.stack.push(entry); render('push'); }
+  function pop() { if (state.stack.length > 1) { state.stack.pop(); render('pop'); } else { clearAll(); } }
+  function clearAll() { state.stack = []; render('none'); }
+
+  function selectStage(id) {
+    const same = state.stack.length === 1 && state.stack[0].id === id;
+    state.stack = same ? [] : [{ lvl: 1, id: id }];
+    render(same ? 'pop' : 'push');
+  }
+
+  function paneHTML() {
+    const cur = top();
+    if (!cur) return railHTML();
+    if (cur.lvl === 4) return rawHTML();
+    if (cur.lvl === 3) return evidenceHTML();
+    return stageHTML(cur.id, cur.lvl === 2);
+  }
+
+  function navHTML(backLabel) {
+    return '<header class="dnav">' +
+      (backLabel
+        ? '<button type="button" class="dback" data-back><span class="arw">←</span><span>' + esc(backLabel) + '</span></button>'
+        : '<span class="kicker">RUN · CODEx NATIVE RUNTIME</span>') +
+      '<span class="grow"></span>' +
+      '<button type="button" class="iconbtn" data-close aria-label="清除选择">✕</button>' +
+      '</header>';
+  }
+
+  function stageHTML(id, isSub) {
+    const n = NODES[id], tc = TYPE_CLASS[n.type];
+    const back = isSub ? fmtName(n.parent) : null;
+    const subs = (!isSub && isAggregate(id)) ? subsHTML(id) : '';
+    const ev = n.evidence.length;
+    return '<div class="pane-body">' + navHTML(back) + '<div class="dscroll">' +
+      '<div class="dhead">' +
+        '<div class="meta"><span class="ord">' + n.ord + '</span>' +
+          '<span class="tchip ' + tc + '"><i class="glyph ' + tc + '"></i>' + TYPE_TEXT[n.type] + '</span></div>' +
+        '<h2>' + esc(fmtName(id)) + '</h2>' +
+        '<span class="data-badge">DERIVED_SUMMARY · evidence-bound</span>' +
+        '<span class="statuschip ' + tc + '"><i class="glyph ' + tc + '"></i>' + STATUS_TEXT[n.status] + '</span>' +
+      '</div>' +
+      '<section class="sec" data-sec="outcome">' +
+        '<div class="sec-head"><h3 class="sec-label">Outcome <span class="zh">· 结论</span></h3><span class="grow"></span>' +
+        (ev ? '<button type="button" class="evchip" data-evchip aria-expanded="false">' + ev + ' evidence <span class="car">›</span></button>' : '') + '</div>' +
+        '<p class="outcome">' + esc(n.outcome) + '</p>' +
+        '<p class="note"><b>语义边界</b> · 标题与说明来自显式用户请求锚点；不是 native runtime 的完成结论或因果解释。</p>' +
+        (ev ? '<div class="evpeek"><p class="plabel">支持这条结论的证据</p><ul class="peek">' +
+          n.evidence.map(function (e, i) {
+            return '<li><button type="button" class="peekrow" data-ev="' + i + '">' +
+              '<span class="t">' + esc(e.title) + '</span><span class="go">进入 →</span></button></li>';
+          }).join('') + '</ul></div>' : '') +
+      '</section>' +
+      (n.actions.length ? '<section class="sec"><h3 class="sec-label">Key Actions <span class="zh">· 关键动作</span></h3>' +
+        '<ul class="actions">' + n.actions.map(function (a) { return '<li>' + esc(a) + '</li>'; }).join('') + '</ul></section>' : '') +
+      subs +
+      (n.evidence.length
+        ? '<section class="sec" data-sec="evidence"><h3 class="sec-label">Artifacts / Evidence <span class="zh">· 成果与证据</span></h3>' +
+          '<ul class="ev">' + n.evidence.map(function (e, i) {
+            return '<li><button type="button" class="evrow" data-ev="' + i + '">' +
+              '<span class="ev-type">' + esc(e.type) + '</span>' +
+              '<span class="ev-title">' + esc(e.title) + '</span>' +
+              '<span class="ev-go">›</span></button></li>';
+          }).join('') + '</ul></section>'
+        : '<section class="sec"><h3 class="sec-label">Artifacts / Evidence <span class="zh">· 成果与证据</span></h3>' +
+          '<p class="note">该子阶段的结论不在本轮 fixture 范围内，因此没有可追索的证据条目。</p></section>') +
+      '<button type="button" class="rawlink" data-raw><span>查看 raw evidence / trace</span><span class="go">最深一层 →</span></button>' +
+      '<p class="note"><b>DERIVED_SUMMARY</b> · 该层只提供导航性 WorkStage 标签；支持关系仍以 native runtime records 为准。</p>' +
+      '</div></div>';
+  }
+
+  function subsHTML(id) {
+    const list = SUBS[id];
+    let h = '<section class="sec" data-sec="subs"><div class="sec-head"><h3 class="sec-label">Sub-stages <span class="zh">· 子阶段</span></h3>' +
+      '<span class="grow"></span><span class="tchip parallel">' + list.length + ' 个</span></div><ul class="subs">';
+    list.forEach(function (cid) {
+      const c = NODES[cid], un = c.type === 'unknown';
+      h += '<li><button type="button" class="subrow' + (un ? ' unresolved' : '') + '" data-sub="' + cid + '">' +
+        '<span class="sub-ord">' + c.ord + '</span>' +
+        '<span class="sub-main"><span class="sub-name">' + esc(c.name) + '</span>' +
+        '<span class="sub-out">' + esc(c.outcome) + '</span></span>' +
+        '<span class="sub-go">›</span></button></li>';
+    });
+    h += '</ul><p class="note">graph 始终只显示一个 aggregate 节点 —— 子阶段全部在这里逐层展开。</p></section>';
+    return h;
+  }
+
+  function evidenceHTML() {
+    const cur = top();
+    const owner = state.stack[state.stack.length - 2];
+    const n = NODES[owner.id], e = n.evidence[cur.ev];
+    return '<div class="pane-body">' + navHTML(fmtName(owner.id)) + '<div class="dscroll">' +
+      '<div class="dhead">' +
+        '<div class="meta"><span class="ev-type-solo">' + esc(e.type) + '</span></div>' +
+        '<h2>' + esc(e.title) + '</h2>' +
+        '<span class="data-badge">' + esc(e.data_class || 'NATIVE_FACT') + '</span>' +
+        '<span class="statuschip"><i class="glyph" style="background:var(--c-evidence)"></i>Evidence · 所属 ' + n.ord + ' ' + esc(fmtName(owner.id)) + '</span>' +
+      '</div>' +
+      '<section class="sec"><h3 class="sec-label">说明 <span class="zh">· Note</span></h3>' +
+        '<p class="outcome">' + esc(e.note) + '</p></section>' +
+      '<section class="sec"><h3 class="sec-label">证据边界 <span class="zh">· Boundary</span></h3>' +
+        '<div class="sup"><span class="k">NATIVE_FACT · 可直接观察</span><span class="v">' + esc(e.supports) + '</span></div></section>' +
+      '<button type="button" class="rawlink" data-raw><span>查看 raw evidence / trace</span><span class="go">最深一层 →</span></button>' +
+      '<p class="note"><b>NATIVE_FACT</b> · 此条目只指向 observer 捕获的原始记录，不宣称执行成功或产生了某个结果。</p>' +
+      '</div></div>';
+  }
+
+  function rawEventsForNode(id) {
+    const node = NODES[id];
+    return node && Array.isArray(node.raw_events) ? node.raw_events : [];
+  }
+
+  function rawField(label, value) {
+    if (value === null || value === undefined || value === '') return '';
+    return '<li><span class="k">' + esc(label) + '</span><span class="v mono">' + esc(value) + '</span></li>';
+  }
+
+  function rawRecordHTML(event) {
+    const native = event.native_evidence || {};
+    let detail = rawField('event_type', event.event_type) +
+      rawField('observed_at', event.observed_at) +
+      rawField('runtime_agent_instance_id', event.runtime_agent_instance_id) +
+      rawField('turn_id', event.turn_id) +
+      rawField('provider_item_id', event.provider_item_id) +
+      rawField('observation_id', event.observation_id) +
+      rawField('reconciliation', event.reconciliation);
+    if (native.kind === 'command') {
+      detail += rawField('command', native.command) + rawField('cwd', native.cwd) +
+        rawField('status', native.status) + rawField('exit_code', native.exit_code) +
+        rawField('duration_ms', native.duration_ms);
+    }
+    if (native.kind === 'file_change') {
+      detail += rawField('change_count', native.change_count);
+      (native.files || []).forEach(function (file) {
+        detail += rawField('file_' + file.kind, file.path);
       });
-    </script>
-  </body>
+    }
+    return '<article class="rawrecord"><div class="rawrecord-head"><span class="ev-type">NATIVE_FACT</span><span class="mono">' +
+      esc(event.event_type || 'unknown') + '</span></div><ul class="rawlist">' + detail +
+      '</ul></article>';
+  }
+
+  function rawHTML() {
+    const owner = state.stack.length > 1 && state.stack[state.stack.length - 2].id ? state.stack[state.stack.length - 2].id : level1();
+    const records = rawEventsForNode(owner);
+    return '<div class="pane-body">' + navHTML(owner ? fmtName(owner) : null) + '<div class="dscroll">' +
+      '<div class="dhead"><div class="meta"><span class="ord">RAW</span><span class="tchip" style="color:var(--muted-ink)">最深一层</span></div>' +
+      '<h2>Raw Evidence / Trace</h2>' +
+      '<span class="statuschip">真实 observer records · read only</span></div>' +
+      '<section class="sec"><h3 class="sec-label">Scope <span class="zh">· 范围</span></h3>' +
+      '<p class="outcome">这里列出该 WorkStage 所绑定的 observer 原始记录。它们是追索终点，不是对工作结果的额外解释。</p></section>' +
+      '<section class="sec"><h3 class="sec-label">Runtime records <span class="zh">· 原始记录</span></h3>' +
+      (records.length ? records.map(rawRecordHTML).join('') : '<p class="note"><b>UNAVAILABLE</b> · 当前 WorkStage 没有可展示的绑定记录。</p>') + '</section>' +
+      '</div></div>';
+  }
+
+  function railHTML() {
+    return '<div class="pane-body"><div class="rail-empty">' +
+      '<span class="kicker">RUN 概览</span>' +
+      '<h2>真实 Codex Run</h2>' +
+      '<p>选择一个 WorkStage，graph 不会展开、也不会移动；分辨率在右侧逐层提高。</p>' +
+      '<ul class="facts">' +
+      '<li><span class="k">WorkStage</span><span class="v">' + TOP.length + '</span></li>' +
+      '<li><span class="k">Runtime Agent</span><span class="v">' + (RUN.agent_count ?? 'UNAVAILABLE') + '</span></li>' +
+      '<li><span class="k">Children</span><span class="v">' + (RUN.child_count ?? 'UNAVAILABLE') + '</span></li>' +
+      '<li><span class="k">Native events</span><span class="v">' + (RUN.event_count ?? 'UNAVAILABLE') + '</span></li>' +
+      '<li><span class="k">History</span><span class="v">' + (RUN.history_available ? 'AVAILABLE' : 'UNAVAILABLE') + '</span></li>' +
+      '<li><span class="k">Projection</span><span class="v">' + esc(PRC_DATA.projection ? PRC_DATA.projection.status : 'UNAVAILABLE') + '</span></li>' +
+      '<li><span class="k">返回上一层</span><span class="v">Esc</span></li>' +
+      '</ul>' +
+      '<div class="legend">' +
+      '<span><i class="glyph current"></i>当前</span><span><i class="glyph done"></i>已完成</span>' +
+      '<span><i class="glyph parallel"></i>并行分支</span><span><i class="glyph shift"></i>方向修正</span>' +
+      '<span><i class="glyph unknown"></i>未解析</span></div>' +
+      '<p class="note"><b>边界</b> · Agent、lineage、event identity 和 Raw Trace 来自 native observer；WorkStage 标题是显式用户请求锚点的派生导航标签，完成与因果仍为 NOT ESTABLISHED。</p>' +
+      '</div></div>';
+  }
+
+  /* ── render ───────────────────────────────────────────────────────── */
+  let lastKey = '__init';
+  function render(dir) {
+    const cur = top(), key = JSON.stringify(state.stack);
+    if (dir === 'none' || key === lastKey) dir = 'none';
+    lastKey = key;
+
+    const selId = level1();
+    el.world.classList.toggle('has-focus', !!selId);
+
+    Array.prototype.forEach.call(el.world.querySelectorAll('[data-node]'), function (b) {
+      const id = b.getAttribute('data-node');
+      const on = id === selId;
+      b.classList.toggle('is-sel', on);
+      b.setAttribute('aria-pressed', String(on));
+      b.classList.toggle('has-focus', on && state.stack.length > 1);
+    });
+    Array.prototype.forEach.call(el.world.querySelectorAll('[data-stop]'), function (s) {
+      s.classList.toggle('is-sel', s.getAttribute('data-stop') === selId);
+    });
+
+    /* spine progress + related-edge emphasis */
+    const idx = selId ? WORLDS[selId].i : -1;
+    Array.prototype.forEach.call(el.world.querySelectorAll('path.seg'), function (p) {
+      const i = Number(p.getAttribute('data-seg'));
+      p.classList.toggle('seg-near', idx >= 0 && (i === idx - 1 || i === idx));
+    });
+    Array.prototype.forEach.call(el.world.querySelectorAll('path.prog'), function (p) {
+      const i = Number(p.getAttribute('data-prog')), len = Number(p.style.strokeDasharray) || 0;
+      p.style.strokeDashoffset = (i < idx ? 0 : len);
+      p.style.opacity = (i < idx ? .9 : 0);
+    });
+
+    renderCrumbs();
+    renderDock(dir);
+
+    el.count.textContent = 'WorkStage ' + TOP.length + ' · Agent ' + (RUN.agent_count ?? 'UNAVAILABLE') + ' · Native events ' + (RUN.event_count ?? 'UNAVAILABLE');
+    el.reset.disabled = !state.stack.length && !override;
+    el.dock.classList.toggle('active', !!cur);
+    persist();
+  }
+
+  function renderCrumbs() {
+    const l1 = level1(), l2 = state.stack.length > 1 ? top() : null;
+    let h = '<button type="button" data-crumb="__run" aria-current="' + (!l1) + '">Run 概览</button>';
+    if (l1) {
+      h += '<span class="sep">›</span><button type="button" data-crumb="' + l1 + '"' + (l2 ? '' : ' aria-current="true"') + '>' + esc(fmtName(l1)) + '</button>';
+    }
+    if (l2 && l2.lvl === 2) {
+      h += '<span class="sep">›</span><button type="button" data-crumb="' + l2.id + '" aria-current="true">' + esc(NODES[l2.id].name) + '</button>';
+    } else if (l2 && l2.lvl === 3) {
+      const owner = state.stack[state.stack.length - 2];
+      h += '<span class="sep">›</span><button type="button" data-crumb="' + owner.id + '" aria-current="true">Evidence · ' + esc(NODES[owner.id].evidence[l2.ev].title) + '</button>';
+    }
+    el.crumbs.innerHTML = h;
+  }
+
+  function renderDock(dir) {
+    const host = el.dock;
+    Array.prototype.forEach.call(host.querySelectorAll('.pane.out'), function (p) { p.remove(); });
+    const next = document.createElement('div');
+    next.className = 'pane' + (dir === 'none' ? '' : dir === 'pop' ? ' anim in-pop' : ' anim-spring in-push');
+    next.innerHTML = paneHTML();
+
+    const prev = host.querySelector('.pane');
+    if (!prev || dir === 'none') {
+      host.innerHTML = '';
+      host.appendChild(next);
+      return;
+    }
+    const dx = dir === 'push' ? 34 : -34;
+    next.style.transform = 'translateX(' + dx + 'px)';
+    next.style.opacity = '0';
+    host.appendChild(next);
+    prev.classList.add('out', 'anim');
+    void next.offsetWidth;
+    next.style.transform = 'translateX(0)';
+    next.style.opacity = '1';
+    prev.style.transform = 'translateX(' + (-dx * .6) + 'px)';
+    prev.style.opacity = '0';
+    setTimeout(function () {
+      if (prev.parentNode) prev.remove();
+      if (!next.classList.contains('out')) {
+        next.className = 'pane';
+        next.style.transform = ''; next.style.opacity = '';
+      }
+    }, 440);
+  }
+
+  /* ── persistence ──────────────────────────────────────────────────── */
+  function persist() {
+    try { localStorage.setItem(STORE, JSON.stringify({ stack: state.stack })); } catch (e) {}
+  }
+  function restore() {
+    let raw = null;
+    try { raw = localStorage.getItem(STORE); } catch (e) { return; }
+    if (!raw) return;
+    try {
+      const s = JSON.parse(raw);
+      if (s && Array.isArray(s.stack) && s.stack.length) {
+        const ok = s.stack.every(function (e) {
+          return (e.lvl === 1 || e.lvl === 2) ? !!NODES[e.id] : (e.lvl === 4 || (e.lvl === 3 && typeof e.ev === 'number'));
+        });
+        if (ok && s.stack[0].lvl === 1) state.stack = s.stack;
+      }
+    } catch (e) {}
+  }
+
+  /* ── events ───────────────────────────────────────────────────────── */
+  el.world.addEventListener('click', function (e) {
+    const n = e.target.closest('[data-node]');
+    if (n) selectStage(n.getAttribute('data-node'));
+  });
+  el.world.addEventListener('pointerover', function (e) {
+    const n = e.target.closest('[data-node]');
+    if (!n) return;
+    const i = WORLDS[n.getAttribute('data-node')].i;
+    Array.prototype.forEach.call(el.world.querySelectorAll('path.seg'), function (p) {
+      const k = Number(p.getAttribute('data-seg'));
+      p.classList.toggle('seg-near', k === i - 1 || k === i);
+    });
+  });
+  el.world.addEventListener('pointerout', function (e) {
+    if (e.relatedTarget && el.world.contains(e.relatedTarget)) return;
+    const idx = level1() ? WORLDS[level1()].i : -1;
+    Array.prototype.forEach.call(el.world.querySelectorAll('path.seg'), function (p) {
+      const k = Number(p.getAttribute('data-seg'));
+      p.classList.toggle('seg-near', idx >= 0 && (k === idx - 1 || k === idx));
+    });
+  });
+
+  el.crumbs.addEventListener('click', function (e) {
+    const b = e.target.closest('[data-crumb]');
+    if (!b) return;
+    const v = b.getAttribute('data-crumb');
+    if (v === '__run') clearAll();
+    else if (NODES[v] && NODES[v].parent) { state.stack = [{ lvl: 1, id: NODES[v].parent }]; render('pop'); }
+    else if (NODES[v]) selectStage(v);
+  });
+
+  el.dock.addEventListener('click', function (e) {
+    const chip = e.target.closest('[data-evchip]');
+    if (chip) {
+      const peek = el.dock.querySelector('.evpeek');
+      if (peek) {
+        const open = !peek.classList.contains('open');
+        peek.classList.toggle('open', open);
+        chip.setAttribute('aria-expanded', String(open));
+        peek.style.height = open ? (peek.scrollHeight + 'px') : '0px';
+        peek.style.opacity = open ? '1' : '0';
+      }
+      return;
+    }
+    const sub = e.target.closest('[data-sub]');
+    if (sub) { push({ lvl: 2, id: sub.getAttribute('data-sub') }); return; }
+    const ev = e.target.closest('[data-ev]');
+    if (ev) { push({ lvl: 3, ev: Number(ev.getAttribute('data-ev')) }); return; }
+    if (e.target.closest('[data-raw]')) { push({ lvl: 4 }); return; }
+    if (e.target.closest('[data-back]')) { pop(); return; }
+    if (e.target.closest('[data-close]')) { clearAll(); }
+  });
+
+  el.reset.addEventListener('click', function () {
+    override = null; state.stack = []; applyView(); render('none');
+  });
+
+  document.getElementById('zoom-in').addEventListener('click', function () {
+    const r = el.canvas.getBoundingClientRect();
+    const base = override || fitView(), z = Math.min(ZMAX, base.z * 1.2), k = z / base.z;
+    glideTo({ z: z, x: r.width / 2 - (r.width / 2 - base.x) * k, y: r.height / 2 - (r.height / 2 - base.y) * k }, 240);
+  });
+  document.getElementById('zoom-out').addEventListener('click', function () {
+    const r = el.canvas.getBoundingClientRect();
+    const base = override || fitView(), z = Math.max(ZMIN, base.z / 1.2), k = z / base.z;
+    glideTo({ z: z, x: r.width / 2 - (r.width / 2 - base.x) * k, y: r.height / 2 - (r.height / 2 - base.y) * k }, 240);
+  });
+  document.getElementById('zoom-fit').addEventListener('click', function () {
+    if (tween) cancelAnimationFrame(tween);
+    override = null; applyView();
+  });
+
+  let drag = null;
+  el.canvas.addEventListener('pointerdown', function (e) {
+    if (e.button !== 0 || e.target.closest('[data-node], .crumbs')) return;
+    drag = { px: e.clientX, py: e.clientY, x: view.x, y: view.y };
+    el.canvas.classList.add('is-panning');
+    el.canvas.setPointerCapture(e.pointerId);
+  });
+  el.canvas.addEventListener('pointermove', function (e) {
+    if (!drag) return;
+    if (tween) { cancelAnimationFrame(tween); tween = null; }
+    override = { z: view.z, x: drag.x + (e.clientX - drag.px), y: drag.y + (e.clientY - drag.py) };
+    applyView();
+  });
+  function endDrag(e) {
+    if (!drag) return;
+    drag = null;
+    el.canvas.classList.remove('is-panning');
+    if (el.canvas.hasPointerCapture && el.canvas.hasPointerCapture(e.pointerId)) el.canvas.releasePointerCapture(e.pointerId);
+  }
+  el.canvas.addEventListener('pointerup', endDrag);
+  el.canvas.addEventListener('pointercancel', endDrag);
+
+  el.canvas.addEventListener('wheel', function (e) {
+    e.preventDefault();
+    const r = el.canvas.getBoundingClientRect();
+    const d = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
+    zoomBy(Math.exp(-d * 0.0016), e.clientX - r.left, e.clientY - r.top);
+  }, { passive: false });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { pop(); return; }
+    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+    const a = document.activeElement;
+    if (!a || !a.hasAttribute || !a.hasAttribute('data-node')) return;
+    e.preventDefault();
+    const i = TOP.indexOf(a.getAttribute('data-node'));
+    const nx = TOP[Math.min(TOP.length - 1, Math.max(0, i + (e.key === 'ArrowDown' ? 1 : -1)))];
+    const b = el.world.querySelector('[data-node="' + nx + '"]');
+    if (b) b.focus();
+  });
+
+  let rt = null;
+  window.addEventListener('resize', function () {
+    clearTimeout(rt);
+    rt = setTimeout(function () { if (!override) applyView(); }, 90);
+  });
+
+  /* ── boot ─────────────────────────────────────────────────────────── */
+  const runIdEl = document.querySelector('[data-od-id="run-id"]');
+  if (runIdEl && RUN.run_id) runIdEl.textContent = 'run · ' + RUN.run_id;
+  buildWorld();
+  restore();
+  applyView();
+  render('none');
+})();
+</script>
+</body>
 </html>

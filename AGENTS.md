@@ -1,135 +1,25 @@
-# Project Runtime Console Session Protocol
+# Project Runtime Console
 
-This is a new repository. Do not use the archived
-`project-evolution-state` repository, its research artifacts, its old
-prototype, or any PES terminology as startup context.
+This repository is intentionally small and reuse-first.
 
 ## Startup
 
-1. Read `README.md` and `docs/NORTH_STAR.md`.
-2. Read `docs/SHELL_FREEZE_V0.md`.
-3. Read `docs/governance/GLOBAL_GOVERNANCE_BOOTSTRAP.md`.
-4. Read `docs/governance/THREE_ROLE_BOOTSTRAP.md` and resolve the pinned
-   canonical Home Project SOP files before any bounded governance round.
-5. Read the capability-import contracts under
-   `docs/capability-imports/`.
-6. Read the current Step 1 contract under
-   `experiments/hypothesis-frontier/STEP1_CONTRACT.md`.
-7. Run `git status --short --branch`.
-8. Confirm the active bounded question before editing.
+1. Read `README.md`, `docs/NORTH_STAR.md`, and `docs/current-state.md`.
+2. Run `git status --short --branch`.
+3. Inspect the retained runtime substrate and current V1 evidence before editing.
+4. Keep production runtime facts, native lineage, and shadow-only judgment semantics separate.
 
-Before any non-trivial, Human-facing, or model-shaping governance round:
+## Boundaries
 
-1. Run the DSH preflight from the local governance bootstrap.
-2. Confirm the Global Reviewer route before Manager execution.
-3. Use the canonical Home Project packet and receipt contract.
-4. Do not claim DSH review without a `governance_audit_receipt`.
-5. If the canonical SOP or DSH review route is unavailable, return
-   `REVIEW_ROUTE_UNAVAILABLE` and `STOP_AND_REPORT`.
+- Preserve read-only Codex runtime observation and native identity.
+- Shadow judgments never block, mutate, stop, or trigger Codex execution.
+- Never invent agent lineage, outcomes, task boundaries, or provider results.
+- Keep raw private transcripts, credentials, hidden reasoning, and secrets out of Git.
+- Do not add a new graph/layout system, orchestration layer, task board, control plane, or active-intervention UI.
+- Retain only evidence and code that serve the current reuse-first V1 question.
 
-Before implementing Codex runtime semantics, use this authority order:
-OpenAI Codex current protocol/source, the pinned MIT Delegatus implementation
-where relevant, local compatibility evidence, then a new hypothesis only for
-an unresolved gap. Do not create a probe to re-prove semantics already defined
-by an upstream surface. Record the checked Codex version, protocol surface,
-and any unavailable method in the execution receipt. Do not infer a native
-runtime field from transcript shape when the upstream surface defines it;
-unresolved compatibility remains `UNKNOWN`.
+## Evidence
 
-## Non-Negotiable Boundaries
+Claims about compatibility or progress require a real artifact or interaction result. Distinguish `CONFIRMED`, `UNAVAILABLE`, `INCONCLUSIVE`, and `UNKNOWN`. A passing test proves implementation behavior only; it does not prove that an upstream capability is suitable for PRC.
 
-- Step 1 is limited to runtime event ingestion into the Shadow Judgment
-  Sidecar.
-- All judgments are `SHADOW`; they cannot block, mutate, stop, trigger, or
-  otherwise alter Codex execution.
-- `tool.output.value` must be attached to a stable canonical event identity.
-  Timestamp-only matching is not sufficient.
-- A product Judge call may be claimed only when a real product provider receipt
-  exists. A product provider receipt is not a governance audit receipt.
-- A DSH governance review may be claimed only when a canonical packet was
-  reviewed and a `governance_audit_receipt` exists.
-- No secrets, API keys, raw private transcripts, or hidden reasoning may be
-  committed.
-- H1, H2, and H3 experiments must use distinct branches/worktrees from one
-  clean baseline. A session fork alone is not Git isolation.
-- Do not add Task Board, Orchestrator, Pipeline, Project Evolution, Workline,
-  Control Plane, Memory, Hive, ThoughtDAG product ontology, editable runtime
-  lineage, context-edge semantics, or active-intervention UI. A
-  ThoughtDAG-inspired graph-first Runtime Canvas is authorized only as the
-  read-only Presentation / Interaction Layer under
-  `docs/ui-frame-change-v1.md`.
-- Do not treat `FRAME_OK`, a passing test, or a plausible screenshot as proof
-  of model validity.
-
-## Change Classification
-
-Routine implementation can use local review. Changes to product information
-architecture, event identity, judgment authority, runtime topology, or
-shadow-mode semantics are model-shaping and require the global governance
-bootstrap route.
-
-## Governance Invariants
-
-### Eval -> Evolve
-
-```text
-Freeze protects against premature drift;
-Evolution protects against frozen mistakes.
-```
-
-Evaluation failures must first be classified:
-
-```text
-IMPLEMENTATION_FAILURE
-  -> repair inside the current frame
-MODEL_ASSUMPTION_FAILURE
-  -> bounded model repair
-FRAME_CONTRADICTION
-  -> FRAME_REOPEN_CANDIDATE
-```
-
-`FRAME_REOPEN_CANDIDATE` may be triggered by:
-
-- new Human Principal intent;
-- new upstream or mature prior-art evidence;
-- evidence that a frozen assumption blocks the North Star.
-
-Reviewers may propose reopening. Managers may not silently reinterpret frozen
-rules. Only the Human Principal may `AMEND` or `SUPERSEDE` a frozen frame.
-
-Every amendment must record:
-
-```text
-TRIGGER
-OLD_RULE
-NEW_RULE
-EVIDENCE
-UNCHANGED_BOUNDARIES
-PRINCIPAL_AUTHORITY
-```
-
-After ratification, version the frame, freeze it again, and resume the
-interrupted work rather than restarting it. Reviewer verdicts and passing tests
-do not silently change a frozen boundary.
-
-### UPSTREAM-FIRST
-
-Before experimentally rediscovering semantics owned by an external system,
-use this authority order:
-
-```text
-official contract/source
-  -> mature prior art
-  -> local compatibility check
-  -> only unresolved gaps enter hypothesis search
-```
-
-Do not create a new large governance framework or a rediscovery probe to
-compensate for an unverified upstream fact. Record the checked upstream
-version/protocol surface and keep unresolved compatibility as `UNKNOWN`.
-
-## Reporting
-
-Human-facing HTML reports must be in Chinese. Reports must distinguish
-confirmed evidence, observed behavior, hypothesis, and unknown. Never
-fabricate a provider result, runtime event, or outcome.
+Human-facing HTML, when introduced again, must be Chinese. This cleanup does not authorize a new UI.

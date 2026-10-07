@@ -1,67 +1,46 @@
 # Project Runtime Console
 
-Project Runtime Console is a new product for inspecting a real Agent run,
-following its runtime topology and trace, and viewing independent shadow
-judgments attached to runtime events.
+Project Runtime Console inspects real Codex multi-agent runs while preserving native runtime truth, native parent-child lineage, and read-only behavior.
 
 ## North Star
 
-When a Human opens the console, they should be able to inspect a real Codex
-run, understand the parent/child Agent topology, open the runtime trace, and
-see an independent Judge's shadow judgment attached to the corresponding
-event. The judgment is observable, replayable, and has no effect on Codex
-execution.
+A Human can inspect a real run, understand which Agents participated, open native runtime evidence, and see any independent shadow judgment attached to that evidence without confusing observation with intervention or engineering outcome.
 
-## V0 Product Shape
+## Experience Star
 
 ```text
-Project
-  -> Run
-    -> Agent Topology
-      -> Trace
-        -> Shadow Judgment
+Project -> Run -> Agent topology -> selected Agent -> runtime evidence
+                                      \\-> shadow judgment (if present)
 ```
 
-V0 is runtime observability plus shadow evaluation. It is not a Control Plane,
-Task Board, Orchestrator, Project Evolution system, Memory UI, Skill UI,
-ThoughtDAG canvas, or active intervention system.
+The experience must make global structure and local evidence reachable without inventing task meaning, outcomes, or lineage.
 
-## Step 1
+## V1 Scope
 
-Step 1 answers one question:
+- Preserve the Codex-native Runtime Observer and runtime substrate.
+- Keep the transcript event parser, shadow provider boundary, judgment sidecar, and replayable ledger as the minimal foundation.
+- Evaluate mature upstream observability and work-segmentation capabilities against one real 27-Agent run before implementing new product primitives.
+- Use the frozen V2.5 interaction contract as a replaceable presentation shell for the first real-run vertical slice.
+- Treat `experiments/v1-reuse-compatibility/` as evidence, not production ontology or a WorkStage classifier.
 
-> How should real Codex runtime events reliably enter the Shadow Judgment
-> Sidecar?
+The current compatibility result is `INCONCLUSIVE`: the local Trajectory probe produced real session/turn/deliverable data but no task boundaries, and the remaining upstream interaction findings require adaptation rather than direct semantic import. See `docs/current-state.md` and the V1 evidence files.
 
-The first bounded vertical slice observes one real `tool.output.value`, turns
-it into a canonical runtime event, sends a bounded copy to a local DeepSeek
-judge provider or deterministic fake provider, persists the shadow judgment,
-and displays it on the matching trace event.
+## V2.5 Real-Run Slice
 
-The Step 1 implementation is not authorized to alter Codex behavior.
+`apps/console/` serves the frozen V2.5 spatial map from a read-only Codex
+native observer. The current target is the historical run
+`01a0eca4-7029-7f92-b5a9-2006edb08721`. WorkStage labels are a bounded
+projection from explicit user-message anchors; every displayed native record
+keeps its observer identity and can be opened through
+`Outcome -> Evidence -> Raw Trace`.
 
-## Repository Boundaries
+This slice is intentionally `PARTIAL`: runtime facts and raw evidence are
+real, while completion, contribution, outcome, and causality remain
+`UNKNOWN / NOT ESTABLISHED` unless native evidence proves them.
 
-```text
-apps/console/
-packages/runtime-events/
-packages/providers/codex/
-packages/judgment-sidecar/
-packages/judge-deepseek/
-packages/judgment-ledger/
-plugins/codex-judgment-adapter/
-experiments/hypothesis-frontier/
-```
+## Explicitly Out Of Scope
 
-These boundaries are intentional. The console, event sensor, sidecar,
-provider, ledger, and future Codex adapter must not collapse into one module.
-
-## Status
-
-The three independent input strategies have been compared. The commitment
-gate returned `COMMIT_H1`, and the transcript-first vertical slice is
-implemented. Local correctness and semantic smoke checks are complete; the
-project is stopped at `PRINCIPAL_REVIEW`.
-
-Human-facing HTML reports are produced in Chinese. Code identifiers and
-protocol field names remain English.
+No new graph/layout system, WorkStage classifier, Diagnostic White-box,
+control plane, orchestration, or active intervention is included. The V2.5
+page is a frozen interaction baseline, not a commitment to a final product
+architecture.

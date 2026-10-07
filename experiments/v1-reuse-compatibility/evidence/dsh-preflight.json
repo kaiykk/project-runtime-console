@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-10-07",
+  "binary": {
+    "status": "FOUND",
+    "path": "/opt/homebrew/bin/dsh",
+    "version": "0.1.2-rc.1"
+  },
+  "profile": {
+    "status": "AVAILABLE",
+    "name": "headless"
+  },
+  "permission_mode": {
+    "status": "UNKNOWN",
+    "note": "The smoke task did not request tools or mutate files. No governance permission claim is made."
+  },
+  "smoke_review": {
+    "status": "READY",
+    "command": "dsh --profile headless 'Return exactly DSH_PREFLIGHT_READY'",
+    "observed_output": "DSH_PREFLIGHT_READY"
+  },
+  "governance_route": "NOT_USED",
+  "boundary": "This is a local capability preflight, not a governance_audit_receipt and not a Global Reviewer verdict."
+}
