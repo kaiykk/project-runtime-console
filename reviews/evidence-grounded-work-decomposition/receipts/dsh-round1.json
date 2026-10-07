@@ -1,0 +1,23 @@
+{
+  "receipt_type": "codex_dsh_bounded_round",
+  "round": "evidence-grounded-work-decomposition",
+  "review_commit": "4c6fb0f688bd036347c2ece181dbd36018c7ef04",
+  "reviewer": "dsh",
+  "role": "independent_product_and_evidence_reviewer",
+  "permission_mode": "read-only",
+  "transport_complete": true,
+  "outer_capture_note": "DSH structured stdout completed; the first wrapper used zsh reserved variable status while printing exit code, so the wrapper exit code was not used as the substantive verdict.",
+  "substantive_verdict": "PARTIAL",
+  "failure_classification": ["IMPLEMENTATION_FAILURE"],
+  "model_reopen": false,
+  "recommendation": "repair in current loop",
+  "evidence_paths": [
+    "reviews/evidence-grounded-work-decomposition/WORK_ORDER.md",
+    "reviews/evidence-grounded-work-decomposition/DSH_REVIEW_PROMPT.md",
+    "output/playwright/01-overview-real-run.png",
+    "output/playwright/02-stage-with-branches.png",
+    "output/playwright/03-selected-branch.png",
+    "output/playwright/04-branch-raw-trace.png"
+  ],
+  "sanitized_output": "reviews/evidence-grounded-work-decomposition/DSH_REVIEW_ROUND1.md"
+}
