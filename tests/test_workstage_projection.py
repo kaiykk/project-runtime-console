@@ -88,7 +88,14 @@ class WorkStageProjectionTests(unittest.TestCase):
                     "runtime_agent_instance_id": "root",
                     "event_type": "collabAgentToolCall",
                     "observed_at": "2026-10-01T00:10:00Z",
-                    "native_evidence": {"kind": "agent_dispatch", "receiver_thread_ids": ["child"]},
+                    "native_evidence": {"kind": "agent_dispatch", "tool": "spawnAgent", "receiver_thread_ids": ["child"]},
+                },
+                {
+                    "observation_id": "close-1",
+                    "runtime_agent_instance_id": "root",
+                    "event_type": "collabAgentToolCall",
+                    "observed_at": "2026-10-01T00:20:00Z",
+                    "native_evidence": {"kind": "agent_dispatch", "tool": "closeAgent", "receiver_thread_ids": ["child"]},
                 },
                 {
                     "observation_id": "root-anchor-2",

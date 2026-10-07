@@ -230,9 +230,11 @@ def _dispatch_stage_map(root_events: list[dict[str, Any]], stages: list[dict[str
             if event.get("event_type") != "collabAgentToolCall":
                 continue
             native = event.get("native_evidence")
+            if not isinstance(native, dict) or native.get("tool") != "spawnAgent":
+                continue
             receiver_ids = native.get("receiver_thread_ids") if isinstance(native, dict) else None
             for child_id in receiver_ids if isinstance(receiver_ids, list) else []:
-                if isinstance(child_id, str):
+                if isinstance(child_id, str) and child_id not in result:
                     result[child_id] = index
     return result
 
@@ -325,9 +327,7 @@ def project_run(run: dict[str, Any]) -> dict[str, Any]:
             subs[stage_id] = sub_ids
         anchor = stage_window["anchors"][0] if stage_window["anchors"] else None
         anchor_text = _native_text(anchor) if anchor else ""
-        evidence_events: list[dict[str, Any]] = []
-        if anchor:
-            evidence_events.append(anchor)
+        evidence_events: list[dict[str, Any]] = list(stage_window["anchors"])
         evidence_events.extend(root_stage_events[:5])
         evidence_events = list(
             {event.get("observation_id"): event for event in evidence_events if event.get("observation_id")}.values()
