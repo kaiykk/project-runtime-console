@@ -1,8 +1,8 @@
 # Current State
 
-**Date:** 2026-10-07
+**Date:** 2026-10-09
 **Project:** Project Runtime Console
-**Active round:** `Evidence-grounded Work Decomposition`
+**Active round:** `PRC V1 UI Fidelity Recovery`
 
 ## Repository State
 
@@ -45,42 +45,39 @@ Evidence:
 
 Overall V1 reuse verdict remains `INCONCLUSIVE`. The Trajectory probe is stronger than the earlier command-not-found observation, but it still does not establish WorkStage compatibility.
 
-## V2.5 Real-Run Vertical Slice
+## V2.5 UI Fidelity Recovery
 
-The frozen V2.5 interaction shell is now served at `apps/console/` and reads
-the target run through `CodexRuntimeObserver` at request time. The actual path
-is:
+The approved Work B2 spatial map and Agents/Trace C v0.2 reading structure are
+served from `apps/console/`. Work uses the original B2 `caseData` positions,
+relations, translations, and evidence index. Agents and Trace keep the C-style
+Run rail, spatial field, Focus Inspector, Turn groups, and native record modal.
 
 ```text
-Codex app-server (read-only)
-  -> native agents / turns / events
-  -> bounded user-anchor projection
-  -> V2.5 WorkStage spatial map
-  -> drawer Evidence
-  -> native Raw Trace records
+local Codex rollout JSONL
+  -> read-only Session adapter
+  -> shared Work / Agents / Trace shell
+  -> B2 curated case or C native records
+  -> source path + line + byte offset
 ```
 
-The browser probe verified the overview, stage selection, Evidence navigation,
-Raw Trace navigation, return navigation, and zoom using the real run. The
-overview displayed `27` agents, `26` children, `4251` native events, `69` turns,
-and available history. Raw Trace displayed real `userMessage`, `agentMessage`,
-and `commandExecution` records with native IDs and command completion state.
+The default real source is AISailing recruitment-related Session
+`019faced-f11a-75e1-ac20-8b95e24d4628`: 5 turns, 313 native records, 35 tool
+calls, and no confirmed native child-agent lineage. Work remains explicitly
+`CURATED_CASE / REFERENCE_CASE`; it is not a claim that this Session produced
+the AISailing evolution map.
 
-The projection uses generic trajectory windows rather than a target-run stage
-table. Root user-message anchors, transition signals, time gaps, and native
-`spawnAgent` receiver IDs determine stage and branch placement. Counts are
-computed from the full retained significant records; display evidence is
-bounded, while Raw Trace preserves the full node record set. Child dispatch
-prompts are labeled separately from Human requests. Completion, contribution,
-outcome, and causality remain `UNKNOWN / NOT ESTABLISHED`.
+Browser verification completed at 1366x900 and 1600x900 for Work, Agents, and
+Trace. Verified Work node selection and return, cross-surface navigation, Turn
+expand, and Raw Native Record opening. Browser console reported zero errors and
+warnings.
 
-Independent DSH review of the implementation and live target run returned
-`PASS` for acceptance questions A-E. The reviewer confirmed 16 WorkStages, 26
-correctly spawn-bound child branches, zero count mismatches against retained
-raw events, and reversible Evidence -> Raw Trace navigation. The result is a
-bounded evidence-grounded decomposition, not a semantic WorkStage classifier.
+Remaining product boundary: the current native source does not expose confirmed
+child-Agent identity, so the Agents surface intentionally remains an explicit
+empty/unknown state. Work is still a curated reference surface rather than an
+automatically reconstructed project history.
 
-Checkpoints: `frontend-v1-baseline-v2.5`; implementation `9bb2354`.
+Reference screenshots are under `output/playwright/reference-*`; final browser
+screenshots are kept under the same ignored output directory.
 
 ## Validation
 

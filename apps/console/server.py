@@ -11,6 +11,7 @@ from urllib.parse import parse_qs, urlparse
 ROOT = Path(__file__).resolve().parents[2]
 APP_DIR = Path(__file__).resolve().parent
 CASE_DIR = ROOT / "PRC_STAGEWISE_CASE_PACK" / "PRC_VERTICAL_SLICE_HANDOFF_v1" / "data" / "aisailing"
+WORK_MOCK = ROOT / "PRC_STAGEWISE_CASE_PACK" / "PRC_VERTICAL_SLICE_HANDOFF_v1" / "mock" / "work" / "PRC_AISAILING_WORK_B2.html"
 sys.path.insert(0, str(ROOT))
 
 from packages.session_sources.codex_jsonl import list_sessions, read_session  # noqa: E402
@@ -51,7 +52,13 @@ class Handler(SimpleHTTPRequestHandler):
                 graph = json.loads((CASE_DIR / "AISAILING_EVOLUTION_GRAPH.json").read_text(encoding="utf-8"))
                 overview = (CASE_DIR / "AISAILING_EVOLUTION_OVERVIEW.md").read_text(encoding="utf-8")
                 ledger = (CASE_DIR / "AISAILING_EVIDENCE_LEDGER.md").read_text(encoding="utf-8")
-                return self._json({"graph": graph, "overview": overview, "ledger": ledger})
+                mock_text = WORK_MOCK.read_text(encoding="utf-8")
+                marker_start = '<script type="application/json" id="caseData">'
+                marker_end = "</script>"
+                start = mock_text.index(marker_start) + len(marker_start)
+                end = mock_text.index(marker_end, start)
+                b2 = json.loads(mock_text[start:end])
+                return self._json({"graph": graph, "overview": overview, "ledger": ledger, "b2": b2})
             except Exception as exc:
                 return self._json({"error": type(exc).__name__, "message": str(exc)}, 503)
         if parsed.path in ("/", "/index.html"):

@@ -34,10 +34,12 @@ python3 apps/console/server.py 4173
 打开 <http://127.0.0.1:4173>。默认目标 Session 为：
 
 ```text
-019f12a7-b9b1-72d3-92a4-6894c5d34a86
+019faced-f11a-75e1-ac20-8b95e24d4628
 ```
 
 本地 adapter 会从 `~/.codex/sessions` 和 `~/.codex/archived_sessions` 读取 JSONL，原始文件保持只读。页面中的 Session 列表可以切换本地 AISailing Session，URL 会保留 `session_id`。
+
+默认 Session 是 AISailing 招聘相关对话：5 个 Turn、313 条 native records；它没有可确认的原生 child-Agent lineage，因此 Agents 页面明确显示 `UNKNOWN / UNAVAILABLE`，不会从工具调用推断 Agent。
 
 ## Verification
 
