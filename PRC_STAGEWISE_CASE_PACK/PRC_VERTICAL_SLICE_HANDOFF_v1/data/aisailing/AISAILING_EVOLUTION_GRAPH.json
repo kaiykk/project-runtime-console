@@ -1,0 +1,404 @@
+{
+  "schema_version": "aisailing.project_evolution_case.v0",
+  "case_id": "AISAILING_PROJECT_EVOLUTION_V0",
+  "generated": "2026-10-08",
+  "status": "REPRESENTATIVE_EVIDENCE_CASE",
+  "scope": {
+    "repository": "/opt/github_repo/worktrees/recruitment-demo-v01-semantic-turn-projection-v01",
+    "branch": "feature/semantic-turn-projection-v01",
+    "head": "6f37eba0ba07d1b4d4a02e0c2946c3b475cebeea",
+    "coverage": "recent 2-3 weeks with necessary earlier goal context",
+    "not_claimed": [
+      "complete project history",
+      "complete PR or Session coverage",
+      "autonomous project understanding",
+      "global product readiness"
+    ]
+  },
+  "evidence_status_vocabulary": [
+    "OBSERVED",
+    "HUMAN_RATIFIED",
+    "INFERRED",
+    "UNKNOWN"
+  ],
+  "nodes": [
+    {
+      "id": "G-001",
+      "type": "GOAL",
+      "title": "Natural-language maritime recruitment work entry",
+      "plain_language_description": "Let a user describe a crewing need naturally, receive clarification when needed, and obtain a useful result through the real product path.",
+      "status": "HUMAN_RATIFIED",
+      "evidence_ids": ["E-001", "E-002"]
+    },
+    {
+      "id": "G-002",
+      "type": "GOAL",
+      "title": "Trustworthy business state and visible result",
+      "plain_language_description": "User language, authoritative business state, retrieval, and the Frontend-visible outcome must not contradict one another.",
+      "status": "HUMAN_RATIFIED",
+      "evidence_ids": ["E-003", "E-004", "E-005"]
+    },
+    {
+      "id": "W-001",
+      "type": "WORKSTREAM",
+      "title": "Recruitment semantic and workflow slices",
+      "plain_language_description": "Build bounded semantics, clarification, Work/Context/Position handling, validated mutation, and controlled retrieval around existing business capabilities.",
+      "status": "PARTIALLY_COMPLETE",
+      "evidence_ids": ["E-006", "E-007", "E-008", "E-009"]
+    },
+    {
+      "id": "W-002",
+      "type": "WORKSTREAM",
+      "title": "Maritime authority and explicit fallback",
+      "plain_language_description": "Separate canonical known vessel scope, explicit ANY, missing, unknown, and explicitly authorized position-only fallback.",
+      "status": "BOUNDED_TESTED",
+      "evidence_ids": ["E-010", "E-011", "E-012"]
+    },
+    {
+      "id": "W-003",
+      "type": "WORKSTREAM",
+      "title": "Real runtime, Frontend continuity, and responsiveness",
+      "plain_language_description": "Use the real provider, HTTP handler, Backend projection, and browser path while measuring latency and preserving semantic continuity.",
+      "status": "BOUNDED_EVIDENCE_ONLY",
+      "evidence_ids": ["E-013", "E-014", "E-015", "E-016"]
+    },
+    {
+      "id": "W-004",
+      "type": "WORKSTREAM",
+      "title": "Architecture mechanism comparison",
+      "plain_language_description": "Compare structured semantic calls, authority observations, refinement, budget, and a bounded Agent Loop without assuming the loop is superior.",
+      "status": "PROVISIONAL_RESULT",
+      "evidence_ids": ["E-017", "E-018", "E-019"]
+    },
+    {
+      "id": "W-005",
+      "type": "WORKSTREAM",
+      "title": "External DSH failure discovery",
+      "plain_language_description": "Generate constrained natural-language sessions against frozen candidates and check observable business invariants outside the product Runtime.",
+      "status": "BOUNDED_EVALUATION_CAPABILITY",
+      "evidence_ids": ["E-020", "E-021", "E-022"]
+    },
+    {
+      "id": "A-001",
+      "type": "ASSUMPTION",
+      "title": "Parsed user facts are not automatically executable filters",
+      "plain_language_description": "A fact can be preserved as user evidence without becoming a retrieval predicate unless the business/data contract authorizes it.",
+      "status": "SUPPORTED_BOUNDARY",
+      "evidence_ids": ["E-002", "E-010", "E-023"]
+    },
+    {
+      "id": "A-002",
+      "type": "ASSUMPTION",
+      "title": "Agent Loop may improve multi-act semantic work",
+      "plain_language_description": "A bounded loop with authority observations might improve multi-act interpretation and target ownership, but this is an empirical hypothesis.",
+      "status": "WEAKENED_AND_REOPENED",
+      "evidence_ids": ["E-017", "E-018"]
+    },
+    {
+      "id": "A-003",
+      "type": "ASSUMPTION",
+      "title": "Lifecycle terminality prevents later mutation",
+      "plain_language_description": "A cancelled Work should remain immutable to later mutations, but a cancellation response alone is not evidence that this is true.",
+      "status": "SUPPORTED_AFTER_LOCAL_REPAIR_FOR_TESTED_SCOPE",
+      "evidence_ids": ["E-020", "E-021", "E-024"]
+    },
+    {
+      "id": "X-001",
+      "type": "EXPERIMENT",
+      "title": "Phase 2.1 Treatment package comparison",
+      "plain_language_description": "Compare one structured semantic call with a bounded Agent Loop plus read-only maritime authority access on shared downstream behavior.",
+      "status": "COST_BEARING_SIGNAL_NO_WINNER",
+      "evidence_ids": ["E-017"]
+    },
+    {
+      "id": "X-002",
+      "type": "EXPERIMENT",
+      "title": "Phase 2.2 mechanism ablation",
+      "plain_language_description": "Isolate authority observations, extra budget, refinement, authority plus refinement, and a bundled Agent Loop reference on unseen target/sentinel cases.",
+      "status": "MINIMUM_TESTED_MECHANISM_IDENTIFIED",
+      "evidence_ids": ["E-018", "E-019"]
+    },
+    {
+      "id": "X-003",
+      "type": "EXPERIMENT",
+      "title": "DSH Evaluation and Learning Loop v0",
+      "plain_language_description": "Run real frozen-candidate conversations with natural-language scenario generation and deterministic invariant checks.",
+      "status": "DISCOVERY_WITH_FAILURES",
+      "evidence_ids": ["E-020", "E-021", "E-022"]
+    },
+    {
+      "id": "D-001",
+      "type": "DECISION",
+      "title": "Use validated semantic state before retrieval",
+      "plain_language_description": "Clean business-field mutation passes through a validated Semantic Delta; legacy mutation paths are shadow evidence in the clean bridge.",
+      "status": "BOUNDED_RUNTIME_DECISION",
+      "evidence_ids": ["E-007", "E-008"]
+    },
+    {
+      "id": "D-002",
+      "type": "DECISION",
+      "title": "Use authority refinement as provisional semantic candidate",
+      "plain_language_description": "For the tested semantic target families, read-only canonical authority observations plus one explicit proposal refinement are the smallest tested safe mechanism.",
+      "status": "PROVISIONAL_NOT_GLOBAL_ARCHITECTURE",
+      "evidence_ids": ["E-018", "E-019"]
+    },
+    {
+      "id": "D-003",
+      "type": "DECISION",
+      "title": "Make terminal Work immutability a Workflow invariant",
+      "plain_language_description": "A mutation cannot commit to a cancelled Work; subsequent new intent must be handled separately and is not identical to full Lead Continuity.",
+      "status": "CLOSED_FOR_TESTED_GATE",
+      "evidence_ids": ["E-020", "E-021", "E-024"]
+    },
+    {
+      "id": "D-004",
+      "type": "DECISION",
+      "title": "Keep Human Experience Gate separate from Core Architecture Gate",
+      "plain_language_description": "Passing ownership and safety gates does not erase user-facing failures such as missing state explanation or compound vessel normalization.",
+      "status": "HUMAN_RATIFIED_CONTROL_RULE",
+      "evidence_ids": ["E-004", "E-024", "E-025"]
+    },
+    {
+      "id": "O-001",
+      "type": "OUTCOME",
+      "title": "Known/unknown/ANY vessel safety boundary",
+      "plain_language_description": "Known vessel, explicit ANY, missing, and explicit unknown are kept distinct; unauthorized vessel-less retrieval is blocked.",
+      "status": "PASS_FOR_TESTED_SUPPORTED_PATHS",
+      "evidence_ids": ["E-010", "E-011"]
+    },
+    {
+      "id": "O-002",
+      "type": "OUTCOME",
+      "title": "Ownership and current-result gates repaired",
+      "plain_language_description": "Fresh confirmation evidence passed current-result-after-modification, correction coverage, cross-Work ownership, and clarification safety for the tested sessions.",
+      "status": "PASS_FOR_TESTED_SESSIONS",
+      "evidence_ids": ["E-024"]
+    },
+    {
+      "id": "O-003",
+      "type": "OUTCOME",
+      "title": "Terminal ownership gate passed after repair",
+      "plain_language_description": "Fresh Confirmation and Discovery sessions passed terminal Work immutability and terminal-to-new-intent re-owning for the bounded generated trajectories.",
+      "status": "PASS_FOR_TESTED_GATE",
+      "evidence_ids": ["E-021"]
+    },
+    {
+      "id": "R-001",
+      "type": "REJECTED",
+      "title": "Agent Loop automatically superior",
+      "plain_language_description": "The evidence did not justify promoting the full bounded Agent Loop as necessary or superior; it bundled several mechanisms and carried higher cost.",
+      "status": "WEAKENED_NOT_UNIVERSALLY_REJECTED",
+      "evidence_ids": ["E-017", "E-018"]
+    },
+    {
+      "id": "R-002",
+      "type": "REJECTED",
+      "title": "Silent position-only fallback from unknown vessel",
+      "plain_language_description": "Unknown vessel is not silently converted to ANY or position-only retrieval without explicit authorization.",
+      "status": "REJECTED_BOUNDARY",
+      "evidence_ids": ["E-010", "E-011"]
+    },
+    {
+      "id": "R-003",
+      "type": "REJECTED",
+      "title": "Passing machine gate means Human Experience PASS",
+      "plain_language_description": "Core safety or evaluator passes cannot be used to erase known user-facing gaps.",
+      "status": "REJECTED_CONTROL_ERROR",
+      "evidence_ids": ["E-004", "E-024", "E-025"]
+    },
+    {
+      "id": "Q-001",
+      "type": "OPEN_QUESTION",
+      "title": "Full Lead/Task Continuity",
+      "plain_language_description": "When a user refers to an old, cancelled, or one of several Works, should the system select, create, or clarify the target Work?",
+      "status": "NOT_ESTABLISHED",
+      "evidence_ids": ["E-021", "E-026"]
+    },
+    {
+      "id": "Q-002",
+      "type": "OPEN_QUESTION",
+      "title": "Compound and alternative vessel policy",
+      "plain_language_description": "How should compound vessel phrases and alternatives such as bulk or container be normalized and scoped?",
+      "status": "BUSINESS_POLICY_UNRESOLVED",
+      "evidence_ids": ["E-025", "E-026"]
+    },
+    {
+      "id": "Q-003",
+      "type": "OPEN_QUESTION",
+      "title": "Target-aware state explanation",
+      "plain_language_description": "How should the assistant explain exactly which condition is unresolved for the Work or Context the user asked about?",
+      "status": "EXPERIENCE_GAP",
+      "evidence_ids": ["E-025"]
+    },
+    {
+      "id": "Q-004",
+      "type": "OPEN_QUESTION",
+      "title": "Global generalization and production readiness",
+      "plain_language_description": "Whether the bounded mechanism and ownership results generalize across providers, domains, corpora, and real users remains unknown.",
+      "status": "NOT_ESTABLISHED",
+      "evidence_ids": ["E-018", "E-019", "E-024"]
+    },
+    {
+      "id": "C-001",
+      "type": "CURRENT_STATE",
+      "title": "Bounded recruitment demo with evidence control",
+      "plain_language_description": "The current branch has a bounded real path, frozen candidate discipline, node-level evidence, repaired lifecycle ownership, and explicit limitations.",
+      "status": "CURRENT_AT_HEAD_6F37EBA",
+      "evidence_ids": ["E-024", "E-027"]
+    }
+  ],
+  "relations": [
+    {
+      "source": "G-001",
+      "target": "W-001",
+      "relation_type": "drives",
+      "explanation": "The original recruitment-workflow goal led to bounded semantic, clarification, mutation, and retrieval slices.",
+      "evidence_ids": ["E-001", "E-006"],
+      "confidence": "high"
+    },
+    {
+      "source": "G-001",
+      "target": "W-003",
+      "relation_type": "requires",
+      "explanation": "The product goal is user-visible through the real Backend-to-Frontend path, not only through an internal parser.",
+      "evidence_ids": ["E-002", "E-013"],
+      "confidence": "high"
+    },
+    {
+      "source": "G-002",
+      "target": "D-001",
+      "relation_type": "supports",
+      "explanation": "Trustworthy visible state requires a validated business mutation boundary before retrieval and projection.",
+      "evidence_ids": ["E-003", "E-007"],
+      "confidence": "medium"
+    },
+    {
+      "source": "W-001",
+      "target": "D-001",
+      "relation_type": "evolves_into",
+      "explanation": "The bounded clean workflow converted the earlier mixed mutation path into validated Semantic Delta application with legacy shadow comparison.",
+      "evidence_ids": ["E-007", "E-008"],
+      "confidence": "high"
+    },
+    {
+      "source": "A-001",
+      "target": "O-001",
+      "relation_type": "supports",
+      "explanation": "Separating user evidence from executable predicates supports explicit vessel-scope and fallback safety.",
+      "evidence_ids": ["E-010", "E-023"],
+      "confidence": "medium"
+    },
+    {
+      "source": "W-002",
+      "target": "R-002",
+      "relation_type": "rejects",
+      "explanation": "The vessel semantic state and explicit authorization rules reject silent unknown-to-position-only fallback.",
+      "evidence_ids": ["E-010", "E-011"],
+      "confidence": "high"
+    },
+    {
+      "source": "W-003",
+      "target": "C-001",
+      "relation_type": "contributes_to",
+      "explanation": "Real provider, HTTP, and browser evidence made the bounded demo path observable and testable.",
+      "evidence_ids": ["E-013", "E-014", "E-015"],
+      "confidence": "high"
+    },
+    {
+      "source": "A-002",
+      "target": "X-001",
+      "relation_type": "motivates",
+      "explanation": "The Agent Loop hypothesis was tested against a single structured-call control under shared downstream behavior.",
+      "evidence_ids": ["E-017"],
+      "confidence": "high"
+    },
+    {
+      "source": "X-001",
+      "target": "X-002",
+      "relation_type": "motivates",
+      "explanation": "The Phase 2.1 gain bundled loop, authority, and budget, so Phase 2.2 was designed to isolate the smallest mechanism.",
+      "evidence_ids": ["E-017", "E-018"],
+      "confidence": "high"
+    },
+    {
+      "source": "X-002",
+      "target": "D-002",
+      "relation_type": "supports",
+      "explanation": "Authority plus one refinement met the preregistered target and sentinel rule while isolated budget/refinement candidates did not.",
+      "evidence_ids": ["E-018", "E-019"],
+      "confidence": "high"
+    },
+    {
+      "source": "X-002",
+      "target": "R-001",
+      "relation_type": "weakens",
+      "explanation": "The full Agent Loop reference did not establish necessity or superiority after a shallower authority-refinement candidate reproduced the bounded target result.",
+      "evidence_ids": ["E-018", "E-019"],
+      "confidence": "high"
+    },
+    {
+      "source": "W-005",
+      "target": "X-003",
+      "relation_type": "implements",
+      "explanation": "DSH is the external bounded evaluation workstream used to create natural-language sessions and check invariants.",
+      "evidence_ids": ["E-020"],
+      "confidence": "high"
+    },
+    {
+      "source": "X-003",
+      "target": "Q-001",
+      "relation_type": "exposes",
+      "explanation": "Discovery reproduced terminal mutation and showed that terminal immutability is distinct from complete Lead Continuity.",
+      "evidence_ids": ["E-020", "E-021", "E-026"],
+      "confidence": "high"
+    },
+    {
+      "source": "X-003",
+      "target": "D-003",
+      "relation_type": "influences",
+      "explanation": "The terminal Work mutation failure was assigned to the Workflow ownership boundary and repaired locally.",
+      "evidence_ids": ["E-020", "E-021", "E-024"],
+      "confidence": "high"
+    },
+    {
+      "source": "D-003",
+      "target": "O-003",
+      "relation_type": "enables",
+      "explanation": "The terminal ownership guard was followed by fresh Confirmation and Discovery gate evidence that passed the tested invariants.",
+      "evidence_ids": ["E-021", "E-024"],
+      "confidence": "high"
+    },
+    {
+      "source": "W-002",
+      "target": "Q-002",
+      "relation_type": "supports",
+      "explanation": "Human UAT exposed compound and alternative vessel behavior that the bounded core gate did not establish.",
+      "evidence_ids": ["E-025"],
+      "confidence": "high"
+    },
+    {
+      "source": "W-003",
+      "target": "Q-003",
+      "relation_type": "supports",
+      "explanation": "Human UAT directly recorded that generic re-query behavior did not explain the unresolved condition to the user.",
+      "evidence_ids": ["E-025"],
+      "confidence": "high"
+    },
+    {
+      "source": "D-004",
+      "target": "R-003",
+      "relation_type": "rejects",
+      "explanation": "The control rule explicitly prevents a passing machine gate from being treated as Human Experience PASS.",
+      "evidence_ids": ["E-004", "E-024", "E-025"],
+      "confidence": "high"
+    },
+    {
+      "source": "D-002",
+      "target": "C-001",
+      "relation_type": "contributes_to",
+      "explanation": "The provisional semantic candidate is part of the current frozen evidence path, but remains bounded and reopenable.",
+      "evidence_ids": ["E-019", "E-027"],
+      "confidence": "medium"
+    }
+  ]
+}
