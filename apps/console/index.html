@@ -1,189 +1,37 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="data:,">
-    <title>Project Runtime Console</title>
-    <style>
-      :root {
-        color-scheme: dark;
-        --bg: #101419;
-        --panel: #171d24;
-        --panel-2: #1c242d;
-        --line: #2d3843;
-        --text: #e7edf3;
-        --muted: #93a1af;
-        --cyan: #55c7d9;
-        --green: #8fd694;
-        --amber: #f0c674;
-        --red: #ee8d8d;
-      }
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        min-width: 1024px;
-        background: var(--bg);
-        color: var(--text);
-        font: 13px/1.45 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      }
-      button {
-        border: 1px solid var(--line);
-        background: var(--panel-2);
-        color: var(--text);
-        padding: 7px 10px;
-        cursor: pointer;
-      }
-      button:hover, button.selected { border-color: var(--cyan); color: var(--cyan); }
-      .shell { display: grid; grid-template-columns: 220px 260px 1fr; min-height: 100vh; }
-      aside, main { border-right: 1px solid var(--line); }
-      .rail { padding: 16px; background: #0d1116; }
-      .rail h1 { margin: 0 0 18px; font-size: 14px; letter-spacing: 0; }
-      .rail .label, .section-title { color: var(--muted); font-size: 11px; text-transform: uppercase; }
-      .project { margin-top: 8px; border-left: 2px solid var(--cyan); padding: 10px 0 10px 10px; }
-      .run-item { margin-top: 12px; width: 100%; text-align: left; }
-      .topology { padding: 16px; background: var(--panel); }
-      .topology h2, main h2 { margin: 0; font-size: 15px; }
-      .tree { margin-top: 18px; padding-left: 10px; }
-      .tree-node { border-left: 1px solid var(--line); padding: 8px 0 8px 12px; }
-      .tree-node.active { border-left-color: var(--cyan); color: var(--cyan); }
-      .tree-node small { display: block; color: var(--muted); margin-top: 3px; }
-      main { border: 0; padding: 16px 20px 40px; overflow: auto; }
-      .header { display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line); padding-bottom: 14px; }
-      .crumb { color: var(--muted); }
-      .crumb strong { color: var(--text); }
-      .status { color: var(--green); border: 1px solid #416447; padding: 5px 8px; }
-      .trace { margin-top: 22px; }
-      .event { display: grid; grid-template-columns: 90px minmax(0, 1fr) 170px; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--line); }
-      .event:hover { background: rgba(85, 199, 217, .05); }
-      .event.selected { background: rgba(85, 199, 217, .10); }
-      .event .ordinal { color: var(--muted); }
-      .event .kind { color: var(--cyan); }
-      .event .tool { color: var(--text); margin-top: 4px; }
-      .event .preview { color: var(--muted); margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .judgment { border-left: 2px solid var(--amber); padding-left: 9px; }
-      .judgment .verdict { color: var(--amber); }
-      .judgment .meta { color: var(--muted); font-size: 11px; margin-top: 3px; }
-      .details { margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-      .panel { background: var(--panel); border: 1px solid var(--line); padding: 14px; min-height: 150px; }
-      .panel h3 { margin: 0 0 12px; font-size: 12px; color: var(--muted); }
-      pre { margin: 0; white-space: pre-wrap; word-break: break-word; color: #c9d4de; }
-      .ledger-row { padding: 8px 0; border-top: 1px solid var(--line); }
-      .ledger-row:first-child { border-top: 0; }
-      .empty { color: var(--muted); padding: 22px 0; }
-      @media (max-width: 1100px) {
-        body { min-width: 0; }
-        .shell { grid-template-columns: 180px 220px 1fr; }
-        .event { grid-template-columns: 70px minmax(0, 1fr) 140px; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="app" class="shell">
-      <aside class="rail">
-        <h1>Project Runtime Console</h1>
-        <div class="label">Project</div>
-        <div id="project" class="project">Loading...</div>
-        <div class="label" style="margin-top: 26px;">Run</div>
-        <button id="run-button" class="run-item">Loading...</button>
-      </aside>
-      <aside class="topology">
-        <h2>Agent Topology</h2>
-        <div id="topology" class="tree"></div>
-      </aside>
-      <main>
-        <div class="header">
-          <div>
-            <div class="crumb">Project / Run / <strong>Trace</strong></div>
-            <h2 id="run-title" style="margin-top: 7px;">Loading...</h2>
-          </div>
-          <div id="run-status" class="status">OBSERVED</div>
-        </div>
-        <section class="trace">
-          <div class="section-title">Runtime Trace · Shadow Judgment</div>
-          <div id="events"></div>
-        </section>
-        <section class="details">
-          <div class="panel">
-            <h3>Selected Event</h3>
-            <pre id="event-detail" class="empty">Select a trace event.</pre>
-          </div>
-          <div class="panel">
-            <h3>Judgment Ledger</h3>
-            <div id="ledger"></div>
-          </div>
-        </section>
-      </main>
-    </div>
-    <script>
-      const state = { value: null, selected: null };
-      const byId = (id) => document.getElementById(id);
-      const text = (value) => value == null ? "" : String(value);
-      const preview = (value) => text(value).replace(/\s+/g, " ").slice(0, 120);
-
-      function render() {
-        const data = state.value;
-        if (!data) return;
-        byId("project").textContent = data.project.name;
-        byId("run-button").textContent = data.run.id.slice(0, 26);
-        byId("run-title").textContent = `Run ${data.run.id}`;
-        byId("run-status").textContent = data.run.status;
-        byId("topology").innerHTML = data.agents.map(agent => `
-          <div class="tree-node active">
-            ${agent.label}
-            <small>${agent.status} · ${agent.relation_status}</small>
-          </div>
-        `).join("");
-        const judgmentMap = new Map(data.judgments.map(j => [j.canonical_event_id, j]));
-        byId("events").innerHTML = data.events.map((event, index) => {
-          const judgment = judgmentMap.get(event.event_id);
-          const selected = state.selected === event.event_id ? " selected" : "";
-          return `
-            <button class="event${selected}" data-event-id="${event.event_id}">
-              <div class="ordinal">#${text(event.source_ordinal)}</div>
-              <div>
-                <div class="kind">${event.event_type}</div>
-                <div class="tool">${text(event.tool_name) || "tool unknown"}</div>
-                <div class="preview">${preview(event.tool_output)}</div>
-              </div>
-              <div class="judgment">
-                <div class="verdict">${judgment ? judgment.verdict : "NO JUDGMENT"}</div>
-                <div class="meta">${judgment ? `${judgment.mode} · ${judgment.judge_provider}` : "unjudged"}</div>
-              </div>
-            </button>
-          `;
-        }).join("") || '<div class="empty">No correlated tool-result events.</div>';
-        document.querySelectorAll("[data-event-id]").forEach(button => {
-          button.addEventListener("click", () => {
-            state.selected = button.dataset.eventId;
-            render();
-          });
-        });
-        const selectedEvent = data.events.find(event => event.event_id === state.selected) || data.events[0];
-        const selectedJudgment = selectedEvent && judgmentMap.get(selectedEvent.event_id);
-        byId("event-detail").textContent = selectedEvent ? JSON.stringify({
-          canonical_event_id: selectedEvent.event_id,
-          source: selectedEvent.source,
-          tool: selectedEvent.tool_name,
-          correlation: selectedEvent.correlation_state,
-          shadow_judgment: selectedJudgment
-        }, null, 2) : "Select a trace event.";
-        byId("ledger").innerHTML = data.judgments.map(judgment => `
-          <div class="ledger-row">
-            <div style="color: var(--amber)">${judgment.verdict}</div>
-            <div>${judgment.decision_point} · ${judgment.mode}</div>
-            <div style="color: var(--muted)">${judgment.judge_provider} / ${judgment.judge_model}</div>
-          </div>
-        `).join("") || '<div class="empty">No judgments.</div>';
-      }
-
-      fetch("/api/state").then(response => response.json()).then(data => {
-        state.value = data;
-        state.selected = data.events[0] && data.events[0].event_id;
-        render();
-      }).catch(error => {
-        byId("events").textContent = `无法读取 demo state: ${error}`;
-      });
-    </script>
-  </body>
-</html>
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PRC / FIELD</title>
+<style>
+:root{--ink:#203747;--sub:#647b89;--muted:#8b9ca5;--line:#dbe6eb;--base:#f4f8fa;--paper:#fff;--blue:#237aa5;--teal:#278578;--amber:#ae7a45;--purple:#735da7;--shadow:0 10px 32px #28556e12}
+*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;background:var(--base);color:var(--ink);font:13px Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid #4185ae;outline-offset:2px}h1,h2,h3,p{margin:0}p{line-height:1.65}
+.app{height:100vh;min-height:700px;display:flex;flex-direction:column;overflow:hidden}.top{height:64px;flex:none;display:flex;align-items:center;gap:18px;padding:0 23px;background:#fff;border-bottom:1px solid var(--line)}.logo{font-weight:850;font-size:18px;letter-spacing:-.03em}.logo span{color:var(--blue)}.crumb{font-size:12px;color:#768792;border-left:1px solid var(--line);padding-left:15px}.surface-tabs{margin:auto;display:flex;gap:4px;padding:4px;background:#f1f5f6;border:1px solid var(--line);border-radius:10px}.surface-tabs button{border:0;background:transparent;color:var(--sub);border-radius:7px;padding:7px 17px;font-weight:700}.surface-tabs button.active{background:#fff;color:var(--ink);box-shadow:0 1px 5px #cad7dd8a}.topmeta{color:var(--sub);font-size:11px;white-space:nowrap}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#2a9b8b;margin-right:6px}.pill{display:inline-block;border:1px solid var(--line);padding:4px 8px;border-radius:6px;background:#fff;color:var(--sub);font-size:10px;font-weight:750;margin-right:4px}.pill.blue{background:#f1f7fb;border-color:#d6e6ef;color:var(--blue)}.pill.purple{background:#f7f4ff;border-color:#e8dcf6;color:var(--purple)}.pill.amber{background:#fff7e9;border-color:#f4e0c4;color:#a5682e}.btn{border:1px solid #d7e1e6;border-radius:8px;background:#fff;color:#456071;padding:8px 12px;font-size:11px;font-weight:700}.btn:hover{border-color:#abc0cf;background:#fafdff}.btn.primary{background:#edf6fa;border-color:#a7cbdc;color:#1a648e}
+.main{min-height:0;flex:1;display:flex}.rail{width:238px;flex:none;background:#fff;border-right:1px solid var(--line);display:flex;flex-direction:column}.railhead{padding:19px 18px 16px;border-bottom:1px solid var(--line)}.cap,.eyebrow{font-size:10px;letter-spacing:.11em;text-transform:uppercase;font-weight:800;color:#78909b}.railhead h2{font-size:19px;margin:6px 0}.search{display:flex;border:1px solid #d7e1e6;border-radius:8px;margin-top:12px;padding:8px 9px;color:#8da0aa;background:#f8fbfc}.search input{width:100%;border:0;outline:0;background:none;margin-left:8px;font-size:12px}.railscroll{min-height:0;overflow:auto;flex:1}.label{padding:20px 18px 9px;color:#92a1ab;font-size:10px;letter-spacing:.08em;font-weight:800;text-transform:uppercase}.navitem,.miniitem{width:calc(100% - 20px);margin:2px 10px;border:0;background:transparent;border-radius:9px;text-align:left;padding:11px 10px;color:#405568}.navitem.active,.navitem:hover{background:#edf5f8;color:#165b85}.navitem strong{font-size:12px}.navitem small{color:var(--muted)}.miniitem{width:calc(100% - 36px);margin:0 18px;padding:9px 1px;border-radius:0;border-bottom:1px solid #eef2f4;color:#657783;font-size:11px}.miniitem:hover,.miniitem.active{color:var(--blue)}.railfoot{padding:14px 16px;border-top:1px solid var(--line);font-size:10px;color:var(--sub);line-height:1.6}
+.workspace{min-width:0;min-height:0;display:flex;flex:1;flex-direction:column}.workhead{height:78px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:15px 23px;border-bottom:1px solid var(--line);background:#ffffffb8}.workhead h1{font-size:20px;margin-top:4px;letter-spacing:-.03em}.workhead p{font-size:11.5px;color:#6a808c;margin-top:4px}.toolbar{display:flex;gap:7px;align-items:center}.body{min-height:0;flex:1;display:flex;overflow:hidden}
+.workmap{min-width:0;flex:1;position:relative;overflow:hidden;background:linear-gradient(150deg,#f8fcfd,#eef5f8);background-image:radial-gradient(circle,#abc7d673 .85px,transparent 0);background-size:26px 26px}.workviewport{position:absolute;inset:0;overflow:hidden;touch-action:none;cursor:grab}.workviewport.grabbed{cursor:grabbing}.workworld{position:absolute;left:0;top:0;width:1220px;height:840px;transform-origin:top left}.edges{position:absolute;inset:0;pointer-events:none;overflow:visible}.edge{fill:none;stroke:#a8c6d3;stroke-width:1.4;opacity:.26}.territory{position:absolute;background:#ffffffd9;border:1px solid #dce7eb;border-radius:16px;box-shadow:var(--shadow);padding:15px;z-index:0}.territory h3{font-size:14px}.territory .desc{font-size:10.5px;color:#8498a5;margin-top:5px;line-height:1.45}.territory .count{float:right;font-size:9px;color:#8b9eaa;background:#f4f8fa;border:1px solid #e4ecef;border-radius:5px;padding:3px 6px}.territory.semantic{left:27px;top:166px;width:380px;height:243px}.territory.vessel{left:419px;top:166px;width:380px;height:243px}.territory.frontend{left:811px;top:166px;width:380px;height:243px}.territory.mechanism{left:27px;top:430px;width:570px;height:282px}.territory.dsh{left:616px;top:430px;width:575px;height:282px}.territory.current{left:27px;top:722px;width:1164px;height:102px;background:#f3faf7;border-color:#c8e0d9}.node{position:absolute;z-index:2;text-align:left;background:#fff;border:1px solid #dce8ec;border-radius:10px;padding:10px 12px;color:var(--ink);box-shadow:0 3px 10px #315b7813;width:250px}.node:hover{border-color:#9cc5d4;box-shadow:0 8px 20px #43799220}.node.focus{outline:3px solid #378ab2;outline-offset:2px;z-index:8}.node b{display:block;font-size:12px;line-height:1.38}.node small{display:block;color:#8097a2;font-size:10px;line-height:1.35;margin-top:4px}.node .kind{display:block;font-size:9px;font-weight:800;color:#72919f;letter-spacing:.06em}.node.goal{width:370px;background:linear-gradient(115deg,#fff,#f0f8fb);border-color:#a7cfde;border-radius:16px;padding:16px 22px}.node.goal b{font-size:19px;margin-top:7px}.node.now{background:#f7fcfa;border-color:#c7dfd8}.node.reject{background:#fffbf8;border-color:#efded8}.workhint{position:absolute;left:20px;bottom:17px;font-size:10.5px;color:#638296;border:1px solid #dce6eb;padding:9px 12px;border-radius:9px;background:#fffffff0;box-shadow:var(--shadow);pointer-events:none}.zoom{position:absolute;right:15px;bottom:15px;padding:4px;background:#fff;border:1px solid #d8e5e9;border-radius:9px;display:flex;gap:3px;box-shadow:var(--shadow)}.zoom button{border:0;background:transparent;font-size:16px;color:#5b7d90;padding:5px 10px}.side{width:455px;min-width:455px;background:#fff;border-left:1px solid var(--line);display:flex;flex-direction:column;min-height:0}.sidehead{padding:15px 21px;border-bottom:1px solid #e3ebef;flex:none}.sidehead h2{font-size:20px;margin:6px 0}.sidehead p{font-size:11.5px;color:#8196a2}.sidebody{padding:18px 21px 34px;overflow:auto;min-height:0;flex:1}.block{padding-bottom:17px;margin-bottom:17px;border-bottom:1px solid #e8eef2}.block h3{font-size:11px;color:#7791a1;letter-spacing:.035em;margin-bottom:10px}.block p{font-size:12.5px;color:#455f70;margin-bottom:9px}.quote{background:#f2f8fb;border-left:3px solid #9bc6d8;padding:12px 13px;border-radius:4px 9px 9px 4px;font-size:12.5px;color:#345b70;line-height:1.7}.choice,.relation,.evidence{display:block;width:100%;text-align:left;background:#fff;border:1px solid #dbe7ec;border-radius:9px;padding:10px 12px;margin:7px 0;color:#3f6577}.choice:hover,.relation:hover,.evidence:hover{background:#f6fafc;border-color:#a6c9da}.choice b,.relation b,.evidence b{display:block;font-size:12px}.choice small,.relation span,.evidence small{display:block;color:#8599a6;font-size:10.5px;line-height:1.5;margin-top:3px}.unknown{padding:10px 12px;border:1px solid #eed7b5;background:#fff7e9;border-radius:8px;color:#805525;font-size:11px;line-height:1.55}
+.agentmap{min-width:0;flex:1;position:relative;overflow:hidden;background:#f3f7f8;background-image:radial-gradient(circle at 1px 1px,#a7c1cf58 1px,transparent 0);background-size:26px 26px}.agentstage{position:absolute;left:0;top:0;width:1220px;height:810px;transform-origin:0 0}.agentroot{position:absolute;top:40px;left:423px;width:374px;height:150px;padding:19px 21px;border:1px solid #b4cddd;border-radius:16px;background:linear-gradient(110deg,#fcffff,#eaf4fa);box-shadow:0 23px 55px #33769c1c;cursor:pointer}.agentroot h3{font-size:19px;margin:8px 0 6px}.agentroot p{font-size:12px;color:#668292}.agentzone{position:absolute;top:251px;width:352px;height:360px;padding:16px;border:1px solid #dbe5ea;border-radius:19px;background:#ffffffbf;box-shadow:var(--shadow)}.agentzone.research{left:62px}.agentzone.audit{left:438px}.agentzone.delivery{left:817px}.agentzone h3{font-size:16px}.agentzone p{font-size:11px;color:#80919b;margin:6px 0 13px}.agentcard{display:block;width:100%;border:1px solid #dfe8ed;border-radius:12px;background:#fff;padding:10px 12px;text-align:left;margin:7px 0;color:var(--ink);box-shadow:0 5px 16px #56788c10}.agentcard:hover{border-color:#448ab2;box-shadow:0 0 0 3px #3680a722}.agentcard strong{font-size:14px}.agentcard .task{display:block;font-size:12px;font-weight:730;color:#345064;margin-top:4px}.agentcard .desc{display:block;font-size:10.5px;color:#728694;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.unknownzone{position:absolute;top:651px;left:261px;width:700px;height:113px;border:1px dashed #b7c7cf;border-radius:14px;background:#f8fbfbc9;padding:15px 20px;display:flex;align-items:center;gap:22px}.unknownzone h3{font-size:15px}.unknownzone p{font-size:11px;color:#788b98;max-width:385px}.unknownzone button{margin-left:auto;border:1px solid #bdcdd6;border-radius:8px;background:#fff;padding:12px 14px;font-size:11px;color:#567285;font-weight:700}.focuspanel{width:387px;min-width:387px;background:#fff;border-left:1px solid var(--line);display:flex;flex-direction:column;min-height:0}.focushead{padding:17px 19px;border-bottom:1px solid var(--line)}.focushead h2{font-size:19px;margin:5px 0}.focushead p{font-size:11px;color:var(--sub)}.focusscroll{overflow:auto;padding:18px 19px 44px;min-height:0;flex:1}.native{display:block;gap:9px;align-items:flex-start;padding:10px 9px;border:1px solid #e6eef1;border-radius:8px;background:#fff;text-align:left;color:#4d6575;width:100%;margin:7px 0}.native:hover{border-color:#a7c6d6;background:#f7fbfd}.native strong{display:block;font-size:11px}.native small{display:block;font-size:10px;color:#90a0aa;margin-top:3px}.tracearea{min-width:0;flex:1;overflow:auto;padding:24px;background:#f6f9fa}.tracehead{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.tracehead h2{font-size:20px}.traceintro{font-size:12px;color:#7e909b;margin:7px 0 22px}.tracerow{display:grid;grid-template-columns:83px 130px 1fr 70px;align-items:start;gap:15px;padding:11px 14px;background:#fff;border:1px solid #e0e9ed;margin-bottom:6px;border-radius:9px;cursor:pointer;width:100%;text-align:left}.tracerow:hover{border-color:#9dbccb}.tracerow .time{color:#82919c;font-size:11px}.tracerow strong{color:#385a71;font-size:11px}.tracerow .preview{font-size:11px;color:#718797;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tracerow .raw{font-size:10px;color:#8aa1ae}.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:40px;color:#728997;text-align:center}.empty h3{font-size:19px;color:#40596b;margin:10px 0}.modal{position:fixed;inset:0;background:#112a3b7a;z-index:50;display:none;align-items:center;justify-content:center;padding:24px}.modal.open{display:flex}.modalbox{width:min(940px,95vw);height:min(800px,90vh);background:#fff;border-radius:14px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 45px 100px #0a263e66}.modalhead{padding:18px 22px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}.modalhead h2{flex:1;font-size:17px}.modalbody{flex:1;min-height:0;overflow:auto;padding:22px 26px}.modalbody pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#334d61;font:12px/1.75 ui-monospace,SFMono-Regular,Menlo,monospace;margin:0}.modalclose{border:1px solid #dce7ed;background:#fff;border-radius:7px;padding:6px 11px}@media(max-width:1320px){.rail{width:210px}.side{width:420px;min-width:420px}.focuspanel{width:345px;min-width:345px}.crumb{display:none}}@media(max-width:980px){.rail{display:none}.side,.focuspanel{width:350px;min-width:350px}}@media(max-width:700px){html,body{overflow:auto}.app{height:auto}.main{display:block}.workspace{height:740px}.body{height:662px}.side,.focuspanel{width:100%;height:520px}.top{padding:0 12px}.surface-tabs button{padding:6px 9px}.topmeta{display:none}.tracerow{grid-template-columns:65px 100px 1fr}}
+.workworld .territory{pointer-events:none}.workworld .node{z-index:2}.workworld .edges{z-index:1}.workmode .rail{display:none}.mapnav{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}.mapnav button{border:1px solid #d6e5eb;background:#f8fbfc;color:#3a7897;border-radius:7px;font-size:11px;font-weight:800;padding:7px 10px}.mapnav button:disabled{color:#adbcc3;cursor:default}.turndetails{border:1px solid var(--line);background:#fff;border-radius:10px;margin:8px 0;overflow:hidden}.turndetails summary{padding:12px 14px;color:var(--blue);font-weight:800;cursor:pointer}.turndetails[open] summary{border-bottom:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="app"><header class="top"><div class="logo">PRC<span> / FIELD</span></div><span class="crumb">Agent Runtime · 本地只读观察</span><nav class="surface-tabs"><button data-tab="work">Work</button><button data-tab="agents">Agents</button><button data-tab="trace">Trace</button></nav><div class="topmeta"><span class="dot"></span>localhost / read-only <span class="pill blue">真实 Session</span></div></header>
+<div class="main"><aside class="rail"><div class="railhead"><span class="cap">Run perspective</span><h2>Agent field</h2><div style="color:var(--sub);font-size:11px">真实执行体 × 工作理解</div><label class="search">⌕ <input id="search" placeholder="搜索 Agent / 任务内容" aria-label="搜索 Agent"></label></div><div class="railscroll"><div class="label">Explore</div><button class="navitem" data-tab="work">⌗　<strong>工作地图</strong><br><small>案例演化与证据入口</small></button><button class="navitem" data-tab="agents">⑂　<strong>原生血缘</strong><br><small>当前 Session 的真实身份</small></button><button class="navitem" data-tab="trace">▤　<strong>真实 Trace</strong><br><small>按 Turn 阅读原始记录</small></button><div class="label">本地 Session</div><div id="sessionList"></div><div class="label">边界</div><div class="unknown">不读取远程 Codex App。没有原生 Agent lineage 时，不把工具调用提升为 Agent。</div></div><div class="railfoot">来源：本机 Codex rollout JSONL。原始文件只读；reasoning 不进入人类可读事实。</div></aside><main class="workspace"><div class="workhead"><div><div class="eyebrow" id="eyebrow">WORK / REAL PROJECT EVOLUTION</div><h1 id="title">AISailing Agent 为什么走到了这里？</h1><p id="subtitle">从自然语言海事招聘目标，到今天的语义实验、失败修复与未完成的产品体验。</p></div><div class="toolbar"><span class="pill" id="status">读取中…</span><button class="btn" id="refresh">刷新 Session</button></div></div><div class="body" id="body"></div></main></div></div>
+<div class="modal" id="modal"><div class="modalbox"><div class="modalhead"><span class="pill blue" id="modalTag">NATIVE RECORD</span><h2 id="modalTitle">原始记录</h2><button class="modalclose" id="modalClose">关闭</button></div><div class="modalbody"><pre id="modalText"></pre></div></div></div>
+<script>
+const TARGET='019faced-f11a-75e1-ac20-8b95e24d4628';const query=new URLSearchParams(location.search);const state={tab:query.get('tab')||'work',sessionId:query.get('session_id')||TARGET,session:null,case:null,selectedAgent:null,selectedCase:null};const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'),excerpt=(v,n=180)=>{let s=String(v??'').replace(/\s+/g,' ').trim();return s.length>n?s.slice(0,n).trimEnd()+'…':s};
+function textOf(e){return e?.content||e?.native?.text||e?.native?.command||e?.native?.output||e?.native?.prompt||''}function setTab(tab){state.tab=tab;history.pushState({},'',`?tab=${tab}&session_id=${encodeURIComponent(state.sessionId)}`);render()}function openRecord(e){if(!e)return;$('#modalTag').textContent=e.event_type||e.kind;$('#modalTitle').textContent='Native record · line '+(e.ordinal||'');$('#modalText').textContent=JSON.stringify({event_id:e.event_id,kind:e.kind,event_type:e.event_type,content:e.content,evidence_ref:e.evidence_ref,native:e.native},null,2);$('#modal').classList.add('open')}function nodes(){return state.case?.graph?.nodes||[]}
+function caseInspector(n){return `<div class="block"><h3>先用普通话讲这件事</h3><div class="quote">${esc(n.plain_language_description||n.title)}</div><p style="margin-top:10px"><span class="pill">${esc(n.type)}</span><span class="pill">${esc(n.status)}</span></p></div><div class="block"><h3>原始依据在哪里？</h3>${(n.evidence_ids||[]).map(id=>`<div class="evidence"><b>${esc(id)}</b><small>案例证据索引；当前本地 Session 不宣称自动重建该关联。</small></div>`).join('')||'<div class="unknown">UNAVAILABLE：该节点没有登记证据引用。</div>'}</div><div class="unknown">人工整理参考案例 · 非自动跨 Session 重建 · 不是当前 Session 的 Work 事实。</div>`}
+function bindWork(){let world=$('#workworld'),view={x:0,y:0,z:Math.min(1,($('.workmap')?.clientWidth||1000)/1220)},transform=()=>world.style.transform=`translate(${view.x}px,${view.y}px) scale(${view.z})`,fit=()=>{let w=$('.workmap').clientWidth,h=$('.workmap').clientHeight;view.z=Math.max(.45,Math.min((w-20)/1220,(h-20)/840,1));view.x=(w-1220*view.z)/2;view.y=Math.max(4,(h-840*view.z)/2);transform()};fit();$$('[data-zoom]').forEach(b=>b.onclick=()=>{if(b.dataset.zoom==='fit')fit();else{view.z=Math.max(.45,Math.min(1.5,view.z*(b.dataset.zoom==='in'?1.18:.85)));transform()}});let drag=null,v=$('#workviewport');v.onpointerdown=e=>{if(e.target.closest('[data-case]'))return;drag={x:e.clientX,y:e.clientY,ox:view.x,oy:view.y};v.setPointerCapture(e.pointerId);v.classList.add('grabbed')};v.onpointermove=e=>{if(drag){view.x=drag.ox+e.clientX-drag.x;view.y=drag.oy+e.clientY-drag.y;transform()}};v.onpointerup=()=>{drag=null;v.classList.remove('grabbed')};$$('[data-case]').forEach(b=>b.onclick=()=>{state.selectedCase=b.dataset.case==='root'?null:b.dataset.case;render()})}
+function work(){let ns=nodes(),groups=[['semantic','招聘语义与 Workflow','先弄清用户在说什么，再决定哪些事实可以真的执行。',ns.filter(n=>['GOAL','WORKSTREAM','ASSUMPTION'].includes(n.type))],['vessel','海事权威与船型范围','不能把用户不知道船型误读为用户不限船型。',ns.filter(n=>['EXPERIMENT','DECISION'].includes(n.type))],['frontend','真实交互与前端结果','后台能跑只是开始，最终还要检查浏览器里的真实结果。',ns.filter(n=>['OUTCOME','OPEN_QUESTION','REJECTED','CURRENT_STATE'].includes(n.type))]];let pos=[[60,245],[350,245],[640,245],[930,245],[100,500],[390,500],[680,500],[970,500]],cards=groups.map((g,gi)=>`<section class="territory ${g[0]}"><span class="count">${g[3].length} 个对象</span><h3>${g[1]}</h3><p class="desc">${g[2]}</p>${g[3].slice(0,4).map((n,i)=>{let p=pos[gi*2+i]||[80,500];return `<button class="node ${n.type==='GOAL'?'goal ':''}${n.type==='REJECTED'?'reject ':''}${n.type==='CURRENT_STATE'?'now ':''}" style="left:${p[0]}px;top:${p[1]}px" data-case="${esc(n.id)}"><span class="kind">${esc(n.type)}</span><b>${esc(n.title)}</b><small>${esc(n.plain_language_description||'打开查看案例解释')}</small></button>`}).join('')}</section>`).join(''),selected=ns.find(n=>n.id===state.selectedCase);$('#eyebrow').textContent='WORK / REAL PROJECT EVOLUTION';$('#title').textContent=selected?.title||'AISailing Agent 为什么走到了这里？';$('#subtitle').textContent='从自然语言海事招聘目标，到今天的语义实验、失败修复与未完成的产品体验。';$('#body').innerHTML=`<main class="workmap"><div class="workviewport" id="workviewport"><div class="workworld" id="workworld"><svg class="edges" viewBox="0 0 1220 840"><path class="edge" d="M610 140 C610 190 220 190 220 250"/><path class="edge" d="M610 140 L610 250"/><path class="edge" d="M610 140 C610 190 1000 190 1000 250"/></svg><button class="node goal" data-case="root" style="left:425px;top:35px"><span class="kind">NORTH STAR · HUMAN RATIFIED</span><b>AISailing Project Evolution</b><small>人工整理的跨 Session 演化案例，不声明由当前 Session 自动推导。</small></button>${cards}<section class="territory current"><h3>今天的状态 <span class="count">REFERENCE CASE</span></h3><p class="desc">案例节点可查看解释与证据状态；真实 Session 仍从 Work 之外进入 Agents / Trace。</p></section></div></div><div class="workhint">五条并行工作方向（不是时间顺序） · 点击节点看原因和影响</div><div class="zoom"><button data-zoom="out">−</button><button data-zoom="in">＋</button><button data-zoom="fit">⌗</button></div></main><aside class="side"><div class="sidehead"><div class="eyebrow">CASE / GLOBAL READING</div><h2>${selected?esc(selected.title):'AISailing 为什么走到这里？'}</h2><p>从真实招聘诉求出发，理解五条方向、重要取舍和当前缺口。</p></div><div class="sidebody">${selected?caseInspector(selected):`<div class="block"><h3>给第一次接触项目的人</h3><div class="quote">最初希望用户像和招聘顾问沟通一样，说出招船员的需求。系统应在信息不够时澄清，在条件可以执行时提供有用结果。</div></div><div class="block"><h3>产品边界</h3><p>Work 保留 AISailing B2 的人工整理空间地图。它不把当前本地 Session 自动变成项目演化结论。</p><button class="btn primary" data-tab="trace">进入真实 Trace</button></div><div class="unknown">案例性质：人工证据案例 · 非自动跨 Session 重建 · 未连接实时 Runtime。</div>`}</div></aside>`;bindWork()}
+function agentData(){return {root:state.session?.agents?.[0],agents:state.session?.agents||[],events:state.session?.events||[]}}function bindAgents(){ $$('[data-agent]').forEach(b=>b.onclick=()=>{state.selectedAgent=state.session?.agents?.[0]?.agent_id||null;render()});$$('[data-event]').forEach(b=>b.onclick=()=>openRecord(state.session.events.find(e=>e.event_id===b.dataset.event)));$$('[data-tab]').forEach(b=>b.onclick=()=>setTab(b.dataset.tab))}
+function agents(){let d=agentData(),a=d.root,hasLineage=d.agents.some(x=>x.parent_agent_id),events=d.events.slice(0,8);$('#eyebrow').textContent='AGENTS / COGNITIVE MAP';$('#title').textContent='谁被派去做什么？';$('#subtitle').textContent='把 native identity 放在第一眼；需要时再追溯到真实任务、消息和执行证据。';$('#body').innerHTML=`<main class="agentmap"><div class="agentstage"><svg class="edges" viewBox="0 0 1220 810"><path d="M610 190 C610 230 205 210 205 251" stroke="#a8c4d2" stroke-dasharray="5 6" fill="none"/><path d="M610 190 L610 251" stroke="#a8c4d2" stroke-dasharray="5 6" fill="none"/><path d="M610 190 C610 225 990 213 990 251" stroke="#a8c4d2" stroke-dasharray="5 6" fill="none"/></svg><button class="agentroot" data-agent="root"><span class="pill blue">SESSION · NATIVE</span><h3>Root session activity</h3><p>${esc(a?.session_id||state.sessionId)} · ${esc(a?.status||'UNKNOWN')}</p><div style="margin-top:10px"><span class="pill">${esc(state.session?.session?.turn_count||0)} turns</span><span class="pill">${esc(state.session?.summary?.event_count||0)} events</span></div></button><section class="agentzone research"><h3>研究与证据收集</h3><p>仅当原生任务内容支持时显示；不把普通 Event 提升为 Agent。</p><div class="unknown">${hasLineage?'暂无可解释任务分组':'UNKNOWN / UNAVAILABLE：当前本地 JSONL 未保留可确认的子 Agent identity。'}</div></section><section class="agentzone audit"><h3>治理审阅</h3><p>没有独立 native task 证据时不生成任务卡。</p><div class="unknown">UNAVAILABLE：当前源只提供 Session 级身份。</div></section><section class="agentzone delivery"><h3>授权文档写入</h3><p>只显示 native lineage 能证明的 Agent 活动。</p><div class="unknown">UNAVAILABLE：不从工具调用推断 Agent。</div></section><div class="unknownzone"><div><span class="pill amber">NATIVE IDENTITY BOUNDARY</span><h3>当前 Session 的 Agent lineage</h3><p>${hasLineage?'已观察到 parent-child 关系。':'未观察到可确认的原生子 Agent lineage；工具调用仍属于当前 Session。'}</p></div><button data-tab="trace">查看身份记录 →</button></div></div></main><aside class="focuspanel"><div class="focushead"><div class="eyebrow">FOCUS INSPECTOR NATIVE IDENTITY</div><h2>${esc(a?.label||'Session Agent')}</h2><p>native session identity · 不等于已验证任务结果</p></div><div class="focusscroll"><div class="block"><h3>01 · 原生身份</h3><p>Session ID：${esc(a?.session_id||state.sessionId)}<br>来源：${esc(a?.source||'unknown')}<br>状态：${esc(a?.status||'UNKNOWN')}<br>父级/子级：${hasLineage?'可见':'UNAVAILABLE'}</p></div><div class="block"><h3>02 · 实际观察到了什么？</h3><p>${esc(state.session?.summary?.event_count||0)} 条 native events、${esc(state.session?.summary?.tool_call_count||0)} 次工具调用、${esc(state.session?.session?.turn_count||0)} 个 Turn。</p>${events.map(e=>`<button class="native" data-event="${esc(e.event_id)}"><strong>${esc(e.event_type)}</strong><small>${esc(excerpt(textOf(e),150)||'该记录无可读取正文')}</small></button>`).join('')}</div><div class="block"><h3>03 · 证据边界</h3><div class="unknown">不能从 event count 推导工作贡献、结论或完成状态。点击记录查看真实 native envelope。</div><button class="btn primary" data-tab="trace">进入 Trace</button></div></div></aside>`;bindAgents()}
+function trace(){let d=agentData(),events=d.events,turns=state.session?.turns||[];$('#eyebrow').textContent='TRACE / NATIVE OBSERVATIONS';$('#title').textContent='真实执行证据 · 按 Turn 阅读';$('#subtitle').textContent='每条记录保留 session、Turn、JSONL 行号与 byte offset；点击即可查看 native envelope。';$('#body').innerHTML=`<section class="tracearea"><div class="tracehead"><div><span class="cap">TRACE / NATIVE SESSION</span><h2>${esc(state.session?.session?.session_id||state.sessionId)}</h2></div><span class="pill blue">${events.length} events</span></div><p class="traceintro">按 Turn 阅读真实本地 JSONL。reasoning 不作为产品事实；原始证据仍可打开。</p>${turns.map(t=>{let es=events.filter(e=>e.turn_id===t.turn_id);return `<section class="block" style="border:1px solid var(--line);padding:0;margin-bottom:9px;background:#fff;border-radius:10px;overflow:hidden"><div style="padding:12px 14px;border-bottom:1px solid var(--line);color:var(--blue);font-weight:800">Turn ${esc(t.index)} <span style="color:var(--muted);margin-left:12px">${es.length} records</span></div><div style="padding:5px 11px 10px">${es.slice(0,80).map(e=>`<button class="tracerow" data-event="${esc(e.event_id)}"><span class="time">line ${esc(e.ordinal)}</span><strong>${esc(e.event_type)}</strong><span class="preview">${esc(excerpt(textOf(e),180)||'该记录无可读取正文')}</span><span class="raw">查看原文 ↗</span></button>`).join('')||'<div class="unknown">本 Turn 没有可展示的 native record。</div>'}</div></section>`}).join('')}</section><aside class="focuspanel"><div class="focushead"><div class="eyebrow">TRACE / EVIDENCE</div><h2>Native records</h2><p>来源路径与定位随记录进入 Raw trace。</p></div><div class="focusscroll"><div class="block"><h3>原始来源</h3><p>${esc(state.session?.session?.source_path||'UNKNOWN')}<br>${esc(state.session?.session?.line_count||0)} lines · ${esc(state.session?.session?.file_bytes||0)} bytes</p></div><div class="unknown">Trace 只陈列观察到的记录。它不替 Agent 解释贡献，也不把工具类型提升为 Work。</div></div></aside>`;$$('[data-event]').forEach(b=>b.onclick=()=>openRecord(events.find(e=>e.event_id===b.dataset.event)))}
+function renderShell(){ $$('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===state.tab));$('#sessionList').innerHTML=state.session?`<button class="miniitem active"><b>${esc(state.session.agents?.[0]?.label||'Codex Session')}</b><br><span>${esc(state.session.session.session_id)}</span></button>`:'<div style="padding:10px;color:var(--muted)">UNAVAILABLE</div>';$('#status').textContent=state.session?`${state.session.summary.event_count} 条 native records`:'读取中…'}function render(){renderShell();if(!state.session||!state.case){$('#body').innerHTML='<div class="empty"><h3>正在读取本地证据…</h3><p>不会创建虚构数据。</p></div>';return}if(state.tab==='work')work();else if(state.tab==='agents')agents();else trace()}
+async function load(){try{let [c,s]=await Promise.all([fetch('/api/case').then(r=>r.json()),fetch(`/api/session?session_id=${encodeURIComponent(state.sessionId)}`).then(r=>r.json())]);state.case=c;state.session=s;render()}catch(e){$('#body').innerHTML='<div class="empty"><h3>读取失败</h3><p>本地 API 不可用，未使用替代数据。</p></div>'}}document.addEventListener('click',e=>{let t=e.target.closest('[data-tab]');if(t){setTab(t.dataset.tab);return}if(e.target.closest('#refresh'))load();if(e.target.closest('#modalClose')||e.target.id==='modal')$('#modal').classList.remove('open')});window.addEventListener('popstate',load);load();
+const originalCaseInspector=caseInspector;
+const b2Inspector=(n,b)=>{const t=b.translations?.[n.id]||[n.title,n.plain_language_description||''];const ids=n.evidence_ids||[];return `<div class="mapnav"><button data-case-home="1">返回全局地图</button></div><div class="block"><h3>${esc(n.type)} · ${esc(n.id)}</h3><div class="quote">${esc(t[1]||t[0])}</div><p style="margin-top:10px"><span class="pill">${esc(n.type)}</span><span class="pill">${esc(n.status)}</span></p></div><div class="block"><h3>原始依据在哪里？</h3>${ids.map(id=>{const e=b.evidence?.[id];return `<div class="evidence"><b>${esc(id)} · ${esc(e?.title||'Evidence')}</b><small>${esc(e?.body||'索引存在，但当前本地 Session 不在线重建该来源。')}</small></div>`}).join('')||'<div class="unknown">UNAVAILABLE：该节点没有登记证据引用。</div>'}</div><div class="unknown">案例性质：人工整理参考；不是当前 Session 自动推导的 Work 事实。</div>`};
+function renderB2Work(){const b=state.case.b2||{},ns=b.graph?.nodes||[],by=Object.fromEntries(ns.map(n=>[n.id,n])),pos=b.positions||{},tx=b.translations||{},rels=(b.graph?.relations||[]).map((r,i)=>({...r,id:'L-'+String(i+1).padStart(2,'0')})),shape=r=>{const a=pos[r.source],z=pos[r.target];if(!a||!z)return '';const ax=a[0]+a[2]/2,ay=a[1]+a[3]/2,bx=z[0]+z[2]/2,byy=z[1]+z[3]/2,m=(ax+bx)/2;return `M${ax} ${ay} C${m} ${ay},${m} ${byy},${bx} ${byy}`};const paths=rels.map(r=>`<path class="edge" d="${shape(r)}"/>`).join('');const territories=[['semantic','招聘语义与 Workflow','先弄清用户在说什么，再决定哪些事实可以真的执行。','基础工作方向'],['vessel','海事权威与船型范围','不能把“用户不知道船型”误读为“用户不限船型”。','测试范围内有效'],['frontend','真实交互与前端结果','后台能跑只是开始，最终还要检查浏览器里的真实结果。','产品体验未过关'],['mechanism','语义机制实验：Agent Loop 是必需的吗？','从 Treatment 效果信号，走向拆开验证每种机制的贡献。','关键转折 A'],['dsh','DSH 外部测试：找到此前没看到的失败','一次真实对话发现已取消任务仍被改动，修复后仍保留新任务衔接问题。','关键转折 B'],['current','今天的状态','人工案例的当前状态；不是当前 Session 自动推导。','08 OCT 2026']].map(x=>`<section class="territory ${x[0]}"><span class="count">${x[3]}</span><h3>${x[1]}</h3><p class="desc">${x[2]}</p></section>`).join('');const cards=Object.entries(pos).map(([id,p])=>{const n=by[id],t=tx[id]||[n?.title||id,''];if(!n)return '';const cls=n.type==='GOAL'?'goal':n.type==='REJECTED'?'reject':n.type==='CURRENT_STATE'?'now':'';return `<button class="node ${cls}" data-case="${id}" style="left:${p[0]}px;top:${p[1]}px;width:${p[2]}px;height:${p[3]}px"><span class="kind">${id==='G-001'?'NORTH STAR · HUMAN RATIFIED':esc(n.type)}</span><b>${esc(t[0])}</b>${['W-001','W-002','W-003','W-004','W-005','G-001'].includes(id)?`<small>${esc(t[1])}</small>`:''}</button>`}).join('');const selected=by[state.selectedCase];$('#eyebrow').textContent='WORK / REAL PROJECT EVOLUTION';$('#title').textContent=selected?(tx[selected.id]?.[0]||selected.title):'AISailing Agent 为什么走到了这里？';$('#subtitle').textContent='从自然语言海事招聘目标，到今天的语义实验、失败修复与未完成的产品体验。';$('#body').innerHTML=`<main class="workmap"><div class="workviewport" id="workviewport"><div class="workworld" id="workworld"><svg class="edges" viewBox="0 0 1220 840">${paths}</svg>${territories}${cards}</div></div><div class="workhint">五条并行工作方向（不是时间顺序） · 点击节点看原因和影响</div><div class="zoom"><button data-zoom="out">−</button><button data-zoom="in">＋</button><button data-zoom="fit">⌗</button></div></main><aside class="side"><div class="sidehead"><div class="mapnav"><button data-case-home="1">返回全局地图</button></div><div class="eyebrow">CASE / GLOBAL READING</div><h2>${selected?esc(tx[selected.id]?.[0]||selected.title):'AISailing 为什么走到这里？'}</h2><p>从真实招聘诉求出发，理解五条方向、重要取舍和当前缺口。</p></div><div class="sidebody">${selected?originalCaseInspector(selected):`<div class="block"><h3>给第一次接触项目的人</h3><div class="quote">最初希望用户像和招聘顾问沟通一样，说出招船员的需求。系统应在信息不够时澄清，在条件可以执行时，通过真实后端与前端提供有用结果。</div></div><div class="block"><h3>建议先看两次转折</h3><button class="choice" data-case="W-004"><b>转折 A · 为什么没有直接上 Agent Loop</b><small>Phase 2.1 → Phase 2.2 → 临时机制选择</small></button><button class="choice" data-case="W-005"><b>转折 B · DSH 发现了什么</b><small>取消旧任务后竟然还可修改 → 修复 → 新的开放问题</small></button></div><div class="unknown">案例性质：人工证据案例 · 非自动跨 Session 重建 · 未连接实时 Runtime。</div>`}</div></aside>`;bindWork();$$('[data-case-home]').forEach(x=>x.onclick=()=>{state.selectedCase=null;render()})}
+function renderCompactTrace(){let d=agentData(),events=d.events||[],turns=state.session?.turns||[];$('#eyebrow').textContent='TRACE / NATIVE OBSERVATIONS';$('#title').textContent='真实执行证据 · 按 Turn 阅读';$('#subtitle').textContent='每条记录保留 session、Turn、JSONL 行号与 byte offset；点击即可查看 native envelope。';const turnHtml=turns.map(t=>{const es=events.filter(e=>e.turn_id===t.turn_id);return `<details class="turndetails"><summary>Turn ${esc(t.index)} <span style="color:var(--muted);margin-left:12px">${es.length} records</span></summary><div style="padding:5px 11px 10px">${es.slice(0,24).map(e=>`<button class="tracerow" data-event="${esc(e.event_id)}"><span class="time">line ${esc(e.ordinal)}</span><strong>${esc(e.event_type)}</strong><span class="preview">${esc(excerpt(textOf(e),180)||'该记录无可读取正文')}</span><span class="raw">查看原文 ↗</span></button>`).join('')}${es.length>24?`<div class="unknown">其余 ${es.length-24} 条记录仍保留在 native source；当前视图为每个 Turn 的可读选录。</div>`:''}</div></details>`}).join('');$('#body').innerHTML=`<section class="tracearea"><div class="tracehead"><div><span class="cap">TRACE / NATIVE SESSION</span><h2>${esc(state.session?.session?.session_id||state.sessionId)}</h2></div><span class="pill blue">${events.length} events</span></div><p class="traceintro">按 Turn 阅读真实本地 JSONL。reasoning 不作为产品事实；原始证据仍可打开。</p>${turnHtml}</section><aside class="focuspanel"><div class="focushead"><div class="eyebrow">TRACE / EVIDENCE</div><h2>Native records</h2><p>来源路径与定位随记录进入 Raw trace。</p></div><div class="focusscroll"><div class="block"><h3>原始来源</h3><p>${esc(state.session?.session?.source_path||'UNKNOWN')}<br>${esc(state.session?.session?.line_count||0)} lines · ${esc(state.session?.session?.file_bytes||0)} bytes</p></div><div class="unknown">Trace 只陈列观察到的记录。它不替 Agent 解释贡献，也不把工具类型提升为 Work。</div></div></aside>`;$$('[data-event]').forEach(x=>x.onclick=()=>openRecord(events.find(e=>e.event_id===x.dataset.event)))}
+const rawB2Work=renderB2Work;renderB2Work=()=>{rawB2Work();if(state.selectedCase){const b=state.case.b2||{},n=(b.graph?.nodes||[]).find(x=>x.id===state.selectedCase);if(n) $('.sidebody').innerHTML=b2Inspector(n,b)}};work=renderB2Work;trace=renderCompactTrace;renderShell=()=>{document.querySelector('.app').classList.toggle('workmode',state.tab==='work');$$('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===state.tab));$('#sessionList').innerHTML=state.session?`<button class="miniitem active"><b>${esc(state.session.agents?.[0]?.label||'Codex Session')}</b><br><span>${esc(state.session.session.session_id)}</span></button>`:'<div style="padding:10px;color:var(--muted)">UNAVAILABLE</div>';if(state.tab==='work')$('.toolbar').innerHTML='<button class="btn primary" data-case="root">全局地图</button><button class="btn" data-case="W-004">转折 A · Agent Loop</button><button class="btn" data-case="W-005">转折 B · DSH</button><button class="btn" data-tab="trace">目标 ↔ 当前</button>';else $('.toolbar').innerHTML='<span class="pill" id="status">'+(state.session?`${state.session.summary.event_count} 条 native records`:'读取中…')+'</span><button class="btn" id="refresh">刷新 Session</button>'};render();
+</script></body></html>

@@ -38,12 +38,19 @@ def judge_in_shadow(
         confidence = decision.confidence
         provider_name = decision.provider
         model = decision.model
+        provider_receipt = decision.receipt
     except Exception as exc:
-        provider_status = f"ERROR:{type(exc).__name__}"
+        error_prefix = (
+            "DSH_ERROR"
+            if getattr(provider, "provider", None) == "dsh"
+            else "ERROR"
+        )
+        provider_status = f"{error_prefix}:{type(exc).__name__}"
         verdict = "UNKNOWN"
         confidence = None
         provider_name = getattr(provider, "provider", "unknown")
         model = getattr(provider, "model", "unknown")
+        provider_receipt = getattr(provider, "last_receipt", None)
 
     latency_ms = round((time.perf_counter() - started) * 1000, 3)
     return {
@@ -58,6 +65,7 @@ def judge_in_shadow(
         "judge_provider": provider_name,
         "judge_model": model,
         "provider_status": provider_status,
+        "provider_receipt": provider_receipt,
         "latency_ms": latency_ms,
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "source_reference": {
@@ -66,4 +74,3 @@ def judge_in_shadow(
             "source_ordinal": event.get("source_ordinal"),
         },
     }
-
