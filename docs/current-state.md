@@ -2,7 +2,10 @@
 
 **Date:** 2026-10-09
 **Project:** Project Runtime Console
-**Active round:** `PRC V1 UI Fidelity Recovery`
+**Active round:** `PRC V1 repair planning and publication candidate review`
+
+**Product status:** `NOT_ACCEPTED / RETURN_TO_REPAIR`. This tree is a clean
+publication candidate, not a product-acceptance verdict.
 
 ## Repository State
 
@@ -41,7 +44,7 @@ establishes WorkStage support.
 
 Overall V1 reuse verdict remains `INCONCLUSIVE`. The Trajectory probe is stronger than the earlier command-not-found observation, but it still does not establish WorkStage compatibility.
 
-## V2.5 UI Fidelity Recovery
+## V1 Product Boundary
 
 The approved Work B2 spatial map and Agents/Trace C v0.2 reading structure are
 served from `apps/console/`. Work uses the original B2 `caseData` positions,
@@ -62,18 +65,26 @@ calls, and no confirmed native child-agent lineage. Work remains explicitly
 `CURATED_CASE / REFERENCE_CASE`; it is not a claim that this Session produced
 the AISailing evolution map.
 
-Browser verification completed at 1366x900 and 1600x900 for Work, Agents, and
-Trace. Verified Work node selection and return, cross-surface navigation, Turn
-expand, and Raw Native Record opening. Browser console reported zero errors and
-warnings.
+Earlier browser verification covered the current shell at 1366x900 and
+1600x900, but it does not establish product acceptance. The current repair
+frontier remains native lineage/Turn ownership, Work activity evidence mapping,
+B2 interaction parity, and C v0.2 Agents/Trace parity.
 
 Remaining product boundary: the current native source does not expose confirmed
 child-Agent identity, so the Agents surface intentionally remains an explicit
 empty/unknown state. Work is still a curated reference surface rather than an
 automatically reconstructed project history.
 
-Reference screenshots are under `output/playwright/reference-*`; final browser
-screenshots are kept under the same ignored output directory.
+Review screenshots and DSH receipts are kept outside this clean product tree in
+the separate local review bundle.
+
+## Repair boundary
+
+The internal planning graph is `Ticket 01 -> Ticket 02 -> {Ticket 03, Ticket
+04}`. Ticket 04 owns the C v0.2 Agents topology/selection/focus surface and
+Trace reading. This tree does not authorize implementation, ticket publication,
+or remote mutation. The compatibility research bundle is separate from the
+runtime and the old remote `main` remains the historical baseline.
 
 ## Validation
 
