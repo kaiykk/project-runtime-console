@@ -6,7 +6,7 @@
 
 ## Repository State
 
-The active tree was reduced to the Codex-native runtime substrate, the transcript/shadow judgment foundation, minimal tests, and the V1 compatibility evidence. Former console, graph prototypes, OpenDesign studies, identity experiments, governance packets, and other superseded temporary work are not part of the active tree. Git history remains the archive; no archive folder was created.
+The active tree was reduced to the Codex-native runtime substrate, the transcript/shadow judgment foundation, minimal tests, and the current PRC shell. Compatibility research evidence is maintained as a separate evidence bundle rather than as product runtime content. Git history remains the archive.
 
 ## Runtime Foundation
 
@@ -22,7 +22,7 @@ No runtime, identity, lineage, or judgment semantics were changed by the cleanup
 
 Target: real Codex Run `01a0eca4-7029-7f92-b5a9-2006edb08721`.
 
-Observed native shape from the read-only app-server observer: `1 root / 26 children`, `4,251` native events, and `69` turns. The sanitized fixture is retained at `experiments/v1-reuse-compatibility/evidence/prc-27-agent-sanitized-v2.json`.
+Observed native shape from the read-only app-server observer: `1 root / 26 children`, `4,251` native events, and `69` turns. The sanitized fixture is retained in the separately classified evidence bundle and is not loaded by the runtime.
 
 Trajectory local-only probe:
 
@@ -33,13 +33,9 @@ Trajectory local-only probe:
 
 The session report did not produce human work/task boundaries. Therefore the probe is `PARTIAL`: it confirms local Codex recognition, backfill, indexing, turn/subagent/deliverable extraction, but not the required Planning, Research, Validation, Correction, Prototype, or Review segmentation.
 
-Evidence:
-
-- `experiments/v1-reuse-compatibility/evidence/trajectory-patterns-session-01a0eca4-7029-7f92-b5a9-2006edb08721.json`
-- `experiments/v1-reuse-compatibility/evidence/trajectory-patterns-estimate-2026-09-29.json`
-- `experiments/v1-reuse-compatibility/evidence/datadog-capability-probe.json`
-- `experiments/v1-reuse-compatibility/V1_REUSE_MATRIX.md`
-- `experiments/v1-reuse-compatibility/WORKSTAGE_COMPATIBILITY.md`
+Evidence is recorded in the separate PRC evidence-bundle manifest and the
+direction-review receipts. The product tree does not claim that this probe
+establishes WorkStage support.
 
 ## Verdict
 
