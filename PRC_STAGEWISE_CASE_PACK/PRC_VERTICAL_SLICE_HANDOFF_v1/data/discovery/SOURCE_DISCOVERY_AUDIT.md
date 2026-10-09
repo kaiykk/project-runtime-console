@@ -1,8 +1,8 @@
 # AISailing Source Discovery Audit
 
-Round: 0  
-Date: 2026-10-08  
-Scope: source discovery only; no Project Evolution Map or evolution summary produced  
+Round: 0
+Date: 2026-10-08
+Scope: source discovery only; no Project Evolution Map or evolution summary produced
 Audit output: `/opt/aisailing-source-discovery-round0/`
 
 ## Isolation and Method

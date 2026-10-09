@@ -17,7 +17,7 @@ Produce a running, local-first PRC which ingests at least one **actual on-disk C
 ## Agent loop and bounded OSS selection
 Use Matt Pocock's Sandcastle `@ai-hero/sandcastle` if container tools and credentials are available, with an isolated branch/worktree, limited iterations, and run/test/repair gates. It is an **agent sandbox orchestrator**, not a library quality oracle. Do not install Sandcastle into the PRC application as a product dependency merely to evaluate a candidate. If Sandcastle is unavailable or disproportionate, use an isolated worktree/container and the same fast checks.
 
-Screen ONLY local-session parsers likely to offer the required records: 
+Screen ONLY local-session parsers likely to offer the required records:
 - `https://github.com/Ax-For/session-observer`
 - `https://github.com/QJ-Chen/agentlen`
 - `https://github.com/RobertTLange/agentlens`

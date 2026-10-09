@@ -489,4 +489,3 @@ data are intentionally omitted.
    artifact; it is not recoverable from Git alone.
 8. Record whether a result was selected, merged, quarantined, or merely tested,
    rather than inferring lifecycle from directory names.
-
