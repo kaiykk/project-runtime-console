@@ -15,3 +15,7 @@ screenshots/
 *.key
 *.pem
 secrets/
+# Review bundles and scratch planning are local by default. A reviewed receipt
+# may be added explicitly with `git add -f` after provenance/sensitivity review.
+reviews/
+.scratch/
