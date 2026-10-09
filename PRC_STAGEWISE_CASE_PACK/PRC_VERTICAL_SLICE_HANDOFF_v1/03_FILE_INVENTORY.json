@@ -1,72 +1,11 @@
 [
-  {
-    "relative_path": "00_README.md",
-    "bytes": 1589,
-    "sha256": "860aeba029f6e2f708a5fc609fb19d0017f2dfbbb99ff32be8f80baf059666c0"
-  },
-  {
-    "relative_path": "01_CODEX_EXECUTION_BRIEF.md",
-    "bytes": 6190,
-    "sha256": "9c631c469956c8383311ba7fc864465a9b7e7d5ecc2a0cbf2796b1235a392388"
-  },
-  {
-    "relative_path": "02_ACCEPTANCE.md",
-    "bytes": 2516,
-    "sha256": "db74fd7819b7d3d631f194c7f3a9d104ff717a69b7f3b689c9afd8fd5917ca12"
-  },
-  {
-    "relative_path": "archive/PRC_WORK_PROTOTYPE_B_REVIEW.zip",
-    "bytes": 1899842,
-    "sha256": "8bf0ffcd3b7f06283e3274218b6c27ebf7a8d5993422cb6c793d2f5f7a932e48"
-  },
-  {
-    "relative_path": "data/aisailing/AISAILING_EVIDENCE_LEDGER.md",
-    "bytes": 23646,
-    "sha256": "a8a19c02aafa96093e2e413d32391084a48d2ba863a5c573a056e1219efd6436"
-  },
-  {
-    "relative_path": "data/aisailing/AISAILING_EVOLUTION_GRAPH.json",
-    "bytes": 17393,
-    "sha256": "55577680518a061f5bee66aa107b46f242d148cd6e0b7c8e10c7468050a90f61"
-  },
-  {
-    "relative_path": "data/aisailing/AISAILING_EVOLUTION_OVERVIEW.md",
-    "bytes": 22040,
-    "sha256": "82225a26ec259e9207820c7e42fe8be73e9e0c840c210b53cd038bdc4edcaac5"
-  },
-  {
-    "relative_path": "data/discovery/SOURCE_DISCOVERY_AUDIT.md",
-    "bytes": 10575,
-    "sha256": "b14bbcb5ccf4410d14c45601dc198e223cd75cd10539b6a879092413c78863bb"
-  },
-  {
-    "relative_path": "data/discovery/SOURCE_DISCOVERY_MANIFEST.json",
-    "bytes": 19526,
-    "sha256": "c3a7461f50103236b3b2e0411dcfcedb642bb3df866068b4d1ad66e18a5f7a56"
-  },
-  {
-    "relative_path": "mock/agents_trace/README_MISSING_REQUIRED_INPUT.md",
-    "bytes": 734,
-    "sha256": "0b68066f6058cd899bc80d6a8636a73e6f8eea46b90daa5f46107d92ea515abe"
-  },
-  {
-    "relative_path": "mock/work/PRC_AISAILING_B2_1600.png",
-    "bytes": 449647,
-    "sha256": "001c57356b57178129eb99b34ccaa64159117181b40e3f2e0c3cdf7fdaf4d173"
-  },
-  {
-    "relative_path": "mock/work/PRC_AISAILING_B2_focus_preview.png",
-    "bytes": 445863,
-    "sha256": "b5adb3d618f05af92006af8a1508497ccf6cc4defae901ca1d45a8cae3916ea3"
-  },
-  {
-    "relative_path": "mock/work/PRC_AISAILING_B2_turn_preview.png",
-    "bytes": 486213,
-    "sha256": "4fdf72e9ad6955b0fd33e01c9ae7a7d0d9b6c64456387c0d024e180e2408aa28"
-  },
-  {
-    "relative_path": "mock/work/PRC_AISAILING_WORK_B2.html",
-    "bytes": 86941,
-    "sha256": "b32c6fba78e3bb287bba1584879af84cc04b9e61b44f55f39f07f3d6763fe553"
-  }
+  {"relative_path":"00_README.md","bytes":1583,"sha256":"95757d8bc8bbd9fef280ec33b0a555ef52c01552d3922277e3eef5439c94bcb6"},
+  {"relative_path":"01_CODEX_EXECUTION_BRIEF.md","bytes":6190,"sha256":"9c631c469956c8383311ba7fc864465a9b7e7d5ecc2a0cbf2796b1235a392388"},
+  {"relative_path":"02_ACCEPTANCE.md","bytes":2516,"sha256":"db74fd7819b7d3d631f194c7f3a9d104ff717a69b7f3b689c9afd8fd5917ca12"},
+  {"relative_path":"data/aisailing/AISAILING_EVIDENCE_LEDGER.md","bytes":23646,"sha256":"a8a19c02aafa96093e2e413d32391084a48d2ba863a5c573a056e1219efd6436"},
+  {"relative_path":"data/aisailing/AISAILING_EVOLUTION_GRAPH.json","bytes":17393,"sha256":"55577680518a061f5bee66aa107b46f242d148cd6e0b7c8e10c7468050a90f61"},
+  {"relative_path":"data/aisailing/AISAILING_EVOLUTION_OVERVIEW.md","bytes":22040,"sha256":"82225a26ec259e9207820c7e42fe8be73e9e0c840c210b53cd038bdc4edcaac5"},
+  {"relative_path":"data/discovery/SOURCE_DISCOVERY_AUDIT.md","bytes":10575,"sha256":"b14bbcb5ccf4410d14c45601dc198e223cd75cd10539b6a879092413c78863bb"},
+  {"relative_path":"data/discovery/SOURCE_DISCOVERY_MANIFEST.json","bytes":19526,"sha256":"c3a7461f50103236b3b2e0411dcfcedb642bb3df866068b4d1ad66e18a5f7a56"},
+  {"relative_path":"mock/work/PRC_AISAILING_WORK_B2.html","bytes":86941,"sha256":"b32c6fba78e3bb287bba1584879af84cc04b9e61b44f55f39f07f3d6763fe553"}
 ]
