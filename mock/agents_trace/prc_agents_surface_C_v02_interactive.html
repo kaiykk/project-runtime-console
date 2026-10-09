@@ -10,9 +10,16 @@
 .inspector{width:387px;min-width:387px;background:#fff;border-left:1px solid var(--line);display:flex;flex-direction:column;min-height:0}.inspect-header{flex:none;padding:17px 19px;border-bottom:1px solid var(--line);background:#fcfdfd}.inspect-header h2{font-size:19px;letter-spacing:-.03em;margin:5px 0}.inspect-scroll{overflow:auto;min-height:0;padding:18px 19px 44px;flex:1}.eyebrow{color:#92a2ad;text-transform:uppercase;letter-spacing:.08em;font-size:10px;font-weight:800}.intro{color:#667b89;font-size:11.5px;line-height:1.6}.inspect-block{border-bottom:1px solid #edf1f3;padding:0 0 17px;margin-bottom:18px}.inspect-block h3{font-size:12px;font-weight:810;color:#4b6070;margin-bottom:11px;display:flex;align-items:center;justify-content:space-between}.quote{padding:13px;border-left:3px solid #a6cadf;background:#f5f9fb;border-radius:3px 8px 8px 3px;color:#385468;font-size:12px;line-height:1.7;white-space:pre-wrap;word-break:break-word;max-height:142px;overflow:hidden;position:relative}.quote:after{content:'';position:absolute;bottom:0;left:0;right:0;height:36px;background:linear-gradient(transparent,#f5f9fb)}.qtag{display:inline-block;background:#ebf4fa;color:#3a7295;border-radius:5px;font-size:10px;padding:2px 6px;font-weight:700}.u-btn{border:0;background:none;color:#2376a1;font-size:11px;font-weight:700;padding:8px 0 0}.u-btn:hover{text-decoration:underline}.native-list{display:flex;flex-direction:column;gap:7px}.native-step{display:flex;gap:9px;align-items:flex-start;padding:10px 9px;border:1px solid #e6eef1;border-radius:8px;background:#fff;text-align:left;color:#4d6575;width:100%}.native-step:hover{border-color:#a7c6d6;background:#f7fbfd}.native-step .num{background:#f0f5f7;border:1px solid #e1e8ed;border-radius:5px;padding:3px 6px;color:#697e8b;font-size:10px;flex:none}.native-step .txt{flex:1;min-width:0}.native-step strong{display:block;font-size:11px;line-height:1.5}.native-step small{font-size:10px;color:#90a0aa;display:block;margin-top:3px}.note{padding:10px 12px;border:1px solid #e2eaee;background:#f8fafb;border-radius:8px;color:#71838f;font-size:11px;line-height:1.55}.notload{font-size:11px;color:#8b9ba5}.tiny{font-size:10px;color:#96a4ad}
 .trace-area{display:none;position:absolute;inset:0;background:#f6f9fa;overflow:auto;padding:24px}.trace-area.show{display:block}.trace-title{font-size:20px;font-weight:800;letter-spacing:-.02em}.trace-intro{font-size:12px;color:#7e909b;margin:7px 0 22px}.trace-row{display:grid;grid-template-columns:83px 115px 1fr 93px;align-items:start;gap:15px;padding:11px 14px;background:#fff;border:1px solid #e0e9ed;margin-bottom:6px;border-radius:9px;cursor:pointer}.trace-row:hover{border-color:#9dbccb}.trace-row .time{color:#82919c;font-size:11px}.trace-row strong{color:#385a71;font-size:11px;font-weight:770}.trace-row .preview{font-size:11px;color:#718797;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.trace-row .tool{font-size:10px;color:#8aa1ae}.trace-caption{font-size:11px;color:#9aa6b0;margin-bottom:15px}
 .modal{position:fixed;inset:0;background:#112a3b7a;z-index:50;display:none;justify-content:center;align-items:center;padding:24px;backdrop-filter:blur(3px)}.modal.show{display:flex}.modalbox{width:min(940px,95vw);height:min(800px,90vh);background:#fff;border-radius:17px;box-shadow:0 45px 100px #0a263e66;display:flex;flex-direction:column;overflow:hidden}.modalhead{padding:20px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.modalhead h2{font-size:17px}.modaltools{display:flex;gap:7px}.modalbody{flex:1;min-height:0;overflow:auto;padding:22px 28px}.modalbody pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#334d61;line-height:1.75;font:12.5px/1.75 ui-monospace,SFMono-Regular,Menlo,monospace;margin:0}.modalfoot{border-top:1px solid var(--line);padding:12px 22px;color:#80929e;font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.splash{padding:25px;text-align:center;color:#71899a}.splash h2{font-size:22px;color:#38566b;margin-bottom:8px}.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:40px;color:#728997;text-align:center}.empty-state h3{font-size:19px;color:#40596b;margin:10px 0}.empty-state p{max-width:290px;font-size:12px}.foot-b{font-size:10px;color:#8a9ca7;padding:8px 23px;border-top:1px solid #dfe8ec;background:#fff;display:flex;justify-content:space-between}.hidden{display:none!important}@media(max-width:1320px){.rail{width:196px}.inspector{width:345px;min-width:345px}.crumb{display:none}}@media(max-width:980px){.rail{display:none}.inspector{width:340px;min-width:340px}.topright{display:none}}@media(max-width:660px){.app{height:auto;overflow:auto}.appmain{display:block}.workspace{height:650px}.inspector{width:100%;height:600px}.top{gap:8px;padding:0 12px}.surface-tabs button{padding:5px 9px}}
+
+/* C v0.2 scoped corrections: clearer navigation, task-first inspector, DSH-inspired trace */
+.unknown-panel{border-top:1px solid var(--line);margin:15px 12px 5px;padding:10px 0}.unknown-panel summary{font-size:11px;color:#4b6677;font-weight:750;cursor:pointer;padding:6px}.unknown-panel .unknown-note{font-size:10px;line-height:1.6;color:#8095a1;padding:6px 8px 8px}
+.rail .knownitem{display:flex;flex-direction:column;gap:3px;align-items:flex-start;line-height:1.4}.rail .knownitem strong{font-size:11.5px;color:#304e63}.rail .knownitem small{font-size:10.5px;color:#768b99;white-space:normal;line-height:1.4}.rail .railfoot{font-size:10px}.inspect-block h3{margin-bottom:8px}.inspect-scroll .inspect-block{margin-bottom:13px;padding-bottom:12px}.inspect-scroll .quote{max-height:116px}
+.work-surface{display:flex;flex:1;flex-direction:column;min-height:0;background:#f8fbfd}.work-refbar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 23px;border-bottom:1px solid #d8e4eb;background:#eef5f9}.work-refbar strong{color:#254d68;font-size:13px}.work-refbar p{margin:4px 0 0;color:#627d8d;font-size:11px;max-width:1000px}.work-surface iframe{width:100%;height:100%;flex:1;min-height:0;border:0;background:#fff}
+.trace-shell{max-width:1220px;margin:0 auto;padding:0 0 38px}.trace-page-top{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:18px}.trace-page-top h2{font-size:20px;margin:5px 0 6px;letter-spacing:-.03em;color:#263f52}.trace-page-top p{font-size:12px;color:#6a8393;line-height:1.7}.trace-overview{padding:16px 18px;background:#fff;border:1px solid #dce7ec;border-radius:12px;margin-bottom:18px;box-shadow:0 3px 9px #3e647608}.trace-overview-label{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:11px;color:#678092;margin-bottom:12px}.trace-overview-label b{font-size:12px;color:#324f63}.trace-track{display:flex;align-items:center;gap:2px;max-height:28px;min-height:26px;background:#f3f7f9;padding:5px;border-radius:6px;overflow:hidden}.trace-tick{height:15px;min-width:2px;flex:1;border:0;border-radius:2px;padding:0;opacity:.95}.trace-tick.u{background:#7fa7ae}.trace-tick.a{background:#9182c4}.trace-tick.t{background:#d19d5b}.trace-tick:hover{outline:2px solid #375c72;outline-offset:1px;opacity:1}.trace-legend{display:flex;align-items:center;gap:17px;margin-top:11px;color:#8497a1;font-size:10.5px}.trace-legend span:last-child{margin-left:auto}.trace-legend i{display:inline-block;width:9px;height:9px;margin-right:4px;border-radius:3px}.trace-legend i.u{background:#7fa7ae}.trace-legend i.a{background:#9182c4}.trace-legend i.t{background:#d19d5b}.trace-reading{display:flex;flex-direction:column;gap:10px}.trace-turn{background:#fff;border:1px solid #dfe8ed;border-radius:11px;overflow:hidden}.trace-turn>summary{cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 15px;color:#536e7f;font-size:11px;background:#fdfefe}.trace-turn>summary strong{font-size:12px;color:#314e63}.trace-turn>summary span{color:#90a1ac}.trace-turn[open]>summary{border-bottom:1px solid #edf2f4}.trace-turn-body{padding:6px 12px 9px}.trace-entry{border:0;background:transparent;border-radius:0;width:100%;display:grid;grid-template-columns:112px minmax(0,1fr) 54px;align-items:center;gap:10px;text-align:left;padding:9px 6px;border-bottom:1px solid #f0f3f5;color:#597180}.trace-entry:last-child{border-bottom:0}.trace-entry:hover{background:#f5f9fb}.trace-kind{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;white-space:nowrap}.trace-kind:before{content:'';width:7px;height:7px;border-radius:2px;background:#d19d5b}.trace-kind.u:before{background:#7fa7ae}.trace-kind.a:before{background:#9182c4}.trace-snippet{font-size:11px;line-height:1.55;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#5f798a}.trace-open{font-size:10px;font-weight:650;color:#31759c;text-align:right}@media(max-width:850px){.trace-entry{grid-template-columns:85px minmax(0,1fr) 45px}.work-refbar{flex-wrap:wrap}}
+
 </style></head><body>
-<div class="app"><header class="top"><div class="logo">PRC<span> / FIELD</span></div><span class="crumb">Agent Runtime · 27 actor run</span><div class="surface-tabs"><button class="disabled" type="button" title="Work Surface 尚未连接">Work</button><button class="active" type="button" id="sAgents">Agents</button><button type="button" id="sTrace">Trace</button></div><div class="topright"><span class="statusdot"></span> Read-only fixture <span class="pill">DESIGN C · UNFROZEN</span></div></header>
-<div class="appmain"><aside class="rail"><div class="railhead"><span class="cap">Run perspective</span><h2>Agent field</h2><div class="muted sm">真实执行体 × 工作理解</div><label class="searchbox">⌕ <input id="search" placeholder="搜索 Agent / 任务内容" aria-label="搜索 Agent" /></label></div><div class="rail-scroll"><div class="sectionlabel">Explore</div><button class="navitem active" data-view="map"><span>⌗</span><span class="t"><strong>工作地图</strong><br><small>已知任务的空间组织</small></span></button><button class="navitem" data-view="lineage"><span>⑂</span><span class="t"><strong>原生血缘</strong><br><small>全部 27 Agent 身份</small></span></button><div class="sectionlabel">可解释工作区域 <span class="pill purple">DERIVED</span></div><button class="navitem" data-group="research"><i class="groupdot research"></i><span class="t"><strong>研究与证据收集</strong></span><small>2</small></button><button class="navitem" data-group="audit"><i class="groupdot audit"></i><span class="t"><strong>治理审阅</strong></span><small>1</small></button><button class="navitem" data-group="delivery"><i class="groupdot delivery"></i><span class="t"><strong>授权文档写入</strong></span><small>1</small></button><div class="sectionlabel">真实 Agent · 内容已保留</div><div id="knownList"></div><div class="sectionlabel">未提供正文 <span class="pill">22</span></div><div id="unknownList"></div></div><div class="railfoot">本视图的区域是根据 4 个真实 Agent 的派发文本推导的展示假设，<strong>不是 WorkStage</strong>。其他 22 个只确认身份。<br><br>来源：Codex app-server · sanitized native export</div></aside>
+<div class="app"><header class="top"><div class="logo">PRC<span> / FIELD</span></div><span class="crumb">Agent Runtime · 27 actor run</span><div class="surface-tabs"><button type="button" id="sWork" title="打开 Work V2.5 参考交互（独立 fixture）">Work</button><button class="active" type="button" id="sAgents">Agents</button><button type="button" id="sTrace">Trace</button></div><div class="topright"><span class="statusdot"></span> Read-only fixture <span class="pill">DESIGN C · UNFROZEN</span></div></header>
+<div class="appmain"><aside class="rail"><div class="railhead"><span class="cap">Run perspective</span><h2>Agent field</h2><div class="muted sm">真实执行体 × 工作理解</div><label class="searchbox">⌕ <input id="search" placeholder="搜索 Agent / 任务内容" aria-label="搜索 Agent" /></label></div><div class="rail-scroll"><div class="sectionlabel">导航</div><button class="navitem active" data-view="map"><span>⌗</span><span class="t"><strong>任务分工地图</strong><br><small>4 份真实任务 · 27 个身份</small></span></button><button class="navitem" data-view="lineage"><span>⑂</span><span class="t"><strong>原生 Agent 血缘</strong><br><small>1 Root · 26 Child</small></span></button><div class="sectionlabel">可以读懂的 Agent <span class="pill blue">4</span></div><div id="knownList"></div><details id="unknownPanel" class="unknown-panel"><summary>其他 22 个 Agent <span class="pill">仅身份 · 点击展开</span></summary><div class="unknown-note">当前没有这些 Agent 的派发与返回正文；展开仅供原生身份查阅。</div><div id="unknownList"></div></details></div><div class="railfoot">认知分组是由 4 份真实派发内容形成的<strong>待验证展示假设</strong>，不是 WorkStage。完整证据仅覆盖 5/27 实例。</div></aside>
 <main class="workspace"><div class="workhead"><div><span class="cap" id="viewCap">AGENTS / COGNITIVE MAP</span><h1 id="viewTitle">谁被派去做什么？</h1><p id="viewDesc">把任务分工放在第一眼；需要时再追溯到真实派发、消息和执行证据。</p></div><div class="toolbar"><span class="pill blue" id="stats">27 native agents</span><button class="btn" id="fitBtn">⌗ 适配</button><button class="btn" id="lineBtn">⑂ 血缘</button></div></div><div class="wbody"><div class="canvaswrap" id="canvaswrap"><div class="stage" id="stage"><svg class="lineage" id="edges" viewBox="0 0 1220 810"><g stroke="#a8c4d2" stroke-width="2" fill="none" stroke-dasharray="5 6"><path d="M610 190 C610 230 205 210 205 251"/><path d="M610 190 L610 251"/><path d="M610 190 C610 225 990 213 990 251"/></g><g fill="#85afbf"><circle cx="205" cy="250" r="4"/><circle cx="610" cy="250" r="4"/><circle cx="990" cy="250" r="4"/></g></svg>
 <button class="rootnode" id="rootNode"><span class="pill blue">ROOT · NATIVE</span><h3>Root agent / 主编排</h3><div class="des">多轮执行与任务派发。此处不把最终消息冒充整个 Run 的完成情况。</div><div class="meta"><span class="pill">26 直属子 Agent</span><span class="pill purple">原生血缘</span></div></button>
 <section class="zone research-zone"><div class="zh"><i class="groupdot research"></i><h3>研究与证据收集</h3><span class="count">2 agents</span></div><p class="zsub">两个派发任务都明确要求查证、收集或侦察；不据此推断结论正确。</p><div id="researchCards"></div><div class="zfoot">分组依据：Native dispatch → Derived role</div></section>
@@ -21,6 +28,1129 @@
 <div class="unknownzone"><div><span class="pill amber">UNCLASSIFIED · NATIVE IDS</span><h3>22 个 Agent，只有身份与运行元信息</h3><p>不从调用数量推测任务类型。打开「原生血缘」可以逐一查看，遇到内容缺失明确说明。</p></div><button type="button" id="showUnknown">查看 22 个身份 →</button></div>
 </div><div class="scrim"></div><div class="minimap"><span>◎</span><span>Spatial focus stays where you left it<br><small>拖动画布 · 滚轮缩放 · 点击选择</small></span></div><div class="zoom"><button type="button" id="minus" title="缩小">−</button><button type="button" id="plus" title="放大">＋</button><button type="button" id="fit" title="适配">⌗</button></div></div><div class="trace-area" id="traceView"></div></div></main>
 <aside class="inspector"><div class="inspect-header"><span class="eyebrow">FOCUS INSPECTOR <span class="pill blue" style="margin-left:7px" id="inspectStatus">NO SELECTION</span></span><h2 id="inspectTitle">选择一个 Agent</h2><div class="intro" id="inspectSub">查看它的派发任务、实际记录和原生返回；每条信息保持可追溯。</div></div><div class="inspect-scroll" id="inspectBody"><div class="empty-state"><div style="font-size:33px">⌗</div><h3>先看懂，再靠近</h3><p>点击左侧工作区域的任一 Agent。你会看到它为何出现、做过什么、最后写了什么，而不是 ID 墙。</p></div></div></aside></div>
+<section id="workSurface" class="work-surface hidden" aria-label="Work V2.5 interaction reference"><div class="work-refbar"><div><strong>Work · V2.5 interaction reference</strong><p>已认可的 Work 交互基线，使用独立静态 fixture。<b>不代表这次 27-Agent Run 的 WorkStage 归属</b>；Work ↔ Agents shared selection 尚未实现。</p></div><button class="btn" id="returnAgents">返回 Agents →</button></div><iframe id="workFrame" title="PRC Work V2.5 frozen interaction reference" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;zh-CN&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot; /&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot; /&gt;
+&lt;title&gt;PRC V1 · WorkStage Spatial Map — Living Drawer&lt;/title&gt;
+&lt;style&gt;
+  /* ─── tokens — tech/utility direction, bound verbatim ──────────────── */
+  :root {
+    --bg:      oklch(98% 0.005 250);
+    --surface: oklch(100% 0 0);
+    --fg:      oklch(22% 0.02 240);
+    --muted:   oklch(50% 0.018 240);
+    --border:  oklch(90% 0.008 240);
+    --accent:  oklch(58% 0.16 145);
+
+    --font-display: -apple-system, BlinkMacSystemFont, &#x27;Inter&#x27;, &#x27;Segoe UI&#x27;, system-ui, sans-serif;
+    --font-body:    -apple-system, BlinkMacSystemFont, &#x27;Inter&#x27;, &#x27;Segoe UI&#x27;, system-ui, sans-serif;
+    --font-mono:    &#x27;JetBrains Mono&#x27;, &#x27;IBM Plex Mono&#x27;, ui-monospace, Menlo, monospace;
+
+    /* semantic layer — one hue per meaning, never decoration */
+    --c-current:  var(--accent);              /* 当前阶段 */
+    --c-done:     oklch(56% 0.045 250);       /* 已完成 / 中性 */
+    --c-parallel: oklch(56% 0.125 292);       /* 并行分支 / Research */
+    --c-shift:    oklch(63% 0.115 68);        /* 方向修正 */
+    --c-evidence: oklch(55% 0.115 250);       /* 证据 / 追索 */
+    --c-unknown:  oklch(64% 0.012 250);       /* 未解析 */
+
+    /* inks — same hues pulled toward --fg so small text clears 4.5:1 */
+    --ink-current:  color-mix(in oklch, var(--c-current) 62%, var(--fg));
+    --ink-done:     color-mix(in oklch, var(--c-done) 62%, var(--fg));
+    --ink-parallel: color-mix(in oklch, var(--c-parallel) 62%, var(--fg));
+    --ink-shift:    color-mix(in oklch, var(--c-shift) 66%, var(--fg));
+    --ink-evidence: color-mix(in oklch, var(--c-evidence) 62%, var(--fg));
+
+    --muted-ink:     color-mix(in oklch, var(--muted) 82%, var(--fg));
+    --border-strong: color-mix(in oklch, var(--fg) 24%, var(--border));
+    --hairline:      color-mix(in oklch, var(--fg) 10%, var(--border));
+    --fg-soft:       color-mix(in oklch, var(--fg) 5%, var(--surface));
+    --flat:          color-mix(in oklch, var(--bg) 76%, var(--surface));
+
+    /* surfaces carry depth with layered shadow instead of a hairline box.
+       Pure-black rings (not a tinted neutral) so they sit correctly on any
+       background tone — the canvas is a gradient, a solid border is not. */
+    --edge:          inset 0 0 0 1px oklch(0 0 0 / 0.055),
+                     0 1px 2px -1px oklch(0 0 0 / 0.05),
+                     0 2px 6px -1px oklch(0 0 0 / 0.04);
+    --edge-hover:    inset 0 0 0 1px oklch(0 0 0 / 0.075),
+                     0 2px 4px -1px oklch(0 0 0 / 0.07),
+                     0 8px 18px -6px oklch(0 0 0 / 0.07);
+    --edge-recessed: inset 0 0 0 1px oklch(0 0 0 / 0.045);
+
+    --lift-1: 0 1px 1px color-mix(in oklch, var(--fg) 5%, transparent),
+              0 4px 10px -4px color-mix(in oklch, var(--fg) 10%, transparent);
+    --lift-2: 0 1px 1px color-mix(in oklch, var(--fg) 6%, transparent),
+              0 10px 22px -8px color-mix(in oklch, var(--fg) 16%, transparent),
+              0 26px 50px -30px color-mix(in oklch, var(--fg) 22%, transparent);
+    --lift-3: 0 1px 2px color-mix(in oklch, var(--fg) 8%, transparent),
+              0 24px 60px -16px color-mix(in oklch, var(--fg) 20%, transparent),
+              0 60px 120px -60px color-mix(in oklch, var(--fg) 28%, transparent);
+
+    --ease-out:    cubic-bezier(.22, 1, .36, 1);
+    --ease-spring: cubic-bezier(.34, 1.38, .64, 1);
+    --t-fast: 150ms;
+    --t-base: 260ms;
+    --t-slow: 420ms;
+
+    --dock-w: 400px;
+    --topbar-h: 52px;
+    --status-h: 44px;
+    --r: 8px;
+    --r-lg: 12px;
+    --r-xl: 16px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; height: 100%; }
+  body {
+    margin: 0; height: 100%;
+    background: var(--bg); color: var(--fg);
+    font-family: var(--font-body); font-size: 14px; line-height: 1.5;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+  }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; text-align: left; }
+  /* wrapping — headings balance, short body text avoids a dangling last line */
+  p, li { text-wrap: pretty; }
+  h1, h2, h3 { text-wrap: balance; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  .mono, .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+  /* ─── shell ───────────────────────────────────────────────────────── */
+  .console { height: 100%; display: grid; grid-template-rows: var(--topbar-h) minmax(0,1fr) var(--status-h); }
+
+  .topbar {
+    display: flex; align-items: center; gap: 16px; padding-inline: 18px;
+    background: color-mix(in oklch, var(--surface) 86%, transparent);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border); min-width: 0; z-index: 20;
+  }
+  .brand { display: flex; align-items: baseline; gap: 9px; min-width: 0; }
+  .brand .mark {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: .06em;
+    color: var(--fg); border: 1px solid var(--border-strong); border-radius: 5px; padding: 2px 5px;
+  }
+  .brand .name { font-family: var(--font-display); font-size: 14.5px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; }
+  .runid {
+    font-family: var(--font-mono); font-size: 11.5px; color: var(--muted-ink);
+    padding: 3px 9px; border: 1px solid var(--border); border-radius: 999px; white-space: nowrap;
+  }
+  .topbar .spacer { flex: 1 1 auto; min-width: 8px; }
+  .nowstage {
+    display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+    font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink);
+    padding: 4px 10px 4px 8px; border: 1px solid var(--border); border-radius: 999px;
+  }
+  .nowstage b { color: var(--ink-current); font-weight: 600; }
+  .ghostbtn {
+    position: relative;
+    display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 12px;
+    border-radius: var(--r); border: 1px solid var(--border); color: var(--muted-ink); font-size: 12.5px; white-space: nowrap;
+    transition: border-color var(--t-fast), color var(--t-fast), background var(--t-fast), box-shadow var(--t-fast), scale var(--t-fast) var(--ease-out);
+  }
+  .ghostbtn:active { scale: .96; }
+  .ghostbtn::after { content: &#x27;&#x27;; position: absolute; inset: -3px -2px; }
+  .ghostbtn:hover { border-color: var(--border-strong); color: var(--fg); background: var(--fg-soft); box-shadow: var(--lift-1); }
+  .ghostbtn[disabled] { opacity: .4; cursor: default; }
+  .ghostbtn[disabled]:hover { border-color: var(--border); background: none; color: var(--muted-ink); box-shadow: none; }
+
+  .stage { position: relative; min-height: 0; }
+
+  /* ─── canvas: one quiet field under the floating drawer ───────────── */
+  /* A single lighting model, not a stack of effects: key light from the
+     upper-left (the same direction every card shadow falls), ambient
+     fall-off toward the lower edge. No pattern, no vignette, no glow. */
+  .canvas {
+    position: absolute; inset: 0; overflow: hidden; touch-action: none; cursor: grab;
+    background:
+      radial-gradient(126% 84% at 24% -10%,
+        color-mix(in oklch, var(--surface) 66%, var(--bg)) 0%,
+        color-mix(in oklch, var(--surface) 20%, var(--bg)) 44%,
+        transparent 76%),
+      linear-gradient(179deg,
+        var(--bg) 0%,
+        color-mix(in oklch, var(--surface) 20%, var(--bg)) 32%,
+        color-mix(in oklch, var(--fg) 3.4%, var(--bg)) 100%);
+  }
+  .canvas.is-panning { cursor: grabbing; }
+
+  .world { position: absolute; top: 0; left: 0; transform-origin: 0 0; will-change: transform; }
+
+  .edges { position: absolute; top: 0; left: 0; overflow: visible; pointer-events: none; }
+  .edges path { fill: none; stroke: var(--hairline); stroke-width: 1.5; vector-effect: non-scaling-stroke; stroke-linecap: round; }
+  .edges path.seg-near { stroke: var(--border-strong); }
+  .edges path.prog { stroke: var(--c-current); stroke-width: 2; opacity: 0; transition: stroke-dashoffset var(--t-slow) var(--ease-out), opacity var(--t-base) ease; }
+  .edges path.flow {
+    stroke: var(--c-current); stroke-width: 2.5; opacity: .34; stroke-dasharray: 1 13;
+    animation: flow 3.4s linear infinite;
+  }
+  @keyframes flow { to { stroke-dashoffset: -56; } }
+
+  /* stop markers on the spine */
+  .stop {
+    position: absolute; width: 20px; height: 20px; border-radius: 50%; pointer-events: none;
+    display: grid; place-items: center; z-index: 2;
+    background: var(--surface); border: 1px solid var(--border-strong);
+    font-family: var(--font-mono); font-size: 10px; color: var(--muted-ink);
+    box-shadow: 0 1px 2px color-mix(in oklch, var(--fg) 8%, transparent);
+    transition: background var(--t-base) var(--ease-out), border-color var(--t-base), color var(--t-base),
+                box-shadow var(--t-base), transform var(--t-base) var(--ease-out);
+  }
+  .stop.is-sel { background: var(--fg); border-color: var(--fg); color: var(--bg); transform: scale(1.12); }
+  .stop.is-cur { border-color: var(--c-current); color: var(--ink-current); }
+  .stop.is-cur::after {
+    content: &#x27;&#x27;; position: absolute; inset: -5px; border-radius: 50%;
+    border: 1px solid var(--c-current); opacity: 0; animation: breathe 3.6s var(--ease-out) infinite;
+  }
+  @keyframes breathe { 0%, 100% { opacity: 0; transform: scale(.82); } 45% { opacity: .5; transform: scale(1); } }
+  .stop.is-sel.is-cur { color: var(--bg); }
+
+  /* ─── nodes ───────────────────────────────────────────────────────── */
+  .node { position: absolute; display: block; background: none; border: 0; padding: 0; color: var(--fg); z-index: 3; }
+  .node .n-glow {
+    position: absolute; inset: -34px; z-index: 0; border-radius: 26px; opacity: 0;
+    background: radial-gradient(closest-side, color-mix(in oklch, var(--node-c, var(--c-done)) 20%, transparent), transparent 100%);
+    transition: opacity var(--t-slow) ease;
+  }
+  .node .n-stack {
+    position: absolute; inset: 0; z-index: 1; border-radius: var(--r-lg);
+    box-shadow: inset 0 0 0 1px var(--hairline); background: color-mix(in oklch, var(--surface) 55%, var(--bg));
+    transform: translate(9px, 9px);
+    transition: transform var(--t-base) var(--ease-out), box-shadow var(--t-base), background var(--t-base);
+  }
+  .node .n-stack.b { transform: translate(5px, 5px); z-index: 2; background: color-mix(in oklch, var(--surface) 78%, var(--bg)); }
+  .node .n-body {
+    position: relative; z-index: 3; display: block; width: 100%; height: 100%;
+    padding: 12px 14px; border-radius: var(--r-lg); overflow: hidden;
+    background: var(--surface);
+    box-shadow: var(--edge);
+    transition: transform var(--t-base) var(--ease-out), box-shadow var(--t-base) var(--ease-out),
+                background var(--t-base), opacity var(--t-base);
+  }
+  .node .n-name {
+    display: block; font-family: var(--font-display); font-size: 14.5px; font-weight: 600;
+    line-height: 17px; letter-spacing: -.008em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .node .n-out {
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    margin-top: 4px; font-size: 12px; line-height: 16.2px; min-height: 32px; color: var(--muted-ink);
+  }
+  .node .n-status {
+    display: flex; align-items: center; gap: 7px; margin-top: 5px; line-height: 1;
+    font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink);
+  }
+  /* glyph shape carries the type too, so the system never depends on hue alone */
+  .glyph { width: 7px; height: 7px; border-radius: 50%; background: var(--c-done); flex: 0 0 auto; }
+  .glyph.current { background: var(--c-current); }
+  .glyph.parallel { background: none; border-radius: 1px; box-shadow: 0 0 0 1px var(--c-parallel) inset; }
+  .glyph.shift { border-radius: 1px; transform: rotate(45deg); background: var(--c-shift); }
+  .glyph.unknown { background: none; border: 1px dashed var(--c-unknown); width: 8px; height: 8px; }
+
+  /* hover — a small lift, never a colour change on text */
+  .node:hover .n-body { transform: translateY(-3px); box-shadow: var(--edge-hover), var(--lift-2); }
+  .node:hover .n-glow { opacity: .85; }
+  .node:hover .n-stack { transform: translate(11px, 11px); }
+  .node:hover .n-stack.b { transform: translate(6px, 6px); }
+
+  /* selected — scale + halo + lift; text colour is untouched */
+  .node.is-sel { z-index: 6; }
+  .node.is-sel .n-body {
+    transform: translateY(-2px) scale(1.02);
+    background: linear-gradient(180deg, var(--surface), color-mix(in oklch, var(--node-c, var(--c-current)) 7%, var(--surface)));
+    box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--node-c, var(--c-current)) 62%, var(--border)),
+                0 0 0 2px color-mix(in oklch, var(--node-c, var(--c-current)) 22%, transparent),
+                var(--lift-2);
+  }
+  .node.is-sel .n-glow { opacity: 1; }
+  .node.is-sel .n-stack { transform: translate(11px, 11px); }
+  .node.is-sel .n-stack.b { transform: translate(6px, 6px); }
+  .node.is-sel:hover .n-body { transform: translateY(-4px) scale(1.02); }
+  /* focus lives one level deeper — the node stays selected and gains an outer ring */
+  .node.has-focus .n-body { box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--node-c, var(--c-current)) 62%, var(--border)),
+                0 0 0 2px color-mix(in oklch, var(--node-c, var(--c-current)) 22%, transparent),
+                0 0 0 6px color-mix(in oklch, var(--node-c, var(--c-current)) 11%, transparent),
+                var(--lift-2); }
+
+  /* de-emphasis by depth, never by lowering text contrast */
+  .world.has-focus .node:not(.is-sel) .n-body { box-shadow: var(--edge-recessed); background: var(--flat); }
+  .world.has-focus .node:not(.is-sel) .n-stack { opacity: 0; }
+
+  /* ─── floating drawer ─────────────────────────────────────────────── */
+  .dock {
+    position: absolute; top: 16px; right: 16px; bottom: 16px; width: var(--dock-w);
+    display: flex; flex-direction: column; min-height: 0; z-index: 12;
+    background: color-mix(in oklch, var(--surface) 92%, transparent);
+    backdrop-filter: blur(18px);
+    border-radius: var(--r-xl);
+    box-shadow: inset 0 0 0 1px oklch(0 0 0 / 0.05), var(--lift-2);
+    transition: box-shadow var(--t-slow) var(--ease-out);
+  }
+  .dock.active { box-shadow: inset 0 0 0 1px oklch(0 0 0 / 0.075), var(--lift-3); }
+  .dock-view { position: relative; flex: 1 1 auto; min-height: 0; overflow: hidden; border-radius: var(--r-xl); }
+
+  .pane {
+    position: absolute; inset: 0; display: flex; flex-direction: column; min-height: 0;
+    background: transparent;
+  }
+  .pane-body { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+  .grow { flex: 1 1 auto; min-width: 0; }
+  .pane.in-push, .pane.in-pop { z-index: 2; }
+  .pane.anim { transition: transform var(--t-base) var(--ease-out), opacity var(--t-base) ease; }
+  .pane.anim-spring { transition: transform var(--t-slow) var(--ease-spring), opacity var(--t-base) ease; }
+  .pane.out { z-index: 1; pointer-events: none; transition-duration: 160ms; }
+
+  .dnav {
+    display: flex; align-items: center; gap: 8px; padding: 10px 12px 10px 14px;
+    border-bottom: 1px solid var(--border); min-height: 50px;
+  }
+  .dback {
+    display: inline-flex; align-items: center; gap: 7px; min-width: 0; padding: 5px 9px; margin-left: -4px;
+    border-radius: 999px; border: 1px solid transparent;
+    font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink);
+    transition: color var(--t-fast), background var(--t-fast), border-color var(--t-fast);
+  }
+  .dback:hover { color: var(--fg); background: var(--fg-soft); border-color: var(--border); }
+  .dback .arw { transition: transform var(--t-base) var(--ease-out); }
+  .dback:hover .arw { transform: translateX(-2px); }
+  .dback span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .dnav .kicker { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-ink); }
+  .dnav .grow { flex: 1 1 auto; }
+  .iconbtn {
+    position: relative;
+    width: 30px; height: 30px; display: grid; place-items: center; border-radius: 7px; flex: 0 0 auto;
+    border: 1px solid var(--border); color: var(--muted-ink); font-size: 13px; line-height: 1;
+    transition: border-color var(--t-fast), color var(--t-fast), background var(--t-fast), transform var(--t-fast), scale var(--t-fast) var(--ease-out);
+  }
+  .iconbtn:hover { border-color: var(--border-strong); color: var(--fg); background: var(--fg-soft); transform: scale(1.05); }
+  .iconbtn:active { scale: .96; }
+  .iconbtn::after { content: &#x27;&#x27;; position: absolute; inset: -5px; }
+
+  .dscroll { position: relative; flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 16px 18px 22px; }
+
+  .dhead .meta { display: flex; align-items: center; gap: 9px; margin-bottom: 9px; }
+  .ord { font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink); border: 1px solid var(--border); border-radius: 5px; padding: 1px 6px; }
+  .tchip { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .04em; color: var(--ink-done); }
+  .tchip.parallel { color: var(--ink-parallel); }
+  .tchip.shift { color: var(--ink-shift); }
+  .tchip.current { color: var(--ink-current); }
+  .tchip.unknown { color: var(--muted-ink); }
+  .dhead h2 { margin: 0; font-family: var(--font-display); font-size: 19px; font-weight: 600; line-height: 1.2; letter-spacing: -.014em; }
+  .statuschip { display: inline-flex; align-items: center; gap: 7px; margin-top: 10px; font-family: var(--font-mono); font-size: 10.5px; color: var(--muted-ink); }
+  .statuschip.current { color: var(--ink-current); }
+
+  .sec { padding-top: 17px; }
+  .sec + .sec { border-top: 1px solid var(--border); margin-top: 17px; }
+  .sec-head { display: flex; align-items: center; gap: 10px; margin-bottom: 2px; }
+  .sec-label { margin: 0; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-ink); }
+  .sec-label .zh { text-transform: none; letter-spacing: 0; }
+  .outcome { margin: 9px 0 0; font-size: 14.5px; line-height: 1.55; color: var(--fg); }
+  .actions { margin: 11px 0 0; padding: 0; list-style: none; }
+  .actions li { position: relative; padding-left: 15px; font-size: 13px; line-height: 1.5; color: var(--fg); }
+  .actions li + li { margin-top: 8px; }
+  .actions li::before { content: &#x27;&#x27;; position: absolute; left: 1px; top: 8.5px; width: 5px; height: 1px; background: var(--border-strong); }
+
+  .evchip {
+    display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border-radius: 999px;
+    border: 1px solid color-mix(in oklch, var(--c-evidence) 30%, var(--border));
+    background: color-mix(in oklch, var(--c-evidence) 8%, transparent);
+    font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-evidence); white-space: nowrap;
+    transition: transform var(--t-fast) var(--ease-out), background var(--t-fast), border-color var(--t-fast);
+  }
+  .evchip:hover { transform: translateY(-1px); background: color-mix(in oklch, var(--c-evidence) 14%, transparent); border-color: color-mix(in oklch, var(--c-evidence) 46%, var(--border)); }
+  .evchip::before { content: &#x27;&#x27;; width: 5px; height: 5px; border-radius: 50%; background: var(--c-evidence); }
+  .evchip .car { font-size: 11px; transition: transform var(--t-base) var(--ease-out); }
+  .evchip[aria-expanded=&quot;true&quot;] .car { transform: rotate(90deg); }
+
+  /* evidence attached to the claim — expands in place with a real height transition */
+  .evpeek {
+    height: 0; overflow: hidden; opacity: 0; visibility: hidden;
+    transition: height var(--t-base) var(--ease-out), opacity 200ms ease, visibility 0s linear var(--t-base);
+  }
+  .evpeek.open { visibility: visible; transition: height var(--t-base) var(--ease-out), opacity 200ms ease, visibility 0s; }
+  .evpeek .plabel { margin: 12px 0 0; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-evidence); }
+  .peek { margin: 8px 0 2px; padding: 0; list-style: none; }
+  .peek li + li { margin-top: 5px; }
+  .peekrow {
+    display: flex; align-items: center; gap: 9px; width: 100%; padding: 8px 10px; border-radius: var(--r-lg);
+    border: 1px dashed color-mix(in oklch, var(--c-evidence) 32%, var(--border));
+    background: color-mix(in oklch, var(--c-evidence) 5%, transparent);
+    transition: transform var(--t-fast) var(--ease-out), border-color var(--t-fast), background var(--t-fast);
+  }
+  .peekrow:hover { transform: translateX(2px); border-style: solid; background: color-mix(in oklch, var(--c-evidence) 10%, transparent); }
+  .peekrow .t { flex: 1 1 auto; min-width: 0; font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .peekrow .go { font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink); flex: 0 0 auto; }
+
+  .subs { margin: 11px 0 0; padding: 0; list-style: none; }
+  .subs li + li { margin-top: 6px; }
+  .subrow {
+    display: flex; align-items: center; gap: 11px; width: 100%; padding: 11px 12px;
+    border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--edge);
+    transition: transform var(--t-fast) var(--ease-out), box-shadow var(--t-fast);
+  }
+  .subrow:hover { transform: translateX(2px); box-shadow: var(--edge-hover); }
+  .subrow:hover .sub-go { transform: translateX(2px); }
+  .subrow .sub-ord { font-family: var(--font-mono); font-size: 10.5px; color: var(--muted-ink); flex: 0 0 auto; }
+  .subrow .sub-main { flex: 1 1 auto; min-width: 0; }
+  .subrow .sub-name { display: block; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .subrow .sub-out { display: block; margin-top: 2px; font-size: 11.5px; line-height: 1.4; color: var(--muted-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .subrow.unresolved .sub-name { color: var(--muted-ink); }
+  .subrow .sub-go { font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink); flex: 0 0 auto; transition: transform var(--t-fast) var(--ease-out); }
+
+  .ev { margin: 11px 0 0; padding: 0; list-style: none; }
+  .ev li + li { margin-top: 6px; }
+  .evrow {
+    display: flex; align-items: center; gap: 10px; width: 100%; padding: 11px 12px;
+    border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--edge);
+    transition: transform var(--t-fast) var(--ease-out), box-shadow var(--t-fast), background var(--t-fast);
+  }
+  .evrow:hover { transform: translateY(-1px); box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--c-evidence) 40%, var(--border)), var(--edge-hover); }
+  .evrow .ev-type, .ev-type-solo {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .05em; text-transform: uppercase;
+    color: var(--ink-evidence); border-radius: 4px; padding: 3px 6px; flex: 0 0 auto;
+    box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--c-evidence) 26%, var(--border));
+    background: color-mix(in oklch, var(--c-evidence) 7%, transparent);
+  }
+  .evrow .ev-title { font-size: 13px; flex: 1 1 auto; min-width: 0; }
+  .evrow .ev-go { font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink); flex: 0 0 auto; }
+  .rawlink {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%;
+    margin-top: 18px; padding: 13px 14px; border-radius: var(--r-lg);
+    background: var(--surface); box-shadow: var(--edge);
+    font-size: 12.5px; color: var(--fg);
+    transition: transform var(--t-fast) var(--ease-out), box-shadow var(--t-fast);
+  }
+  .rawlink:hover { transform: translateY(-1px); box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--c-evidence) 38%, var(--border)), var(--edge-hover); }
+  .rawlink .go { font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink); }
+  .note { margin: 16px 0 0; font-family: var(--font-mono); font-size: 11px; line-height: 1.6; color: var(--muted-ink); }
+  .note b { font-weight: 600; }
+  .sup { margin: 11px 0 0; padding: 11px 12px; border-radius: var(--r-lg); background: color-mix(in oklch, var(--c-evidence) 6%, transparent); border: 1px solid color-mix(in oklch, var(--c-evidence) 18%, var(--border)); }
+  .sup .k { display: block; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-evidence); margin-bottom: 4px; }
+  .sup .v { font-size: 13.5px; line-height: 1.5; color: var(--fg); }
+  .rawlist { margin: 12px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--border); }
+  .rawlist li { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 12.5px; }
+  .rawlist .k { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted-ink); }
+
+  .rail-empty { flex: 1 1 auto; padding: 18px; display: flex; flex-direction: column; gap: 14px; overflow-y: auto; min-height: 0; }
+  .rail-empty .kicker { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-ink); }
+  .rail-empty h2 { margin: 0; font-family: var(--font-display); font-size: 18px; font-weight: 600; letter-spacing: -.014em; }
+  .rail-empty p { margin: 0; font-size: 13px; line-height: 1.6; color: var(--muted-ink); }
+  .facts { border-top: 1px solid var(--border); margin: 0; padding: 0; list-style: none; }
+  .facts li { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 12.5px; }
+  .facts .k { color: var(--muted-ink); }
+  .facts .v { font-family: var(--font-mono); font-size: 11.5px; text-align: right; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 10.5px; color: var(--muted-ink); }
+
+  /* ─── breadcrumb (canvas overlay) ─────────────────────────────────── */
+  .crumbs {
+    position: absolute; top: 14px; left: 20px; z-index: 14;
+    display: flex; align-items: center; gap: 7px; max-width: calc(100% - 480px);
+    padding: 6px 12px; border-radius: 999px;
+    background: color-mix(in oklch, var(--surface) 84%, transparent);
+    backdrop-filter: blur(12px); box-shadow: inset 0 0 0 1px oklch(0 0 0 / 0.05), var(--lift-1);
+    font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink);
+  }
+  .crumbs button { position: relative; padding: 2px 4px; border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color var(--t-fast), background var(--t-fast); }
+  .crumbs button::after { content: &#x27;&#x27;; position: absolute; inset: -10px -4px; }
+  .crumbs button:hover { color: var(--fg); background: var(--fg-soft); }
+  .crumbs button[aria-current=&quot;true&quot;] { color: var(--fg); font-weight: 600; }
+  .crumbs .sep { color: var(--border-strong); flex: 0 0 auto; }
+
+  /* ─── statusline ──────────────────────────────────────────────────── */
+  .statusline {
+    display: flex; align-items: center; gap: 14px; padding-inline: 18px;
+    background: color-mix(in oklch, var(--surface) 86%, transparent); backdrop-filter: blur(14px);
+    border-top: 1px solid var(--border); font-size: 12px; color: var(--muted-ink); min-width: 0; z-index: 20;
+  }
+  .statusline .spacer { flex: 1 1 auto; }
+  .statusline .fixnote, .statusline .count { font-family: var(--font-mono); font-size: 11px; white-space: nowrap; }
+  .zoomer { display: flex; align-items: center; gap: 6px; flex: 0 0 auto; }
+  .zoomer button {
+    position: relative;
+    height: 30px; min-width: 30px; padding: 0 10px; border: 1px solid var(--border); border-radius: var(--r);
+    display: grid; place-items: center; font-family: var(--font-mono); font-size: 12px; color: var(--muted-ink);
+    transition: border-color var(--t-fast), color var(--t-fast), background var(--t-fast), transform var(--t-fast), scale var(--t-fast) var(--ease-out);
+  }
+  .zoomer button::after { content: &#x27;&#x27;; position: absolute; inset: -5px -3px; }
+  .zoomer button:active { scale: .96; }
+  .zoomer button:hover { border-color: var(--border-strong); color: var(--fg); background: var(--fg-soft); transform: translateY(-1px); }
+  .zoomer .zval { font-family: var(--font-mono); font-size: 11px; min-width: 44px; text-align: center; }
+
+  /* ─── responsive ──────────────────────────────────────────────────── */
+  @media (max-width: 1220px) { :root { --dock-w: 348px; } .statusline .fixnote { display: none; } .crumbs { max-width: calc(100% - 420px); } }
+  @media (max-width: 1040px) { .runid, .nowstage { display: none; } }
+  @media (max-width: 900px) {
+    body { overflow: auto; }
+    .console { height: auto; min-height: 100%; grid-template-rows: auto auto auto; }
+    .topbar { flex-wrap: wrap; height: auto; padding: 10px 14px; gap: 10px 14px; }
+    .topbar .spacer { display: none; }
+    .ghostbtn { margin-left: auto; }
+    .stage { display: block; }
+    .canvas { position: relative; height: 58vh; min-height: 320px; }
+    .crumbs { max-width: calc(100% - 40px); }
+    .dock { position: relative; inset: auto; width: auto; margin: 12px; min-height: 320px; }
+    .dscroll { max-height: none; }
+    .statusline { flex-wrap: wrap; height: auto; padding: 8px 14px; gap: 8px 12px; }
+  }
+  @media (pointer: coarse) {
+    .ghostbtn, .zoomer button { height: 44px; min-width: 44px; }
+    .iconbtn { width: 44px; height: 44px; }
+    .subrow, .evrow, .rawlink { min-height: 44px; }
+    .dback { min-height: 44px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;console&quot;&gt;
+
+  &lt;header class=&quot;topbar&quot; data-od-id=&quot;topbar&quot;&gt;
+    &lt;div class=&quot;brand&quot;&gt;
+      &lt;span class=&quot;mark&quot;&gt;PRC&lt;/span&gt;
+      &lt;span class=&quot;name&quot;&gt;Project Runtime Console&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;span class=&quot;runid&quot; data-od-id=&quot;run-id&quot;&gt;run · static-workstage-fixture&lt;/span&gt;
+    &lt;span class=&quot;spacer&quot;&gt;&lt;/span&gt;
+    &lt;span class=&quot;nowstage&quot;&gt;当前阶段 &lt;b&gt;06 · Current Direction&lt;/b&gt;&lt;/span&gt;
+    &lt;button type=&quot;button&quot; class=&quot;ghostbtn&quot; id=&quot;reset&quot; data-od-id=&quot;reset&quot;&gt;重置视图&lt;/button&gt;
+  &lt;/header&gt;
+
+  &lt;div class=&quot;stage&quot;&gt;
+    &lt;main class=&quot;canvas&quot; id=&quot;canvas&quot; data-od-id=&quot;canvas&quot; aria-label=&quot;Run spatial map&quot;&gt;
+      &lt;nav class=&quot;crumbs&quot; id=&quot;crumbs&quot; aria-label=&quot;位置&quot; data-od-id=&quot;breadcrumb&quot;&gt;&lt;/nav&gt;
+      &lt;div class=&quot;world&quot; id=&quot;world&quot; data-od-id=&quot;graph-world&quot;&gt;&lt;/div&gt;
+    &lt;/main&gt;
+    &lt;aside class=&quot;dock&quot; id=&quot;dock&quot; data-od-id=&quot;dock&quot;&gt;&lt;/aside&gt;
+  &lt;/div&gt;
+
+  &lt;footer class=&quot;statusline&quot; data-od-id=&quot;statusline&quot;&gt;
+    &lt;span class=&quot;fixnote&quot;&gt;STATIC WORKSTAGE FIXTURE · 非真实 runtime 数据&lt;/span&gt;
+    &lt;span class=&quot;spacer&quot;&gt;&lt;/span&gt;
+    &lt;span class=&quot;count&quot; id=&quot;count&quot;&gt;&lt;/span&gt;
+    &lt;div class=&quot;zoomer&quot; data-od-id=&quot;zoom-controls&quot;&gt;
+      &lt;button type=&quot;button&quot; id=&quot;zoom-out&quot; aria-label=&quot;缩小&quot;&gt;−&lt;/button&gt;
+      &lt;span class=&quot;zval&quot; id=&quot;zoom-val&quot;&gt;100%&lt;/span&gt;
+      &lt;button type=&quot;button&quot; id=&quot;zoom-in&quot; aria-label=&quot;放大&quot;&gt;+&lt;/button&gt;
+      &lt;button type=&quot;button&quot; id=&quot;zoom-fit&quot;&gt;适应窗口&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+(function () {
+  &#x27;use strict&#x27;;
+
+  /* ── fixture: WorkStage 是唯一的顶层信息对象 ─────────────────────── */
+  const NODES = {
+    s1: {
+      ord: &#x27;01&#x27;, name: &#x27;Understand Runtime Problem&#x27;, type: &#x27;done&#x27;, kind: &#x27;问题界定&#x27;, status: &#x27;done&#x27;,
+      outcome: &#x27;确认需要观察真实 multi-agent runtime，而不是只看 transcript&#x27;,
+      actions: [&#x27;复盘只看 transcript 的盲区：并行分支与真实调用顺序都不可见&#x27;, &#x27;把观察对象定为一次 Run 内的 main / subagent 拓扑与阶段推进&#x27;, &#x27;把「观察粒度」确立为本轮的核心问题&#x27;],
+      evidence: [
+        { type: &#x27;note&#x27;, title: &#x27;观察方式对比&#x27;, note: &#x27;transcript-only 与 runtime 观察各自能看到什么。&#x27;, supports: &#x27;只看 transcript 不足以解释 multi-agent Run 的推进&#x27; },
+        { type: &#x27;decision&#x27;, title: &#x27;观察对象定为 runtime&#x27;, note: &#x27;以真实 runtime 行为作为观察对象。&#x27;, supports: &#x27;后续结论都需要 runtime 侧证据支撑&#x27; }
+      ]
+    },
+    s2: {
+      ord: &#x27;02&#x27;, name: &#x27;Research&#x27;, type: &#x27;parallel&#x27;, kind: &#x27;并行分支&#x27;, status: &#x27;done&#x27;,
+      outcome: &#x27;并行验证 Identity / ThoughtDAG / UI 三个方向&#x27;,
+      actions: [&#x27;拆出三个互不依赖的方向，并行推进&#x27;, &#x27;三个方向各自得出结论后回到同一决策点&#x27;, &#x27;结论不一致时保留分歧，不强行合并&#x27;],
+      evidence: [
+        { type: &#x27;record&#x27;, title: &#x27;三方向并行记录&#x27;, note: &#x27;三个方向的问题、方法与结论对照。&#x27;, supports: &#x27;三条线可以并行验证且互不阻塞&#x27; },
+        { type: &#x27;decision&#x27;, title: &#x27;回到同一决策点&#x27;, note: &#x27;三条线的结论汇总到同一处再决定下一步。&#x27;, supports: &#x27;方向拆分没有造成结论分裂&#x27; }
+      ]
+    },
+    s3: {
+      ord: &#x27;03&#x27;, name: &#x27;Identity Correction&#x27;, type: &#x27;shift&#x27;, kind: &#x27;方向修正&#x27;, status: &#x27;done&#x27;,
+      outcome: &#x27;改用 Codex native thread contract&#x27;,
+      actions: [&#x27;放弃自建 session_id 身份层&#x27;, &#x27;采用 runtime 原生 thread 契约作为身份来源&#x27;],
+      evidence: [
+        { type: &#x27;decision&#x27;, title: &#x27;身份来源改为 runtime 原生契约&#x27;, note: &#x27;承接 Identity Research 的推翻结论。&#x27;, supports: &#x27;跨 runtime 的身份可以稳定对齐&#x27; },
+        { type: &#x27;ref&#x27;, title: &#x27;Codex native thread contract&#x27;, note: &#x27;身份对齐所依据的 runtime 契约。&#x27;, supports: &#x27;Identity 方向的最终方案&#x27; }
+      ]
+    },
+    s4: {
+      ord: &#x27;04&#x27;, name: &#x27;Runtime Observer&#x27;, type: &#x27;done&#x27;, kind: &#x27;观测&#x27;, status: &#x27;done&#x27;,
+      outcome: &#x27;真实 main/subagent topology 与 runtime evidence 已跑通&#x27;,
+      actions: [&#x27;接入真实 runtime，采集 main / subagent 拓扑&#x27;, &#x27;让每条结论都能回到对应的 runtime 记录&#x27;],
+      evidence: [
+        { type: &#x27;system&#x27;, title: &#x27;Runtime Observer 跑通&#x27;, note: &#x27;真实 runtime 拓扑可被采集。&#x27;, supports: &#x27;后续结论有 runtime 侧证据&#x27; },
+        { type: &#x27;evidence&#x27;, title: &#x27;topology + runtime records&#x27;, note: &#x27;阶段推进与调用记录的对应关系。&#x27;, supports: &#x27;观察粒度从 transcript 升到 runtime&#x27; }
+      ]
+    },
+    s5: {
+      ord: &#x27;05&#x27;, name: &#x27;UI Exploration&#x27;, type: &#x27;done&#x27;, kind: &#x27;探索&#x27;, status: &#x27;done&#x27;,
+      outcome: &#x27;raw Agent/Turn/Event 不适合作为顶层信息对象&#x27;,
+      actions: [&#x27;以 Agent / Turn / Event 为顶层对象尝试组织界面&#x27;, &#x27;对照人理解一次 Run 时实际关注的单位&#x27;],
+      evidence: [
+        { type: &#x27;exploration&#x27;, title: &#x27;顶层对象候选&#x27;, note: &#x27;Agent / Turn / Event 作为顶层对象的尝试。&#x27;, supports: &#x27;否定结论的依据&#x27; },
+        { type: &#x27;conclusion&#x27;, title: &#x27;不适合作为顶层&#x27;, note: &#x27;原始执行单位与人的理解单位不一致。&#x27;, supports: &#x27;顶层对象需要上移一层&#x27; }
+      ]
+    },
+    s6: {
+      ord: &#x27;06&#x27;, name: &#x27;Current Direction&#x27;, type: &#x27;current&#x27;, kind: &#x27;当前方向&#x27;, status: &#x27;current&#x27;,
+      outcome: &#x27;顶层对象应为 Human meaningful WorkStage / Outcome&#x27;,
+      actions: [&#x27;把顶层信息对象改为 WorkStage / Outcome&#x27;, &#x27;把 Agent / Turn / Event 保留为更深层的 evidence&#x27;],
+      evidence: [
+        { type: &#x27;decision&#x27;, title: &#x27;顶层对象定为 WorkStage / Outcome&#x27;, note: &#x27;第一眼只呈现真正重要的工作阶段与结果。&#x27;, supports: &#x27;本原型的信息架构&#x27; },
+        { type: &#x27;pending&#x27;, title: &#x27;WorkStage 生成&#x27;, note: &#x27;本轮不实现 WorkStage generation，也不实现 runtime ingestion。&#x27;, supports: &#x27;当前原型的能力边界&#x27; }
+      ]
+    },
+    s2a: {
+      ord: &#x27;02a&#x27;, parent: &#x27;s2&#x27;, name: &#x27;Identity Research&#x27;, type: &#x27;done&#x27;, kind: &#x27;方向验证&#x27;, status: &#x27;done&#x27;,
+      outcome: &#x27;session_id 假设被推翻&#x27;,
+      actions: [&#x27;以 session_id 作为跨 runtime 的身份锚点做验证&#x27;, &#x27;在真实 runtime 行为上复现不一致&#x27;, &#x27;记录假设失效的边界条件&#x27;],
+      evidence: [
+        { type: &#x27;record&#x27;, title: &#x27;假设推翻记录&#x27;, note: &#x27;session_id 在跨 runtime 场景下无法稳定标识同一身份。&#x27;, supports: &#x27;session_id 不能作为跨 runtime 的身份锚点&#x27; },
+        { type: &#x27;conclusion&#x27;, title: &#x27;runtime-native identity&#x27;, note: &#x27;身份层需要改用 runtime 原生契约。&#x27;, supports: &#x27;转向 Codex native thread contract&#x27; }
+      ]
+    },
+    s2b: {
+      ord: &#x27;02b&#x27;, parent: &#x27;s2&#x27;, name: &#x27;ThoughtDAG Study&#x27;, type: &#x27;done&#x27;, kind: &#x27;方向验证&#x27;, status: &#x27;done&#x27;,
+      outcome: &#x27;spatial continuity 有价值，但 raw graph 在 74 steps 后过密&#x27;,
+      actions: [&#x27;用空间连续性表达步骤之间的推进关系&#x27;, &#x27;在长 Run 上检验可读的密度上限&#x27;, &#x27;区分「结构正确」与「人能读懂」&#x27;],
+      evidence: [
+        { type: &#x27;observation&#x27;, title: &#x27;74 steps 密度上限&#x27;, note: &#x27;超过约 74 steps 后节点密度不再可读。&#x27;, supports: &#x27;raw graph 不适合直接作为顶层视图&#x27; },
+        { type: &#x27;conclusion&#x27;, title: &#x27;spatial continuity 部分成立&#x27;, note: &#x27;保留空间连续性，放弃 raw graph 作为顶层表示。&#x27;, supports: &#x27;顶层需要一个更聚合的信息对象&#x27; }
+      ]
+    },
+    s2c: {
+      ord: &#x27;02c&#x27;, parent: &#x27;s2&#x27;, name: &#x27;UI Probe&#x27;, type: &#x27;done&#x27;, kind: &#x27;方向验证&#x27;, status: &#x27;done&#x27;,
+      outcome: &#x27;topology 可见性改善，但 human comprehension 仍不足&#x27;,
+      actions: [&#x27;直接绘制 main / subagent topology 观察可读性&#x27;, &#x27;用真实 Run 检验人能否据此复述发生了什么&#x27;],
+      evidence: [
+        { type: &#x27;probe&#x27;, title: &#x27;topology 可读性&#x27;, note: &#x27;拓扑结构本身变得可见。&#x27;, supports: &#x27;可见性确实改善&#x27; },
+        { type: &#x27;conclusion&#x27;, title: &#x27;comprehension 仍不足&#x27;, note: &#x27;看得见拓扑不等于能理解 Run 做了什么。&#x27;, supports: &#x27;需要按人的工作单位重组信息&#x27; }
+      ]
+    },
+    s2d: {
+      ord: &#x27;02d&#x27;, parent: &#x27;s2&#x27;, name: &#x27;未定义子阶段&#x27;, type: &#x27;unknown&#x27;, kind: &#x27;未解析&#x27;, status: &#x27;unknown&#x27;,
+      outcome: &#x27;fixture 未提供 outcome&#x27;,
+      actions: [],
+      evidence: []
+    },
+    s2e: {
+      ord: &#x27;02e&#x27;, parent: &#x27;s2&#x27;, name: &#x27;未定义子阶段&#x27;, type: &#x27;unknown&#x27;, kind: &#x27;未解析&#x27;, status: &#x27;unknown&#x27;,
+      outcome: &#x27;fixture 未提供 outcome&#x27;,
+      actions: [],
+      evidence: []
+    }
+  };
+
+  const TOP = [&#x27;s1&#x27;, &#x27;s2&#x27;, &#x27;s3&#x27;, &#x27;s4&#x27;, &#x27;s5&#x27;, &#x27;s6&#x27;];
+  const SUBS = { s2: [&#x27;s2a&#x27;, &#x27;s2b&#x27;, &#x27;s2c&#x27;, &#x27;s2d&#x27;, &#x27;s2e&#x27;] };
+  const STATUS_TEXT = { done: &#x27;已完成&#x27;, current: &#x27;当前阶段&#x27;, unknown: &#x27;未解析&#x27; };
+  const TYPE_TEXT = { done: &#x27;阶段&#x27;, parallel: &#x27;并行分支&#x27;, shift: &#x27;方向修正&#x27;, current: &#x27;当前方向&#x27;, unknown: &#x27;未解析&#x27; };
+  const TYPE_CLASS = { done: &#x27;done&#x27;, parallel: &#x27;parallel&#x27;, shift: &#x27;shift&#x27;, current: &#x27;current&#x27;, unknown: &#x27;unknown&#x27; };
+
+  /* ── deterministic spatial layout (graph never re-lays out) ───────── */
+  const PAD = 44, RAIL_X = 64, WAVE = [0, 24, 40, 40, 24, 0], CARD_GAP = 34;
+  const CARD_W = 372, CARD_H = 94, GAP_Y = 20, STEP = CARD_H + GAP_Y;
+  const WORLDS = {};
+
+  TOP.forEach(function (id, i) {
+    const railX = RAIL_X + WAVE[i];
+    WORLDS[id] = { railX: railX, y: PAD + i * STEP, cy: PAD + i * STEP + CARD_H / 2, x: railX + CARD_GAP, i: i };
+  });
+  const WORLD_W = RAIL_X + Math.max.apply(null, WAVE) + CARD_GAP + CARD_W + PAD;
+  const WORLD_H = PAD + (TOP.length - 1) * STEP + CARD_H + PAD;
+
+  function spinePath(a, b) {
+    return &#x27;M &#x27; + a.railX + &#x27; &#x27; + a.cy + &#x27; C &#x27; + a.railX + &#x27; &#x27; + (a.cy + STEP / 2) + &#x27;, &#x27; +
+      b.railX + &#x27; &#x27; + (b.cy - STEP / 2) + &#x27;, &#x27; + b.railX + &#x27; &#x27; + b.cy;
+  }
+
+  /* ── state ────────────────────────────────────────────────────────── */
+  const state = { stack: [] };          /* [{lvl:1,id} | {lvl:2,id} | {lvl:3,ev} | {lvl:4}] */
+  const STORE = &#x27;prc-workstage-spatialmap-v2&#x27;;
+
+  const el = {
+    canvas: document.getElementById(&#x27;canvas&#x27;),
+    world: document.getElementById(&#x27;world&#x27;),
+    crumbs: document.getElementById(&#x27;crumbs&#x27;),
+    dock: document.getElementById(&#x27;dock&#x27;),
+    count: document.getElementById(&#x27;count&#x27;),
+    zoomVal: document.getElementById(&#x27;zoom-val&#x27;),
+    reset: document.getElementById(&#x27;reset&#x27;)
+  };
+
+  const esc = function (s) { return String(s).replace(/&amp;/g, &#x27;&amp;amp;&#x27;).replace(/&lt;/g, &#x27;&amp;lt;&#x27;).replace(/&gt;/g, &#x27;&amp;gt;&#x27;).replace(/&quot;/g, &#x27;&amp;quot;&#x27;); };
+  const top = function () { return state.stack.length ? state.stack[state.stack.length - 1] : null; };
+  const level1 = function () { return state.stack.length ? state.stack[0].id : null; };
+  const isAggregate = function (id) { return !!SUBS[id]; };
+  const fmtName = function (id) { return isAggregate(id) ? NODES[id].name + &#x27; ×&#x27; + SUBS[id].length : NODES[id].name; };
+
+  /* ── build the map once ───────────────────────────────────────────── */
+  function buildWorld() {
+    let segs = &#x27;&#x27;, progs = &#x27;&#x27;;
+    for (let i = 0; i &lt; TOP.length - 1; i++) {
+      const d = spinePath(WORLDS[TOP[i]], WORLDS[TOP[i + 1]]);
+      segs += &#x27;&lt;path class=&quot;seg&quot; data-seg=&quot;&#x27; + i + &#x27;&quot; d=&quot;&#x27; + d + &#x27;&quot;/&gt;&#x27;;
+      progs += &#x27;&lt;path class=&quot;prog&quot; data-prog=&quot;&#x27; + i + &#x27;&quot; d=&quot;&#x27; + d + &#x27;&quot;/&gt;&#x27;;
+    }
+    const svg = &#x27;&lt;svg class=&quot;edges&quot; width=&quot;&#x27; + WORLD_W + &#x27;&quot; height=&quot;&#x27; + WORLD_H + &#x27;&quot; viewBox=&quot;0 0 &#x27; + WORLD_W + &#x27; &#x27; + WORLD_H + &#x27;&quot; aria-hidden=&quot;true&quot;&gt;&#x27; +
+      segs + progs + &#x27;&lt;path class=&quot;flow&quot; d=&quot;&#x27; + spinePath(WORLDS.s5, WORLDS.s6) + &#x27;&quot;/&gt;&lt;/svg&gt;&#x27;;
+
+    let html = svg;
+
+    TOP.forEach(function (id, i) {
+      const w = WORLDS[id];
+      html += &#x27;&lt;span class=&quot;stop&#x27; + (NODES[id].status === &#x27;current&#x27; ? &#x27; is-cur&#x27; : &#x27;&#x27;) + &#x27;&quot; data-stop=&quot;&#x27; + id + &#x27;&quot; style=&quot;left:&#x27; + (w.railX - 10) + &#x27;px;top:&#x27; + (w.cy - 10) + &#x27;px&quot;&gt;&#x27; + (i + 1) + &#x27;&lt;/span&gt;&#x27;;
+    });
+
+    TOP.forEach(function (id) {
+      html += nodeHTML(id);
+    });
+
+    el.world.style.width = WORLD_W + &#x27;px&#x27;;
+    el.world.style.height = WORLD_H + &#x27;px&#x27;;
+    el.world.innerHTML = html;
+
+    Array.prototype.forEach.call(el.world.querySelectorAll(&#x27;path.seg, path.prog&#x27;), function (p) {
+      const len = Math.ceil(p.getTotalLength()) + 1;
+      p.style.strokeDasharray = len;
+      if (p.classList.contains(&#x27;prog&#x27;)) p.style.strokeDashoffset = len;
+    });
+  }
+
+  function nodeHTML(id) {
+    const n = NODES[id], w = WORLDS[id];
+    const tc = TYPE_CLASS[n.type];
+    const stack = isAggregate(id) ? &#x27;&lt;span class=&quot;n-stack&quot;&gt;&lt;/span&gt;&lt;span class=&quot;n-stack b&quot;&gt;&lt;/span&gt;&#x27; : &#x27;&#x27;;
+    const statusText = STATUS_TEXT[n.status] + (n.type === &#x27;parallel&#x27; ? &#x27; · 并行分支&#x27; : n.type === &#x27;shift&#x27; ? &#x27; · 方向修正&#x27; : &#x27;&#x27;);
+    return &#x27;&lt;button type=&quot;button&quot; class=&quot;node&quot; data-node=&quot;&#x27; + id + &#x27;&quot; data-od-id=&quot;node-&#x27; + id + &#x27;&quot; aria-pressed=&quot;false&quot; &#x27; +
+      &#x27;style=&quot;left:&#x27; + w.x + &#x27;px;top:&#x27; + w.y + &#x27;px;width:&#x27; + CARD_W + &#x27;px;height:&#x27; + CARD_H + &#x27;px;--node-c:var(--c-&#x27; + tc + &#x27;)&quot;&gt;&#x27; +
+      &#x27;&lt;span class=&quot;n-glow&quot;&gt;&lt;/span&gt;&#x27; + stack +
+      &#x27;&lt;span class=&quot;n-body&quot;&gt;&#x27; +
+      &#x27;&lt;span class=&quot;n-name&quot;&gt;&#x27; + esc(fmtName(id)) + &#x27;&lt;/span&gt;&#x27; +
+      &#x27;&lt;span class=&quot;n-out&quot;&gt;&#x27; + esc(n.outcome) + &#x27;&lt;/span&gt;&#x27; +
+      &#x27;&lt;span class=&quot;n-status&quot;&gt;&lt;i class=&quot;glyph &#x27; + tc + &#x27;&quot;&gt;&lt;/i&gt;&#x27; + statusText + &#x27;&lt;/span&gt;&#x27; +
+      &#x27;&lt;/span&gt;&lt;/button&gt;&#x27;;
+  }
+
+  /* ── viewport: transform = userOverride ?? fit(layout, size) ──────── */
+  const view = { x: 0, y: 0, z: 1 };
+  let override = null, tween = null;
+  const ZMIN = 0.45, ZMAX = 1.9;
+
+  function fitRect() {
+    const desktop = window.matchMedia(&#x27;(min-width: 901px)&#x27;).matches;
+    const dockW = desktop ? el.dock.offsetWidth + 16 + 26 : 0;
+    return { left: 24, top: 56, right: dockW + 24, bottom: desktop ? 20 : 12 };
+  }
+  function fitView() {
+    const r = fitRect();
+    const bw = Math.max(80, el.canvas.clientWidth - r.left - r.right);
+    const bh = Math.max(80, el.canvas.clientHeight - r.top - r.bottom);
+    const z = Math.max(ZMIN, Math.min(bw / WORLD_W, bh / WORLD_H, 1));
+    return { z: z, x: r.left + (bw - WORLD_W * z) / 2, y: r.top + (bh - WORLD_H * z) / 2 };
+  }
+  function applyView() {
+    const v = override || fitView();
+    view.x = v.x; view.y = v.y; view.z = v.z;
+    el.world.style.transform = &#x27;translate(&#x27; + v.x + &#x27;px,&#x27; + v.y + &#x27;px) scale(&#x27; + v.z + &#x27;)&#x27;;
+    el.zoomVal.textContent = Math.round(v.z * 100) + &#x27;%&#x27;;
+  }
+  function glideTo(target, dur) {
+    const from = { x: view.x, y: view.y, z: view.z }, t0 = performance.now();
+    if (tween) cancelAnimationFrame(tween);
+    (function step(now) {
+      const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      override = { x: from.x + (target.x - from.x) * e, y: from.y + (target.y - from.y) * e, z: from.z + (target.z - from.z) * e };
+      applyView();
+      if (p &lt; 1) tween = requestAnimationFrame(step); else tween = null;
+    })(t0);
+  }
+  function zoomBy(factor, cx, cy) {
+    const base = override || { x: view.x, y: view.y, z: view.z };
+    const z = Math.max(ZMIN, Math.min(ZMAX, base.z * factor)), k = z / base.z;
+    override = { z: z, x: cx - (cx - base.x) * k, y: cy - (cy - base.y) * k };
+    applyView();
+  }
+
+  /* ── drawer navigation stack ──────────────────────────────────────── */
+  function push(entry) { state.stack.push(entry); render(&#x27;push&#x27;); }
+  function pop() { if (state.stack.length &gt; 1) { state.stack.pop(); render(&#x27;pop&#x27;); } else { clearAll(); } }
+  function clearAll() { state.stack = []; render(&#x27;none&#x27;); }
+
+  function selectStage(id) {
+    const same = state.stack.length === 1 &amp;&amp; state.stack[0].id === id;
+    state.stack = same ? [] : [{ lvl: 1, id: id }];
+    render(same ? &#x27;pop&#x27; : &#x27;push&#x27;);
+  }
+
+  function paneHTML() {
+    const cur = top();
+    if (!cur) return railHTML();
+    if (cur.lvl === 4) return rawHTML();
+    if (cur.lvl === 3) return evidenceHTML();
+    return stageHTML(cur.id, cur.lvl === 2);
+  }
+
+  function navHTML(backLabel) {
+    return &#x27;&lt;header class=&quot;dnav&quot;&gt;&#x27; +
+      (backLabel
+        ? &#x27;&lt;button type=&quot;button&quot; class=&quot;dback&quot; data-back&gt;&lt;span class=&quot;arw&quot;&gt;←&lt;/span&gt;&lt;span&gt;&#x27; + esc(backLabel) + &#x27;&lt;/span&gt;&lt;/button&gt;&#x27;
+        : &#x27;&lt;span class=&quot;kicker&quot;&gt;RUN · STATIC WORKSTAGE FIXTURE&lt;/span&gt;&#x27;) +
+      &#x27;&lt;span class=&quot;grow&quot;&gt;&lt;/span&gt;&#x27; +
+      &#x27;&lt;button type=&quot;button&quot; class=&quot;iconbtn&quot; data-close aria-label=&quot;清除选择&quot;&gt;✕&lt;/button&gt;&#x27; +
+      &#x27;&lt;/header&gt;&#x27;;
+  }
+
+  function stageHTML(id, isSub) {
+    const n = NODES[id], tc = TYPE_CLASS[n.type];
+    const back = isSub ? fmtName(n.parent) : null;
+    const subs = (!isSub &amp;&amp; isAggregate(id)) ? subsHTML(id) : &#x27;&#x27;;
+    const ev = n.evidence.length;
+    return &#x27;&lt;div class=&quot;pane-body&quot;&gt;&#x27; + navHTML(back) + &#x27;&lt;div class=&quot;dscroll&quot;&gt;&#x27; +
+      &#x27;&lt;div class=&quot;dhead&quot;&gt;&#x27; +
+        &#x27;&lt;div class=&quot;meta&quot;&gt;&lt;span class=&quot;ord&quot;&gt;&#x27; + n.ord + &#x27;&lt;/span&gt;&#x27; +
+          &#x27;&lt;span class=&quot;tchip &#x27; + tc + &#x27;&quot;&gt;&lt;i class=&quot;glyph &#x27; + tc + &#x27;&quot;&gt;&lt;/i&gt;&#x27; + TYPE_TEXT[n.type] + &#x27;&lt;/span&gt;&lt;/div&gt;&#x27; +
+        &#x27;&lt;h2&gt;&#x27; + esc(fmtName(id)) + &#x27;&lt;/h2&gt;&#x27; +
+        &#x27;&lt;span class=&quot;statuschip &#x27; + tc + &#x27;&quot;&gt;&lt;i class=&quot;glyph &#x27; + tc + &#x27;&quot;&gt;&lt;/i&gt;&#x27; + STATUS_TEXT[n.status] + &#x27;&lt;/span&gt;&#x27; +
+      &#x27;&lt;/div&gt;&#x27; +
+      &#x27;&lt;section class=&quot;sec&quot; data-sec=&quot;outcome&quot;&gt;&#x27; +
+        &#x27;&lt;div class=&quot;sec-head&quot;&gt;&lt;h3 class=&quot;sec-label&quot;&gt;Outcome &lt;span class=&quot;zh&quot;&gt;· 结论&lt;/span&gt;&lt;/h3&gt;&lt;span class=&quot;grow&quot;&gt;&lt;/span&gt;&#x27; +
+        (ev ? &#x27;&lt;button type=&quot;button&quot; class=&quot;evchip&quot; data-evchip aria-expanded=&quot;false&quot;&gt;&#x27; + ev + &#x27; evidence &lt;span class=&quot;car&quot;&gt;›&lt;/span&gt;&lt;/button&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/div&gt;&#x27; +
+        &#x27;&lt;p class=&quot;outcome&quot;&gt;&#x27; + esc(n.outcome) + &#x27;&lt;/p&gt;&#x27; +
+        (ev ? &#x27;&lt;div class=&quot;evpeek&quot;&gt;&lt;p class=&quot;plabel&quot;&gt;支持这条结论的证据&lt;/p&gt;&lt;ul class=&quot;peek&quot;&gt;&#x27; +
+          n.evidence.map(function (e, i) {
+            return &#x27;&lt;li&gt;&lt;button type=&quot;button&quot; class=&quot;peekrow&quot; data-ev=&quot;&#x27; + i + &#x27;&quot;&gt;&#x27; +
+              &#x27;&lt;span class=&quot;t&quot;&gt;&#x27; + esc(e.title) + &#x27;&lt;/span&gt;&lt;span class=&quot;go&quot;&gt;进入 →&lt;/span&gt;&lt;/button&gt;&lt;/li&gt;&#x27;;
+          }).join(&#x27;&#x27;) + &#x27;&lt;/ul&gt;&lt;/div&gt;&#x27; : &#x27;&#x27;) +
+      &#x27;&lt;/section&gt;&#x27; +
+      (n.actions.length ? &#x27;&lt;section class=&quot;sec&quot;&gt;&lt;h3 class=&quot;sec-label&quot;&gt;Key Actions &lt;span class=&quot;zh&quot;&gt;· 关键动作&lt;/span&gt;&lt;/h3&gt;&#x27; +
+        &#x27;&lt;ul class=&quot;actions&quot;&gt;&#x27; + n.actions.map(function (a) { return &#x27;&lt;li&gt;&#x27; + esc(a) + &#x27;&lt;/li&gt;&#x27;; }).join(&#x27;&#x27;) + &#x27;&lt;/ul&gt;&lt;/section&gt;&#x27; : &#x27;&#x27;) +
+      subs +
+      (n.evidence.length
+        ? &#x27;&lt;section class=&quot;sec&quot; data-sec=&quot;evidence&quot;&gt;&lt;h3 class=&quot;sec-label&quot;&gt;Artifacts / Evidence &lt;span class=&quot;zh&quot;&gt;· 成果与证据&lt;/span&gt;&lt;/h3&gt;&#x27; +
+          &#x27;&lt;ul class=&quot;ev&quot;&gt;&#x27; + n.evidence.map(function (e, i) {
+            return &#x27;&lt;li&gt;&lt;button type=&quot;button&quot; class=&quot;evrow&quot; data-ev=&quot;&#x27; + i + &#x27;&quot;&gt;&#x27; +
+              &#x27;&lt;span class=&quot;ev-type&quot;&gt;&#x27; + esc(e.type) + &#x27;&lt;/span&gt;&#x27; +
+              &#x27;&lt;span class=&quot;ev-title&quot;&gt;&#x27; + esc(e.title) + &#x27;&lt;/span&gt;&#x27; +
+              &#x27;&lt;span class=&quot;ev-go&quot;&gt;›&lt;/span&gt;&lt;/button&gt;&lt;/li&gt;&#x27;;
+          }).join(&#x27;&#x27;) + &#x27;&lt;/ul&gt;&lt;/section&gt;&#x27;
+        : &#x27;&lt;section class=&quot;sec&quot;&gt;&lt;h3 class=&quot;sec-label&quot;&gt;Artifacts / Evidence &lt;span class=&quot;zh&quot;&gt;· 成果与证据&lt;/span&gt;&lt;/h3&gt;&#x27; +
+          &#x27;&lt;p class=&quot;note&quot;&gt;该子阶段的结论不在本轮 fixture 范围内，因此没有可追索的证据条目。&lt;/p&gt;&lt;/section&gt;&#x27;) +
+      &#x27;&lt;button type=&quot;button&quot; class=&quot;rawlink&quot; data-raw&gt;&lt;span&gt;查看 raw evidence / trace&lt;/span&gt;&lt;span class=&quot;go&quot;&gt;最深一层 →&lt;/span&gt;&lt;/button&gt;&#x27; +
+      &#x27;&lt;p class=&quot;note&quot;&gt;&lt;b&gt;FIXTURE&lt;/b&gt; · Evidence 条目为占位内容，用于验证「结论 → 证据 → raw trace」的追索路径。&lt;/p&gt;&#x27; +
+      &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+  }
+
+  function subsHTML(id) {
+    const list = SUBS[id];
+    let h = &#x27;&lt;section class=&quot;sec&quot; data-sec=&quot;subs&quot;&gt;&lt;div class=&quot;sec-head&quot;&gt;&lt;h3 class=&quot;sec-label&quot;&gt;Sub-stages &lt;span class=&quot;zh&quot;&gt;· 子阶段&lt;/span&gt;&lt;/h3&gt;&#x27; +
+      &#x27;&lt;span class=&quot;grow&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tchip parallel&quot;&gt;&#x27; + list.length + &#x27; 个&lt;/span&gt;&lt;/div&gt;&lt;ul class=&quot;subs&quot;&gt;&#x27;;
+    list.forEach(function (cid) {
+      const c = NODES[cid], un = c.type === &#x27;unknown&#x27;;
+      h += &#x27;&lt;li&gt;&lt;button type=&quot;button&quot; class=&quot;subrow&#x27; + (un ? &#x27; unresolved&#x27; : &#x27;&#x27;) + &#x27;&quot; data-sub=&quot;&#x27; + cid + &#x27;&quot;&gt;&#x27; +
+        &#x27;&lt;span class=&quot;sub-ord&quot;&gt;&#x27; + c.ord + &#x27;&lt;/span&gt;&#x27; +
+        &#x27;&lt;span class=&quot;sub-main&quot;&gt;&lt;span class=&quot;sub-name&quot;&gt;&#x27; + esc(c.name) + &#x27;&lt;/span&gt;&#x27; +
+        &#x27;&lt;span class=&quot;sub-out&quot;&gt;&#x27; + esc(c.outcome) + &#x27;&lt;/span&gt;&lt;/span&gt;&#x27; +
+        &#x27;&lt;span class=&quot;sub-go&quot;&gt;›&lt;/span&gt;&lt;/button&gt;&lt;/li&gt;&#x27;;
+    });
+    h += &#x27;&lt;/ul&gt;&lt;p class=&quot;note&quot;&gt;graph 始终只显示一个 aggregate 节点 —— 子阶段全部在这里逐层展开。&#x27; +
+      &#x27;&lt;br&gt;02d–02e 为 fixture 未定义槽位：用于验证子阶段数量继续增加时 graph 不发生任何变化。&lt;/p&gt;&lt;/section&gt;&#x27;;
+    return h;
+  }
+
+  function evidenceHTML() {
+    const cur = top();
+    const owner = state.stack[state.stack.length - 2];
+    const n = NODES[owner.id], e = n.evidence[cur.ev];
+    return &#x27;&lt;div class=&quot;pane-body&quot;&gt;&#x27; + navHTML(fmtName(owner.id)) + &#x27;&lt;div class=&quot;dscroll&quot;&gt;&#x27; +
+      &#x27;&lt;div class=&quot;dhead&quot;&gt;&#x27; +
+        &#x27;&lt;div class=&quot;meta&quot;&gt;&lt;span class=&quot;ev-type-solo&quot;&gt;&#x27; + esc(e.type) + &#x27;&lt;/span&gt;&lt;/div&gt;&#x27; +
+        &#x27;&lt;h2&gt;&#x27; + esc(e.title) + &#x27;&lt;/h2&gt;&#x27; +
+        &#x27;&lt;span class=&quot;statuschip&quot;&gt;&lt;i class=&quot;glyph&quot; style=&quot;background:var(--c-evidence)&quot;&gt;&lt;/i&gt;Evidence · 所属 &#x27; + n.ord + &#x27; &#x27; + esc(fmtName(owner.id)) + &#x27;&lt;/span&gt;&#x27; +
+      &#x27;&lt;/div&gt;&#x27; +
+      &#x27;&lt;section class=&quot;sec&quot;&gt;&lt;h3 class=&quot;sec-label&quot;&gt;说明 &lt;span class=&quot;zh&quot;&gt;· Note&lt;/span&gt;&lt;/h3&gt;&#x27; +
+        &#x27;&lt;p class=&quot;outcome&quot;&gt;&#x27; + esc(e.note) + &#x27;&lt;/p&gt;&lt;/section&gt;&#x27; +
+      &#x27;&lt;section class=&quot;sec&quot;&gt;&lt;h3 class=&quot;sec-label&quot;&gt;支持的结论 &lt;span class=&quot;zh&quot;&gt;· Supports&lt;/span&gt;&lt;/h3&gt;&#x27; +
+        &#x27;&lt;div class=&quot;sup&quot;&gt;&lt;span class=&quot;k&quot;&gt;derived conclusion ← evidence&lt;/span&gt;&lt;span class=&quot;v&quot;&gt;&#x27; + esc(e.supports) + &#x27;&lt;/span&gt;&lt;/div&gt;&lt;/section&gt;&#x27; +
+      &#x27;&lt;button type=&quot;button&quot; class=&quot;rawlink&quot; data-raw&gt;&lt;span&gt;查看 raw evidence / trace&lt;/span&gt;&lt;span class=&quot;go&quot;&gt;最深一层 →&lt;/span&gt;&lt;/button&gt;&#x27; +
+      &#x27;&lt;p class=&quot;note&quot;&gt;&lt;b&gt;FIXTURE&lt;/b&gt; · 这条证据是占位内容；要点是结论永远能继续往下追，而不必先读 raw trace。&lt;/p&gt;&#x27; +
+      &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+  }
+
+  function rawHTML() {
+    const owner = state.stack.length &gt; 1 &amp;&amp; state.stack[state.stack.length - 2].id ? state.stack[state.stack.length - 2].id : level1();
+    return &#x27;&lt;div class=&quot;pane-body&quot;&gt;&#x27; + navHTML(owner ? fmtName(owner) : null) + &#x27;&lt;div class=&quot;dscroll&quot;&gt;&#x27; +
+      &#x27;&lt;div class=&quot;dhead&quot;&gt;&lt;div class=&quot;meta&quot;&gt;&lt;span class=&quot;ord&quot;&gt;RAW&lt;/span&gt;&lt;span class=&quot;tchip&quot; style=&quot;color:var(--muted-ink)&quot;&gt;最深一层&lt;/span&gt;&lt;/div&gt;&#x27; +
+      &#x27;&lt;h2&gt;Raw Evidence / Trace&lt;/h2&gt;&#x27; +
+      &#x27;&lt;span class=&quot;statuschip&quot;&gt;只有在核对原始调用时才需要进来&lt;/span&gt;&lt;/div&gt;&#x27; +
+      &#x27;&lt;section class=&quot;sec&quot;&gt;&lt;h3 class=&quot;sec-label&quot;&gt;Scope &lt;span class=&quot;zh&quot;&gt;· 范围&lt;/span&gt;&lt;/h3&gt;&#x27; +
+      &#x27;&lt;p class=&quot;outcome&quot;&gt;上面的 Outcome 与 Evidence 都不要求先读 raw trace。这里是追索路径的终点，不是起点。&lt;/p&gt;&lt;/section&gt;&#x27; +
+      &#x27;&lt;section class=&quot;sec&quot;&gt;&lt;h3 class=&quot;sec-label&quot;&gt;Not in this round &lt;span class=&quot;zh&quot;&gt;· 本轮未实现&lt;/span&gt;&lt;/h3&gt;&#x27; +
+      &#x27;&lt;p class=&quot;outcome&quot;&gt;本轮不实现 runtime ingestion，也不实现 raw trace viewer。接入后这里会列出：&lt;/p&gt;&#x27; +
+      &#x27;&lt;ul class=&quot;rawlist&quot;&gt;&lt;li&gt;&lt;span&gt;Raw agent calls&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;未接入&lt;/span&gt;&lt;/li&gt;&#x27; +
+      &#x27;&lt;li&gt;&lt;span&gt;Turns / events&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;未接入&lt;/span&gt;&lt;/li&gt;&#x27; +
+      &#x27;&lt;li&gt;&lt;span&gt;Runtime records&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;未接入&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/section&gt;&#x27; +
+      &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+  }
+
+  function railHTML() {
+    return &#x27;&lt;div class=&quot;pane-body&quot;&gt;&lt;div class=&quot;rail-empty&quot;&gt;&#x27; +
+      &#x27;&lt;span class=&quot;kicker&quot;&gt;RUN 概览&lt;/span&gt;&#x27; +
+      &#x27;&lt;h2&gt;Static WorkStage Fixture&lt;/h2&gt;&#x27; +
+      &#x27;&lt;p&gt;选择一个 WorkStage，graph 不会展开、也不会移动；分辨率在右侧逐层提高。&lt;/p&gt;&#x27; +
+      &#x27;&lt;ul class=&quot;facts&quot;&gt;&#x27; +
+      &#x27;&lt;li&gt;&lt;span class=&quot;k&quot;&gt;WorkStage&lt;/span&gt;&lt;span class=&quot;v&quot;&gt;&#x27; + TOP.length + &#x27;&lt;/span&gt;&lt;/li&gt;&#x27; +
+      &#x27;&lt;li&gt;&lt;span class=&quot;k&quot;&gt;聚合分支&lt;/span&gt;&lt;span class=&quot;v&quot;&gt;02 Research ×&#x27; + SUBS.s2.length + &#x27;&lt;/span&gt;&lt;/li&gt;&#x27; +
+      &#x27;&lt;li&gt;&lt;span class=&quot;k&quot;&gt;当前阶段&lt;/span&gt;&lt;span class=&quot;v&quot;&gt;06 Current Direction&lt;/span&gt;&lt;/li&gt;&#x27; +
+      &#x27;&lt;li&gt;&lt;span class=&quot;k&quot;&gt;返回上一层&lt;/span&gt;&lt;span class=&quot;v&quot;&gt;Esc&lt;/span&gt;&lt;/li&gt;&#x27; +
+      &#x27;&lt;/ul&gt;&#x27; +
+      &#x27;&lt;div class=&quot;legend&quot;&gt;&#x27; +
+      &#x27;&lt;span&gt;&lt;i class=&quot;glyph current&quot;&gt;&lt;/i&gt;当前&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;glyph done&quot;&gt;&lt;/i&gt;已完成&lt;/span&gt;&#x27; +
+      &#x27;&lt;span&gt;&lt;i class=&quot;glyph parallel&quot;&gt;&lt;/i&gt;并行分支&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;glyph shift&quot;&gt;&lt;/i&gt;方向修正&lt;/span&gt;&#x27; +
+      &#x27;&lt;span&gt;&lt;i class=&quot;glyph unknown&quot;&gt;&lt;/i&gt;未解析&lt;/span&gt;&lt;/div&gt;&#x27; +
+      &#x27;&lt;p class=&quot;note&quot;&gt;&lt;b&gt;FIXTURE&lt;/b&gt; · 数据为 UX 测试用静态 WorkStage fixture。Status 由 fixture 顺序推导。&lt;/p&gt;&#x27; +
+      &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+  }
+
+  /* ── render ───────────────────────────────────────────────────────── */
+  let lastKey = &#x27;__init&#x27;;
+  function render(dir) {
+    const cur = top(), key = JSON.stringify(state.stack);
+    if (dir === &#x27;none&#x27; || key === lastKey) dir = &#x27;none&#x27;;
+    lastKey = key;
+
+    const selId = level1();
+    el.world.classList.toggle(&#x27;has-focus&#x27;, !!selId);
+
+    Array.prototype.forEach.call(el.world.querySelectorAll(&#x27;[data-node]&#x27;), function (b) {
+      const id = b.getAttribute(&#x27;data-node&#x27;);
+      const on = id === selId;
+      b.classList.toggle(&#x27;is-sel&#x27;, on);
+      b.setAttribute(&#x27;aria-pressed&#x27;, String(on));
+      b.classList.toggle(&#x27;has-focus&#x27;, on &amp;&amp; state.stack.length &gt; 1);
+    });
+    Array.prototype.forEach.call(el.world.querySelectorAll(&#x27;[data-stop]&#x27;), function (s) {
+      s.classList.toggle(&#x27;is-sel&#x27;, s.getAttribute(&#x27;data-stop&#x27;) === selId);
+    });
+
+    /* spine progress + related-edge emphasis */
+    const idx = selId ? WORLDS[selId].i : -1;
+    Array.prototype.forEach.call(el.world.querySelectorAll(&#x27;path.seg&#x27;), function (p) {
+      const i = Number(p.getAttribute(&#x27;data-seg&#x27;));
+      p.classList.toggle(&#x27;seg-near&#x27;, idx &gt;= 0 &amp;&amp; (i === idx - 1 || i === idx));
+    });
+    Array.prototype.forEach.call(el.world.querySelectorAll(&#x27;path.prog&#x27;), function (p) {
+      const i = Number(p.getAttribute(&#x27;data-prog&#x27;)), len = Number(p.style.strokeDasharray) || 0;
+      p.style.strokeDashoffset = (i &lt; idx ? 0 : len);
+      p.style.opacity = (i &lt; idx ? .9 : 0);
+    });
+
+    renderCrumbs();
+    renderDock(dir);
+
+    el.count.textContent = &#x27;WorkStage &#x27; + TOP.length + &#x27; · 分支子阶段 &#x27; + SUBS.s2.length;
+    el.reset.disabled = !state.stack.length &amp;&amp; !override;
+    el.dock.classList.toggle(&#x27;active&#x27;, !!cur);
+    persist();
+  }
+
+  function renderCrumbs() {
+    const l1 = level1(), l2 = state.stack.length &gt; 1 ? top() : null;
+    let h = &#x27;&lt;button type=&quot;button&quot; data-crumb=&quot;__run&quot; aria-current=&quot;&#x27; + (!l1) + &#x27;&quot;&gt;Run 概览&lt;/button&gt;&#x27;;
+    if (l1) {
+      h += &#x27;&lt;span class=&quot;sep&quot;&gt;›&lt;/span&gt;&lt;button type=&quot;button&quot; data-crumb=&quot;&#x27; + l1 + &#x27;&quot;&#x27; + (l2 ? &#x27;&#x27; : &#x27; aria-current=&quot;true&quot;&#x27;) + &#x27;&gt;&#x27; + esc(fmtName(l1)) + &#x27;&lt;/button&gt;&#x27;;
+    }
+    if (l2 &amp;&amp; l2.lvl === 2) {
+      h += &#x27;&lt;span class=&quot;sep&quot;&gt;›&lt;/span&gt;&lt;button type=&quot;button&quot; data-crumb=&quot;&#x27; + l2.id + &#x27;&quot; aria-current=&quot;true&quot;&gt;&#x27; + esc(NODES[l2.id].name) + &#x27;&lt;/button&gt;&#x27;;
+    } else if (l2 &amp;&amp; l2.lvl === 3) {
+      const owner = state.stack[state.stack.length - 2];
+      h += &#x27;&lt;span class=&quot;sep&quot;&gt;›&lt;/span&gt;&lt;button type=&quot;button&quot; data-crumb=&quot;&#x27; + owner.id + &#x27;&quot; aria-current=&quot;true&quot;&gt;Evidence · &#x27; + esc(NODES[owner.id].evidence[l2.ev].title) + &#x27;&lt;/button&gt;&#x27;;
+    }
+    el.crumbs.innerHTML = h;
+  }
+
+  function renderDock(dir) {
+    const host = el.dock;
+    Array.prototype.forEach.call(host.querySelectorAll(&#x27;.pane.out&#x27;), function (p) { p.remove(); });
+    const next = document.createElement(&#x27;div&#x27;);
+    next.className = &#x27;pane&#x27; + (dir === &#x27;none&#x27; ? &#x27;&#x27; : dir === &#x27;pop&#x27; ? &#x27; anim in-pop&#x27; : &#x27; anim-spring in-push&#x27;);
+    next.innerHTML = paneHTML();
+
+    const prev = host.querySelector(&#x27;.pane&#x27;);
+    if (!prev || dir === &#x27;none&#x27;) {
+      host.innerHTML = &#x27;&#x27;;
+      host.appendChild(next);
+      return;
+    }
+    const dx = dir === &#x27;push&#x27; ? 34 : -34;
+    next.style.transform = &#x27;translateX(&#x27; + dx + &#x27;px)&#x27;;
+    next.style.opacity = &#x27;0&#x27;;
+    host.appendChild(next);
+    prev.classList.add(&#x27;out&#x27;, &#x27;anim&#x27;);
+    void next.offsetWidth;
+    next.style.transform = &#x27;translateX(0)&#x27;;
+    next.style.opacity = &#x27;1&#x27;;
+    prev.style.transform = &#x27;translateX(&#x27; + (-dx * .6) + &#x27;px)&#x27;;
+    prev.style.opacity = &#x27;0&#x27;;
+    setTimeout(function () {
+      if (prev.parentNode) prev.remove();
+      if (!next.classList.contains(&#x27;out&#x27;)) {
+        next.className = &#x27;pane&#x27;;
+        next.style.transform = &#x27;&#x27;; next.style.opacity = &#x27;&#x27;;
+      }
+    }, 440);
+  }
+
+  /* ── persistence ──────────────────────────────────────────────────── */
+  function persist() {
+    try { localStorage.setItem(STORE, JSON.stringify({ stack: state.stack })); } catch (e) {}
+  }
+  function restore() {
+    let raw = null;
+    try { raw = localStorage.getItem(STORE); } catch (e) { return; }
+    if (!raw) return;
+    try {
+      const s = JSON.parse(raw);
+      if (s &amp;&amp; Array.isArray(s.stack) &amp;&amp; s.stack.length) {
+        const ok = s.stack.every(function (e) {
+          return (e.lvl === 1 || e.lvl === 2) ? !!NODES[e.id] : (e.lvl === 4 || (e.lvl === 3 &amp;&amp; typeof e.ev === &#x27;number&#x27;));
+        });
+        if (ok &amp;&amp; s.stack[0].lvl === 1) state.stack = s.stack;
+      }
+    } catch (e) {}
+  }
+
+  /* ── events ───────────────────────────────────────────────────────── */
+  el.world.addEventListener(&#x27;click&#x27;, function (e) {
+    const n = e.target.closest(&#x27;[data-node]&#x27;);
+    if (n) selectStage(n.getAttribute(&#x27;data-node&#x27;));
+  });
+  el.world.addEventListener(&#x27;pointerover&#x27;, function (e) {
+    const n = e.target.closest(&#x27;[data-node]&#x27;);
+    if (!n) return;
+    const i = WORLDS[n.getAttribute(&#x27;data-node&#x27;)].i;
+    Array.prototype.forEach.call(el.world.querySelectorAll(&#x27;path.seg&#x27;), function (p) {
+      const k = Number(p.getAttribute(&#x27;data-seg&#x27;));
+      p.classList.toggle(&#x27;seg-near&#x27;, k === i - 1 || k === i);
+    });
+  });
+  el.world.addEventListener(&#x27;pointerout&#x27;, function (e) {
+    if (e.relatedTarget &amp;&amp; el.world.contains(e.relatedTarget)) return;
+    const idx = level1() ? WORLDS[level1()].i : -1;
+    Array.prototype.forEach.call(el.world.querySelectorAll(&#x27;path.seg&#x27;), function (p) {
+      const k = Number(p.getAttribute(&#x27;data-seg&#x27;));
+      p.classList.toggle(&#x27;seg-near&#x27;, idx &gt;= 0 &amp;&amp; (k === idx - 1 || k === idx));
+    });
+  });
+
+  el.crumbs.addEventListener(&#x27;click&#x27;, function (e) {
+    const b = e.target.closest(&#x27;[data-crumb]&#x27;);
+    if (!b) return;
+    const v = b.getAttribute(&#x27;data-crumb&#x27;);
+    if (v === &#x27;__run&#x27;) clearAll();
+    else if (NODES[v] &amp;&amp; NODES[v].parent) { state.stack = [{ lvl: 1, id: NODES[v].parent }]; render(&#x27;pop&#x27;); }
+    else if (NODES[v]) selectStage(v);
+  });
+
+  el.dock.addEventListener(&#x27;click&#x27;, function (e) {
+    const chip = e.target.closest(&#x27;[data-evchip]&#x27;);
+    if (chip) {
+      const peek = el.dock.querySelector(&#x27;.evpeek&#x27;);
+      if (peek) {
+        const open = !peek.classList.contains(&#x27;open&#x27;);
+        peek.classList.toggle(&#x27;open&#x27;, open);
+        chip.setAttribute(&#x27;aria-expanded&#x27;, String(open));
+        peek.style.height = open ? (peek.scrollHeight + &#x27;px&#x27;) : &#x27;0px&#x27;;
+        peek.style.opacity = open ? &#x27;1&#x27; : &#x27;0&#x27;;
+      }
+      return;
+    }
+    const sub = e.target.closest(&#x27;[data-sub]&#x27;);
+    if (sub) { push({ lvl: 2, id: sub.getAttribute(&#x27;data-sub&#x27;) }); return; }
+    const ev = e.target.closest(&#x27;[data-ev]&#x27;);
+    if (ev) { push({ lvl: 3, ev: Number(ev.getAttribute(&#x27;data-ev&#x27;)) }); return; }
+    if (e.target.closest(&#x27;[data-raw]&#x27;)) { push({ lvl: 4 }); return; }
+    if (e.target.closest(&#x27;[data-back]&#x27;)) { pop(); return; }
+    if (e.target.closest(&#x27;[data-close]&#x27;)) { clearAll(); }
+  });
+
+  el.reset.addEventListener(&#x27;click&#x27;, function () {
+    override = null; state.stack = []; applyView(); render(&#x27;none&#x27;);
+  });
+
+  document.getElementById(&#x27;zoom-in&#x27;).addEventListener(&#x27;click&#x27;, function () {
+    const r = el.canvas.getBoundingClientRect();
+    const base = override || fitView(), z = Math.min(ZMAX, base.z * 1.2), k = z / base.z;
+    glideTo({ z: z, x: r.width / 2 - (r.width / 2 - base.x) * k, y: r.height / 2 - (r.height / 2 - base.y) * k }, 240);
+  });
+  document.getElementById(&#x27;zoom-out&#x27;).addEventListener(&#x27;click&#x27;, function () {
+    const r = el.canvas.getBoundingClientRect();
+    const base = override || fitView(), z = Math.max(ZMIN, base.z / 1.2), k = z / base.z;
+    glideTo({ z: z, x: r.width / 2 - (r.width / 2 - base.x) * k, y: r.height / 2 - (r.height / 2 - base.y) * k }, 240);
+  });
+  document.getElementById(&#x27;zoom-fit&#x27;).addEventListener(&#x27;click&#x27;, function () {
+    if (tween) cancelAnimationFrame(tween);
+    override = null; applyView();
+  });
+
+  let drag = null;
+  el.canvas.addEventListener(&#x27;pointerdown&#x27;, function (e) {
+    if (e.button !== 0 || e.target.closest(&#x27;[data-node], .crumbs&#x27;)) return;
+    drag = { px: e.clientX, py: e.clientY, x: view.x, y: view.y };
+    el.canvas.classList.add(&#x27;is-panning&#x27;);
+    el.canvas.setPointerCapture(e.pointerId);
+  });
+  el.canvas.addEventListener(&#x27;pointermove&#x27;, function (e) {
+    if (!drag) return;
+    if (tween) { cancelAnimationFrame(tween); tween = null; }
+    override = { z: view.z, x: drag.x + (e.clientX - drag.px), y: drag.y + (e.clientY - drag.py) };
+    applyView();
+  });
+  function endDrag(e) {
+    if (!drag) return;
+    drag = null;
+    el.canvas.classList.remove(&#x27;is-panning&#x27;);
+    if (el.canvas.hasPointerCapture &amp;&amp; el.canvas.hasPointerCapture(e.pointerId)) el.canvas.releasePointerCapture(e.pointerId);
+  }
+  el.canvas.addEventListener(&#x27;pointerup&#x27;, endDrag);
+  el.canvas.addEventListener(&#x27;pointercancel&#x27;, endDrag);
+
+  el.canvas.addEventListener(&#x27;wheel&#x27;, function (e) {
+    e.preventDefault();
+    const r = el.canvas.getBoundingClientRect();
+    const d = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
+    zoomBy(Math.exp(-d * 0.0016), e.clientX - r.left, e.clientY - r.top);
+  }, { passive: false });
+
+  document.addEventListener(&#x27;keydown&#x27;, function (e) {
+    if (e.key === &#x27;Escape&#x27;) { pop(); return; }
+    if (e.key !== &#x27;ArrowDown&#x27; &amp;&amp; e.key !== &#x27;ArrowUp&#x27;) return;
+    const a = document.activeElement;
+    if (!a || !a.hasAttribute || !a.hasAttribute(&#x27;data-node&#x27;)) return;
+    e.preventDefault();
+    const i = TOP.indexOf(a.getAttribute(&#x27;data-node&#x27;));
+    const nx = TOP[Math.min(TOP.length - 1, Math.max(0, i + (e.key === &#x27;ArrowDown&#x27; ? 1 : -1)))];
+    const b = el.world.querySelector(&#x27;[data-node=&quot;&#x27; + nx + &#x27;&quot;]&#x27;);
+    if (b) b.focus();
+  });
+
+  let rt = null;
+  window.addEventListener(&#x27;resize&#x27;, function () {
+    clearTimeout(rt);
+    rt = setTimeout(function () { if (!override) applyView(); }, 90);
+  });
+
+  /* ── boot ─────────────────────────────────────────────────────────── */
+  buildWorld();
+  restore();
+  applyView();
+  render(&#x27;none&#x27;);
+})();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+" loading="lazy"></iframe></section>
 <footer class="foot-b"><span>27 identities · 26 native parent-child links · 5 agents with content · 22 metadata-only</span><span>NATIVE ≠ VERIFIED OUTCOME · DERIVED ≠ NATIVE · no hidden reasoning</span></footer></div>
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modalbox"><div class="modalhead"><div><span class="eyebrow" id="modalTag">EXACT NATIVE RECORD</span><h2 id="modalTitle">原生内容</h2></div><div class="modaltools"><button class="btn" id="copyBtn">复制全文</button><button class="btn" id="closeModal">关闭 ✕</button></div></div><div class="modalbody"><pre id="modalText"></pre></div><div class="modalfoot" id="modalRef"></div></div></div>
 <script>
@@ -40,7 +1170,7 @@ function titleOf(a){let r=RICH[a.agent_id];return r?(a.nickname||r.title):(a.nic
 function findNativeEvidence(rec){return rec?.evidence_ref||''}
 function counts(a){return a.event_type_counts||{}}
 function drawKnown(){Object.keys(GROUPS).forEach(g=>{let id=GROUPS[g][1];$(id).innerHTML=KNOWN.filter(a=>RICH[a.agent_id].group===g).map(a=>{let r=RICH[a.agent_id], src=content(promptOf(r)),h=excerpt(src.split(/[\n\.]/)[0],104);return `<button class="node ${S.selected===a.agent_id?'sel':''}" data-select="${E(a.agent_id)}"><span class="topline"><strong>${E(titleOf(a))}</strong><span class="pill purple" style="margin-left:auto">DERIVED ROLE</span></span><span class="task">${E(r.title)}</span><span class="desc">${E(excerpt(h,90))}</span><span class="node-bottom"><span class="pill blue">真实派发</span><span class="pill">原生回复可读</span><span class="spacer"></span><small>查看 →</small></span></button>`;}).join('');});$('rootNode').classList.toggle('sel',S.selected===ROOT.agent_id)}
-function renderRail(){let q=S.filter.trim().toLowerCase();$('knownList').innerHTML=KNOWN.filter(a=>!q||(a.nickname||'').toLowerCase().includes(q)||RICH[a.agent_id].title.toLowerCase().includes(q)||content(promptOf(RICH[a.agent_id])).toLowerCase().includes(q)).map(a=>`<button data-select="${E(a.agent_id)}" class="miniitem ${S.selected===a.agent_id?'active':''}">${E(a.nickname||'Agent')} · <span style="color:#90a1ad">${E(RICH[a.agent_id].title)}</span></button>`).join('');$('unknownList').innerHTML=UNKNOWN.filter(a=>!q||titleOf(a).toLowerCase().includes(q)||a.agent_id.toLowerCase().includes(q)).map(a=>`<button class="miniitem ${S.selected===a.agent_id?'active':''}" data-select="${E(a.agent_id)}">${E(titleOf(a))} <span class="tiny">· ID only</span></button>`).join('');}
+function renderRail(){let q=S.filter.trim().toLowerCase();$('knownList').innerHTML=KNOWN.filter(a=>!q||(a.nickname||'').toLowerCase().includes(q)||RICH[a.agent_id].title.toLowerCase().includes(q)||content(promptOf(RICH[a.agent_id])).toLowerCase().includes(q)).map(a=>`<button data-select="${E(a.agent_id)}" class="miniitem knownitem ${S.selected===a.agent_id?'active':''}"><strong>${E(a.nickname||'Agent')}</strong><small>${E(RICH[a.agent_id].title)}</small></button>`).join('');$('unknownList').innerHTML=UNKNOWN.filter(a=>!q||titleOf(a).toLowerCase().includes(q)||a.agent_id.toLowerCase().includes(q)).map(a=>`<button class="miniitem ${S.selected===a.agent_id?'active':''}" data-select="${E(a.agent_id)}">${E(titleOf(a))} <span class="tiny">· ID only</span></button>`).join('');if(q&&$('unknownList').innerHTML)$('unknownPanel').open=true;}
 function modal(title,text,ref='',tag='NATIVE SOURCE · SANITIZED'){S.modalText=String(text??'');$('modalTitle').textContent=title;$('modalText').textContent=S.modalText;$('modalRef').textContent=ref;$('modalTag').textContent=tag;$('modal').classList.add('show');$('modalText').parentNode.scrollTop=0}
 function actBtn(kind,label,caption,ref){return `<button class="native-step" data-open="${E(kind)}"><span class="num">↗</span><span class="txt"><strong>${E(label)}</strong><small>${E(caption)}</small></span><span class="pill blue">NATIVE</span></button>`}
 function refBtn(rec,idx){let n=rec.native||{},summary=excerpt(content(rec),90);let extra=rec.event_type==='commandExecution'?(n.exit_code!==undefined?`exit ${n.exit_code}`:'命令'):'';return `<button class="native-step" data-rec="${idx}"><span class="num">${idx+1}</span><span class="txt"><strong>${E(rec.event_type||'event')} ${E(extra)}</strong><small>${E(summary||rec.provider_item_id||'Source metadata only')}</small></span><span class="pill blue">↗</span></button>`}
@@ -48,21 +1178,28 @@ function renderInspector(){let a=BYID[S.selected];$('inspectStatus').textContent
 let r=RICH[a.agent_id];$('inspectSub').textContent=`原生身份 · ${a.role==='root'?'根 Agent':'直属子 Agent'} · Provider 状态 ${a.status||'未知'}（不代表工作结果）`;
 if(!r){$('inspectBody').innerHTML=`<div class="inspect-block"><h3>这名 Agent 的真实任务是什么？ <span class="pill amber">UNAVAILABLE</span></h3><div class="note">当前脱敏导出仅包含该 Agent 的身份、原生父子关系和事件类型计数。没有可读取的派发内容与最终消息。<br><br>不能从调用次数猜测它做了什么。</div></div><div class="inspect-block"><h3>原生关系</h3><p class="intro">父级：Root Agent · 身份真实、不可据此推导工作归属。</p><button class="u-btn" data-select="${E(ROOT.agent_id)}">查看 Root →</button></div><div class="inspect-block"><h3>运行元信息 <span class="pill blue">NATIVE</span></h3>${Object.entries(counts(a)).sort((x,y)=>y[1]-x[1]).map(([k,v])=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #edf1f3;font-size:11px"><span>${E(k)}</span><b>${E(v)}</b></div>`).join('')}</div><div class="note">原生 status 为 ${E(a.status)}，不是任务失败或完成的判定。数据仍有缺口。</div><button class="u-btn" data-view="lineage">到 27-Agent 原生血缘视图 →</button>`;return}
 let inp=content(r.input),disp=r.dispatch.find(x=>x.native?.prompt),mission=content(disp||r.input);let last=content(r.final);let ams=(r.agentMessageSamples||[]).filter(x=>x.evidence_ref!==(r.final||{}).evidence_ref).slice(0,3);let files=r.records.filter(x=>x.event_type==='fileChange');let exec=r.records.filter(x=>x.event_type==='commandExecution');let sample=r.records.slice(0,4);
-$('inspectBody').innerHTML=`<div class="inspect-block"><h3>01 · 为什么被派来？ <span class="pill blue">NATIVE INPUT</span></h3><div class="quote">${E(excerpt(mission,460))}</div><button class="u-btn" data-open="dispatch">完整任务派发 ↗</button>${disp?`<div class="tiny">Parent spawnAgent · 有原生派发证据</div>`:`<div class="tiny">Root 使用首条 native userMessage；不当成完整的全局意图</div>`}</div>
-<div class="inspect-block"><h3>02 · 实际观察到了什么？ <span class="pill blue">NATIVE ACTIVITY</span></h3><div class="intro" style="margin-bottom:11px">这是执行记录与 Agent 自述，不能自动升级成已验证贡献。</div><div class="native-list">${ams.length?ams.map((x,i)=>`<button class="native-step" data-am="${i}"><span class="num">◌</span><span class="txt"><strong>原生执行消息 ${i+1}</strong><small>${E(excerpt(content(x),135))}</small></span></button>`).join(''):sample.map((x,i)=>refBtn(x,i)).join('')}</div><div class="tiny" style="margin-top:8px">选录轨迹 ${r.records.length} 条 · commands ${exec.length} · fileChanges ${files.length} · 非全部 4,251 条内容</div><button class="u-btn" data-trace="1">查看此 Agent 的执行证据 →</button></div>
-<div class="inspect-block"><h3>03 · 它最后写了什么？ <span class="pill blue">LAST NATIVE MESSAGE</span></h3><div class="quote">${E(excerpt(last,650))}</div><button class="u-btn" data-open="final">阅读原生消息全文 ↗</button><div class="note" style="margin-top:9px">注意：最后一条 agentMessage ≠ provider return 字段 ≠ 已验证的任务完成结果。</div></div>
-<div class="inspect-block"><h3>04 · 支撑记录 <span class="pill blue">EVIDENCE</span></h3><div class="native-list">${sample.map((x,i)=>refBtn(x,i)).join('')}</div><button class="u-btn" data-trace="1">打开选录的完整执行列表 →</button></div>
-<details class="inspect-block"><summary class="eyebrow" style="cursor:pointer">取证元信息 · 可展开</summary><div class="note" style="margin-top:9px;overflow-wrap:anywhere">Agent ID: ${E(a.agent_id)}<br>Parent: ${E(a.parent_agent_id||'ROOT')}<br>Provider status: ${E(a.status)}<br>Model: ${E(a.model||'—')}<br>Turn Count: ${E(a.turn_count)}<br>Native events: ${E(a.event_count)}</div></details>`}
+$('inspectBody').innerHTML=`<div class="inspect-block"><h3>01 · 任务是什么 <span class="pill blue">NATIVE INPUT</span></h3><div class="quote">${E(excerpt(mission,370))}</div><button class="u-btn" data-open="dispatch">查看完整任务输入 ↗</button><div class="tiny">${disp?'存在原生派发证据':'Root 仅展示首条 userMessage，不代表完整 Run 意图'}</div></div>
+<div class="inspect-block"><h3>02 · 最后带回了什么 <span class="pill blue">NATIVE MESSAGE</span></h3><div class="quote">${E(excerpt(last,590))}</div><button class="u-btn" data-open="final">阅读最后一条原生消息全文 ↗</button><div class="tiny">最后一条原生消息 ≠ 已验证的最终贡献或成功结果。</div></div>
+<div class="inspect-block"><h3>03 · 过程中发生了什么 <span class="pill blue">SELECTED TRACE</span></h3><div class="intro" style="margin-bottom:9px">${r.records.length} 条选录记录 · ${exec.length} 条命令 · ${files.length} 条文件变更；不代表完整 4,251 条内容。</div><div class="native-list">${ams.length?ams.slice(0,2).map((x,i)=>`<button class="native-step" data-am="${i}"><span class="num">↗</span><span class="txt"><strong>原生执行消息 ${i+1}</strong><small>${E(excerpt(content(x),108))}</small></span></button>`).join(''):sample.slice(0,2).map((x,i)=>refBtn(x,i)).join('')}</div><button class="u-btn" data-trace="1">按轮次阅读这名 Agent 的执行轨迹 →</button></div>
+<details class="inspect-block"><summary class="eyebrow" style="cursor:pointer">证据取样与原生标识（展开）</summary><div class="native-list" style="margin-top:9px">${sample.map((x,i)=>refBtn(x,i)).join('')}</div><div class="note" style="margin-top:9px;overflow-wrap:anywhere">Agent ID: ${E(a.agent_id)}<br>Parent: ${E(a.parent_agent_id||'ROOT')}<br>Provider status: ${E(a.status)}<br>Model: ${E(a.model||'—')}<br>Turn Count: ${E(a.turn_count)}<br>Native events: ${E(a.event_count)}</div></details>`}
 function showEvidence(index){let a=BYID[S.selected];let r=RICH[a?.agent_id];if(!r)return;let rec=r.records[index];if(!rec)return;S.currentRec=index;let n=rec.native||{};let raw=content(rec);let data=Object.assign({},rec);delete data.native;let body=`${raw||'(无可用文本正文；仅元数据)'}\n\n────────── NATIVE ENVELOPE ──────────\n${JSON.stringify(data,null,2)}\n\n────────── NATIVE FIELDS ──────────\n${JSON.stringify(n,null,2)}`;modal(`执行记录 · ${rec.event_type}`,body,rec.evidence_ref,'EVIDENCE / AGENT → OBSERVATION');}
-function renderTrace(){let a=BYID[S.selected];let r=RICH[a?.agent_id];$('traceView').innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center"><div><span class="cap">TRACE / SELECTED AGENT</span><h2 class="trace-title">${E(a?titleOf(a):'选择 Agent 后查看 Trace')}</h2></div><button class="btn" data-backmap="1">← 返回 Agent 地图</button></div><p class="trace-intro">仅展示导出包内选录的真实非 reasoning 记录。不是完整原始流；不能把 metadata-only 记录当作真实文本。</p>${r?`<div class="trace-caption">${r.records.length} selected records · ${E(r.sampling||'bounded evidence')} · <span class="pill blue">native</span></div>${r.records.map((v,i)=>{let str=content(v);return `<button class="trace-row" data-rec="${i}" style="width:100%;text-align:left"><span class="time">${E(v.turn_index!==undefined?'turn '+v.turn_index:'turn —')}</span><strong>${E(v.event_type)}</strong><span class="preview">${E(excerpt(str,175)||'该记录无可读取正文')}</span><span class="tool">查看原文 ↗</span></button>`}).join('')}`:`<div class="note" style="padding:20px">${a?'此 Agent 未包含正文与轨迹抽样。':'从地图选择一个有完整内容的 Agent。'}</div>`}`}
+function traceKind(k){return ({userMessage:'用户输入',agentMessage:'Agent 回复',commandExecution:'命令执行',fileChange:'文件变更',webSearch:'网络检索',mcpToolCall:'MCP 工具',collabAgentToolCall:'Agent 派发',contextCompaction:'上下文压缩',reasoning:'推理记录'})[k]||k}
+function traceLane(k){return ['userMessage'].includes(k)?'u':['agentMessage'].includes(k)?'a':'t'}
+function renderTrace(){let a=BYID[S.selected],r=RICH[a?.agent_id];if(!r){$('traceView').innerHTML=`<div class="trace-shell"><div class="trace-page-top"><span class="cap">TRACE / SELECTED AGENT</span><h2>先在 Agents 中选择一个有真实正文的 Agent</h2><p>当前导出只为 5 个实例保留部分原生执行记录。</p><button class="btn" data-backmap="1">← 返回 Agents 地图</button></div></div>`;return}
+ const items=r.records.map((v,i)=>({v,i})).sort((x,y)=>(x.v.observed_at||0)-(y.v.observed_at||0)||x.i-y.i);
+ const grouped=new Map();items.forEach(({v,i})=>{let key=String(v.turn_index??v.turn_id??'unknown');if(!grouped.has(key))grouped.set(key,[]);grouped.get(key).push({v,i})});
+ const laneItems=items.map(({v,i})=>`<button type="button" data-rec="${i}" class="trace-tick ${traceLane(v.event_type)}" title="${E(traceKind(v.event_type))} · 选录记录 ${i+1}"></button>`).join('');
+ const panels=[...grouped.entries()].map(([key,chunk],g)=>{let types={};chunk.forEach(({v})=>types[traceLane(v.event_type)]=(types[traceLane(v.event_type)]||0)+1);const rows=chunk.map(({v,i})=>{let raw=excerpt(content(v),180)||'原始正文不可用；可检查原生元信息';return `<button type="button" class="trace-entry" data-rec="${i}"><span class="trace-kind ${traceLane(v.event_type)}">${E(traceKind(v.event_type))}</span><span class="trace-snippet">${E(raw)}</span><span class="trace-open">原文 ↗</span></button>`}).join('');return `<details class="trace-turn" ${g<2?'open':''}><summary><strong>第 ${E(Number.isFinite(+key)?(+key+1):key)} 轮 · ${chunk.length} 条选录</strong><span>用户 ${types.u||0} · 助手 ${types.a||0} · 工具 ${types.t||0}</span></summary><div class="trace-turn-body">${rows}</div></details>`}).join('');
+ $('traceView').innerHTML=`<div class="trace-shell"><div class="trace-page-top"><div><span class="cap">TRACE / NATIVE EXECUTION</span><h2>${E(titleOf(a))} 的执行轨迹</h2><p>按原生顺序阅读：用户输入 → Agent 消息 → 工具结果。<b>此处仅 ${items.length} 条选录记录，不能代替完整 ${E(a.event_count)} 条事件。</b></p></div><button class="btn" data-backmap="1">← 返回 Agent 地图</button></div><div class="trace-overview"><div class="trace-overview-label"><b>选录记录分布</b><span>非完整运行时间轴 · 点击色块查看原生记录</span></div><div class="trace-track">${laneItems}</div><div class="trace-legend"><span><i class="u"></i>用户输入</span><span><i class="a"></i>Agent 回复</span><span><i class="t"></i>工具 / 执行</span><span>共 ${grouped.size} 个有选录的 Turn</span></div></div><div class="trace-reading">${panels}</div></div>`;
+}
 function selectAgent(id){if(!BYID[id])return;S.selected=id;renderRail();drawKnown();renderInspector();if(S.tab==='trace')renderTrace();}
 function setView(v){S.scene=v;document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));$('viewTitle').textContent=v==='map'?'谁被派去做什么？':'原生 Agent 血缘 · 27/27';$('viewDesc').textContent=v==='map'?'任务内容优先的空间试验；已知任务用文字，未知保持未知。':'27 个真实实例，26 条 parent-child 边；这里不推断任务分组。';$('viewCap').textContent=v==='map'?'AGENTS / COGNITIVE MAP':'AGENTS / NATIVE LINEAGE';if(v==='lineage'){S.tab='agents';$('canvaswrap').classList.add('hidden');$('traceView').classList.add('show');$('traceView').innerHTML=`<div style="display:flex;align-items:center;justify-content:space-between"><h2 class="trace-title">Root → 26 个直属 Agent</h2><button class="btn" data-view="map">返回工作地图 →</button></div><p class="trace-intro">原生 lineage 可核对；未保留正文的 Agent 不会被解释为“无工作”。</p>${ALL.map(a=>`<button class="trace-row" data-select="${E(a.agent_id)}" style="width:100%;text-align:left"><span class="time">${a.role==='root'?'ROOT':'CHILD'}</span><strong>${E(titleOf(a))}</strong><span class="preview">${RICH[a.agent_id]?'有原生任务 / 消息':'只有身份，无法解释任务'}</span><span class="tool">${RICH[a.agent_id]?'CONTENT':'ID ONLY'}</span></button>`).join('')}`;}else{S.tab='agents';$('canvaswrap').classList.remove('hidden');$('traceView').classList.remove('show');$('sAgents').classList.add('active');$('sTrace').classList.remove('active');setTransform();}}
-function showTab(t){S.tab=t;$('sTrace').classList.toggle('active',t==='trace');$('sAgents').classList.toggle('active',t==='agents');if(t==='trace'){$('canvaswrap').classList.add('hidden');$('traceView').classList.add('show');renderTrace();$('viewTitle').textContent='真实执行证据 · 选录轨迹';$('viewCap').textContent='TRACE / NATIVE OBSERVATIONS';}else{setView('map')}}
+function showTab(t){S.tab=t;$('sWork').classList.toggle('active',t==='work');$('sTrace').classList.toggle('active',t==='trace');$('sAgents').classList.toggle('active',t==='agents');$('workSurface').classList.toggle('hidden',t!=='work');document.querySelector('.appmain').classList.toggle('hidden',t==='work');if(t==='work')return;if(t==='trace'){$('canvaswrap').classList.add('hidden');$('traceView').classList.add('show');renderTrace();$('viewTitle').textContent='真实执行证据 · 选录轨迹';$('viewDesc').textContent='按轮次阅读原生输入、Agent 回复与工具调用；选录记录不等于完整执行轨迹。';$('viewCap').textContent='TRACE / NATIVE OBSERVATIONS';}else{setView('map')}}
 function setTransform(){ $('stage').style.transform=`translate(${S.panX}px,${S.panY}px) scale(${S.zoom})`; }
 function fit(){let w=$('canvaswrap').clientWidth,h=$('canvaswrap').clientHeight;S.zoom=Math.min(.91,(w-38)/1220,(h-30)/810);S.zoom=Math.max(.34,S.zoom);S.panX=(w-1220*S.zoom)/2;S.panY=(h-810*S.zoom)/2;setTransform();}
 function zoomBy(m,x=null,y=null){let c=$('canvaswrap').getBoundingClientRect();let cx=x??(c.left+c.width/2),cy=y??(c.top+c.height/2);let lx=cx-c.left,ly=cy-c.top;let prior=S.zoom;S.zoom=Math.max(.33,Math.min(1.65,S.zoom*m));S.panX=lx-(lx-S.panX)*(S.zoom/prior);S.panY=ly-(ly-S.panY)*(S.zoom/prior);setTransform()}
 function attach(){document.addEventListener('click',e=>{let t=e.target.closest('[data-select]');if(t){selectAgent(t.dataset.select);return}t=e.target.closest('[data-rec]');if(t){showEvidence(+t.dataset.rec);return}t=e.target.closest('[data-am]');if(t){let r=RICH[S.selected],rec=r?.agentMessageSamples?.filter(x=>x.evidence_ref!==(r.final||{}).evidence_ref)[+t.dataset.am];if(rec)modal('原生 Agent 执行消息',content(rec),rec.evidence_ref);return}t=e.target.closest('[data-open]');if(t){let r=RICH[S.selected];if(r){let rec=t.dataset.open==='final'?r.final:promptOf(r);modal(t.dataset.open==='final'?'最后一条原生 Agent 消息':'原生派发 / 首条输入',content(rec),findNativeEvidence(rec),t.dataset.open==='final'?'LAST NATIVE MESSAGE · NOT VERIFIED OUTCOME':'SOURCE-GROUNDED TASK INPUT')}return}t=e.target.closest('[data-trace]');if(t){showTab('trace');return}t=e.target.closest('[data-backmap]');if(t){showTab('agents');return}t=e.target.closest('[data-view]');if(t){setView(t.dataset.view);return}t=e.target.closest('[data-group]');if(t){let id=KNOWN.find(a=>RICH[a.agent_id].group===t.dataset.group)?.agent_id;if(id){showTab('agents');selectAgent(id)}return}});
-$('sAgents').addEventListener('click',()=>showTab('agents'));$('sTrace').addEventListener('click',()=>showTab('trace'));$('rootNode').addEventListener('click',()=>selectAgent(ROOT.agent_id));$('search').addEventListener('input',e=>{S.filter=e.target.value;renderRail();});$('fit').addEventListener('click',fit);$('fitBtn').addEventListener('click',fit);$('plus').addEventListener('click',()=>zoomBy(1.18));$('minus').addEventListener('click',()=>zoomBy(1/1.18));$('showUnknown').addEventListener('click',()=>setView('lineage'));$('lineBtn').addEventListener('click',()=>setView(S.scene==='lineage'?'map':'lineage'));
+$('sWork').addEventListener('click',()=>showTab('work'));$('returnAgents').addEventListener('click',()=>showTab('agents'));$('sAgents').addEventListener('click',()=>showTab('agents'));$('sTrace').addEventListener('click',()=>showTab('trace'));$('rootNode').addEventListener('click',()=>selectAgent(ROOT.agent_id));$('search').addEventListener('input',e=>{S.filter=e.target.value;renderRail();});$('fit').addEventListener('click',fit);$('fitBtn').addEventListener('click',fit);$('plus').addEventListener('click',()=>zoomBy(1.18));$('minus').addEventListener('click',()=>zoomBy(1/1.18));$('showUnknown').addEventListener('click',()=>setView('lineage'));$('lineBtn').addEventListener('click',()=>setView(S.scene==='lineage'?'map':'lineage'));
 $('closeModal').addEventListener('click',()=>$('modal').classList.remove('show'));$('modal').addEventListener('click',e=>{if(e.target===$('modal'))$('modal').classList.remove('show')});$('copyBtn').addEventListener('click',()=>{if(navigator.clipboard)navigator.clipboard.writeText(S.modalText).then(()=>{$('copyBtn').textContent='已复制 ✓';setTimeout(()=>$('copyBtn').textContent='复制全文',1000)}).catch(()=>{$('copyBtn').textContent='复制失败'});else $('copyBtn').textContent='复制不可用';});document.addEventListener('keydown',e=>{if(e.key==='Escape')$('modal').classList.remove('show')});
 let dragging=false,x=0,y=0,moved=false,origin=null;let cv=$('canvaswrap');cv.addEventListener('pointerdown',e=>{if(e.button!==0||e.target.closest('button'))return;dragging=true;moved=false;x=e.clientX;y=e.clientY;cv.setPointerCapture(e.pointerId);cv.style.cursor='grabbing'});cv.addEventListener('pointermove',e=>{if(!dragging)return;let dx=e.clientX-x,dy=e.clientY-y;if(Math.abs(dx)+Math.abs(dy)>2)moved=true;S.panX+=dx;S.panY+=dy;x=e.clientX;y=e.clientY;setTransform()});cv.addEventListener('pointerup',()=>{dragging=false;cv.style.cursor='default'});cv.addEventListener('wheel',e=>{e.preventDefault();zoomBy(e.deltaY>0?.93:1.075,e.clientX,e.clientY)},{passive:false});window.addEventListener('resize',()=>{if(S.scene==='map')fit()});}
 drawKnown();renderRail();renderInspector();attach();requestAnimationFrame(fit);
