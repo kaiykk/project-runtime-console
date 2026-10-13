@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PRC Ticket 01 案例诊断检查</title>
+  <style>
+    :root{--ink:#203744;--muted:#647883;--line:#d8e3e7;--paper:#f7fafb;--panel:#fff;--blue:#166b8f;--green:#157347;--green-bg:#e6f5ec;--red:#a13a2b;--red-bg:#fdebe7;--amber:#8c5d14;--amber-bg:#fff4d9;--shadow:0 12px 30px rgba(31,61,74,.08)}
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}body{padding:28px;overflow-x:hidden}.page{max-width:1180px;margin:0 auto;min-width:0}.top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:24px;min-width:0}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--blue)}h1{font-size:30px;line-height:1.2;margin:8px 0}h2{font-size:20px;margin:0 0 10px}h3{font-size:16px;margin:0 0 6px}.intro{max-width:760px;color:var(--muted);margin:0}.actions{display:flex;gap:8px;flex-wrap:wrap}.button{border:1px solid #aac4cf;border-radius:7px;padding:9px 13px;background:#fff;color:var(--ink);font:inherit;font-weight:700;cursor:pointer;text-decoration:none}.button:hover{border-color:var(--blue);color:var(--blue)}.summary{display:grid;grid-template-columns:1.2fr repeat(3,1fr);gap:12px;margin-bottom:18px}.card,.case,.section{background:var(--panel);border:1px solid var(--line);border-radius:9px;box-shadow:var(--shadow);min-width:0}.card{padding:17px}.big{font-size:25px;font-weight:800;margin-top:4px}.small{font-size:13px;color:var(--muted)}.status{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:800;white-space:nowrap}.status.pass{color:var(--green);background:var(--green-bg)}.status.fail{color:var(--red);background:var(--red-bg)}.status.pending,.status.inconclusive{color:var(--amber);background:var(--amber-bg)}.dot{width:8px;height:8px;border-radius:50%;background:currentColor}.section{padding:20px;margin:14px 0}.sectionhead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}.cases{display:grid;grid-template-columns:1fr 1fr;gap:14px;min-width:0}.case{padding:18px;box-shadow:none}.casehead{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:12px;min-width:0}.case h3{font-size:18px}.path{font:12px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted);overflow-wrap:anywhere;word-break:break-word;margin:8px 0}.checks{display:grid;gap:7px}.check{display:grid;grid-template-columns:78px minmax(0,1fr);gap:10px;padding:9px 0;border-bottom:1px solid #edf2f4;min-width:0}.check:last-child{border-bottom:0}.check p{margin:0;min-width:0}.check .detail{font-size:12px;color:var(--muted);margin-top:2px;overflow-wrap:anywhere;word-break:break-word}.counts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:13px 0}.count{padding:10px;border:1px solid var(--line);border-radius:7px;background:#fbfdfe;min-width:0}.count strong{display:block;font-size:20px}.count span{display:block;font-size:12px;color:var(--muted);overflow-wrap:anywhere}.count strong,.count span{overflow-wrap:anywhere;word-break:break-word}table{width:100%;table-layout:fixed;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:9px;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere;word-break:break-word}th{color:var(--muted);font-weight:700}.mono{font:12px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;overflow-wrap:anywhere;word-break:break-word}.message{padding:14px 16px;border-left:4px solid var(--blue);background:#eef7fa;color:#2b5364;overflow-wrap:anywhere}.flow{font:14px/1.8 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;background:#f5f8f9;border:1px solid var(--line);border-radius:7px;padding:14px;overflow:auto}.hidden{display:none}@media(max-width:800px){body{padding:16px}.top{display:block}.actions{margin-top:14px}.summary,.cases{grid-template-columns:1fr}.counts{grid-template-columns:repeat(2,1fr)}.check{grid-template-columns:1fr;gap:3px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="top">
+      <div>
+        <div class="eyebrow">PRC / TICKET 01 / READ-ONLY ACCEPTANCE</div>
+        <h1>固定历史样本诊断（非产品验收）</h1>
+        <p class="intro">这页不要求你读代码。它把两份真实 Session 的身份、父子关系、Turn 归属、重复记录和原始文件保护结果，翻译成可以直接判断的中文。</p>
+      </div>
+      <div class="actions">
+        <a class="button" href="/">返回 PRC</a>
+        <button class="button" id="refresh">重新检查</button>
+      </div>
+    </header>
+
+    <section class="summary" aria-label="总结果">
+      <div class="card"><div class="small">这一页的结论</div><div id="overall" class="big">读取中…</div><div id="next" class="small">正在读取真实源文件</div></div>
+      <div class="card"><div class="small">已通过</div><div id="passed" class="big">-</div><div class="small">固定检查项</div></div>
+      <div class="card"><div class="small">检查项总数</div><div id="total" class="big">-</div><div class="small">包括两个真实 Session</div></div>
+      <div class="card"><div class="small">DSH</div><div id="dsh" class="big">待检查</div><div class="small">DSH 是独立核对，不替代你的最终判断</div></div>
+    </section>
+
+    <section class="section">
+      <div class="sectionhead"><div><h2>这轮到底检查什么</h2><div class="small">目标是确认“真实 Agent 身份和数据归属”没有被页面或 parser 改错。</div></div></div>
+      <div class="flow">真实 Session 文件
+    ↓
+程序读取并整理
+    ↓
+本页显示数量、关系、重复和来源
+    ↓
+红色 = 必须修复　绿色 = 这项通过　黄色 = 证据不足</div>
+    </section>
+
+    <section class="section">
+      <div class="sectionhead"><div><h2>两份真实 Session</h2><div class="small">下面的结果直接来自固定源文件；没有使用模拟数据。</div></div></div>
+      <div id="cases" class="cases"><div class="message">正在读取…</div></div>
+    </section>
+
+    <section class="section">
+      <div class="sectionhead"><div><h2>baseline 是否被误改</h2><div class="small">C v0.2 和 Work B2 是已有的验收参照，本轮不应该修改它们。</div></div></div>
+      <div id="baselines"><div class="message">正在读取…</div></div>
+    </section>
+
+    <section class="section">
+      <div class="sectionhead"><div><h2>你重点看这四件事</h2><div class="small">这四件事最能发现“后台看似通过、实际已经跑偏”的情况。</div></div></div>
+      <div class="counts">
+        <div class="count"><strong>1 + 26</strong><span>1 个根 Agent，26 个 child Agent</span></div>
+        <div class="count"><strong>26</strong><span>26 条正确父子关系</span></div>
+        <div class="count"><strong>2 × Halley</strong><span>同名但不同 ID，不能合并</span></div>
+        <div class="count"><strong>0</strong><span>no-lineage 不凭空生成 Agent</span></div>
+      </div>
+      <div class="message">如果某个来源没有证据，正确结果是“没有证据 / UNAVAILABLE”。这页不会把空白补成一个看起来完整的 Agent。</div>
+    </section>
+  </main>
+  <script>
+    const esc = value => String(value ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    const statusClass = status => status === 'PASS' || status === 'DIAGNOSTIC_PASS' ? 'pass' : status === 'FAIL' || status === 'RETURN_TO_REPAIR' ? 'fail' : 'pending';
+    const statusText = status => ({PASS:'通过',FAIL:'失败',DIAGNOSTIC_PASS:'样本机械检查通过',RETURN_TO_REPAIR:'必须修复',INCONCLUSIVE:'证据不足',PENDING:'待检查',NOT_REVIEWED:'未做当前独立复核'})[status] || status;
+    const badge = status => `<span class="status ${statusClass(status)}"><span class="dot"></span>${esc(statusText(status))}</span>`;
+    const checkHtml = check => `<div class="check"><div>${badge(check.status)}</div><p><strong>${esc(check.label)}</strong><br><span class="detail">${esc(check.detail)}</span></p></div>`;
+    const caseHtml = item => {
+      if (!item.available) return `<article class="case"><div class="casehead"><div><h3>${esc(item.label)}</h3><div class="path">${esc(item.path)}</div></div>${badge(item.status)}</div>${item.checks.map(checkHtml).join('')}</article>`;
+      const p = item.projection || {};
+      const l = p.lineage || {};
+      return `<article class="case"><div class="casehead"><div><h3>${esc(item.label)}</h3><div class="path">${esc(item.path)}</div><div class="small">Session ID：<span class="mono">${esc(item.session_id)}</span><br>SHA-256：<span class="mono">${esc(item.sha256)}</span></div></div>${badge(item.status)}</div><div class="counts"><div class="count"><strong>${esc(l.child_count ?? 0)}</strong><span>child Agent</span></div><div class="count"><strong>${esc(l.edge_count ?? 0)}</strong><span>父子关系</span></div><div class="count"><strong>${esc(p.turn_count ?? 0)}</strong><span>Turn occurrence</span></div><div class="count"><strong>${esc(p.event_count ?? 0)}</strong><span>展示事件</span></div></div><div class="checks">${item.checks.map(checkHtml).join('')}</div>${(p.sample_mirrors || []).length ? `<details><summary>查看一个“只显示一次、保留两处证据”的例子</summary><table><thead><tr><th>事件</th><th>原始位置</th></tr></thead><tbody>${p.sample_mirrors.map(m => `<tr><td class="mono">${esc(m.call_id || m.event_id)}</td><td>${m.source_locators.map(loc => `<div class="mono">第 ${esc(loc.line)} 行，byte ${esc(loc.byte_offset)}，${esc(loc.locator_kind)}</div>`).join('')}</td></tr>`).join('')}</tbody></table></details>` : ''}${(p.sample_agents || []).length ? `<details><summary>查看 Agent 身份样例</summary><table><thead><tr><th>名字</th><th>Agent ID</th><th>父级 ID</th></tr></thead><tbody>${p.sample_agents.slice(0,8).map(a => `<tr><td>${esc(a.nickname || 'Root Session')}</td><td class="mono">${esc(a.agent_id)}</td><td class="mono">${esc(a.parent_agent_id || '无')}</td></tr>`).join('')}</tbody></table></details>` : ''}</article>`;
+    };
+    async function load(){
+      document.querySelector('#overall').textContent='读取中…';
+      try{
+        const result = await fetch('/api/acceptance/ticket-01',{cache:'no-store'}).then(response => response.json());
+        document.querySelector('#overall').innerHTML = badge(result.status);
+        document.querySelector('#next').textContent = result.next_step;
+        document.querySelector('#passed').textContent = result.passed_check_count;
+        document.querySelector('#total').textContent = result.total_check_count;
+        document.querySelector('#dsh').innerHTML = badge(result.dsh?.status || 'PENDING');
+        document.querySelector('#cases').innerHTML = result.cases.map(caseHtml).join('');
+        document.querySelector('#baselines').innerHTML = `<div class="checks">${result.baseline_checks.map(checkHtml).join('')}</div>`;
+      }catch(error){
+        document.querySelector('#overall').innerHTML = badge('INCONCLUSIVE');
+        document.querySelector('#next').textContent = `检查页读取失败：${error.message}`;
+        document.querySelector('#cases').innerHTML = '<div class="message">没有使用替代数据。请确认本地服务器正在运行。</div>';
+      }
+    }
+    document.querySelector('#refresh').addEventListener('click',load);
+    load();
+  </script>
+</body>
+</html>

@@ -15,6 +15,7 @@ WORK_MOCK = ROOT / "PRC_STAGEWISE_CASE_PACK" / "PRC_VERTICAL_SLICE_HANDOFF_v1" /
 sys.path.insert(0, str(ROOT))
 
 from packages.session_sources.codex_jsonl import list_sessions, read_session  # noqa: E402
+from packages.session_sources.ticket01_acceptance import run_ticket01_acceptance  # noqa: E402
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -46,6 +47,11 @@ class Handler(SimpleHTTPRequestHandler):
             except PermissionError as exc:
                 return self._json({"error": "source_path_rejected", "message": str(exc)}, 403)
             except Exception as exc:  # local diagnostic response; never mutate source
+                return self._json({"error": type(exc).__name__, "message": str(exc)}, 500)
+        if parsed.path == "/api/acceptance/ticket-01":
+            try:
+                return self._json(run_ticket01_acceptance())
+            except Exception as exc:  # acceptance page must expose an explicit failure
                 return self._json({"error": type(exc).__name__, "message": str(exc)}, 500)
         if parsed.path == "/api/case":
             try:

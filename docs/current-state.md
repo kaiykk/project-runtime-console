@@ -1,84 +1,29 @@
-# Current State
+# 当前状态
 
-**Date:** 2026-10-09
-**Project:** Project Runtime Console
-**Active round:** `PRC V1 UI Fidelity Recovery`
+更新：2026-10-13。产品状态：**NOT_ACCEPTED**。
 
-## Repository State
+## 已批准方向
+让非底层调试使用者通过统一可视化理解项目推进、执行者行动、请求变成结果，并核对依据。
+Work 讲工作内容演变；Agents 讲执行结构与过程；Trace 讲具体执行；侧栏讲任务、变化和实际结果。
+B2/C 是批准体验基础；Langfuse/ThoughtDAG 的补充层级尚在决策，不得将不同关系合成未证明的因果线。
 
-The active tree was reduced to the Codex-native runtime substrate, the transcript/shadow judgment foundation, minimal tests, and the V1 compatibility evidence. Former console, graph prototypes, OpenDesign studies, identity experiments, governance packets, and other superseded temporary work are not part of the active tree. Git history remains the archive; no archive folder was created.
+## 本轮：历史工作树清理，不是新产品实现
+- 保留 Python 读取/服务、来源定位、稳定 occurrence、证据和既有测试。
+- 去重仅跳过重复调用，不丢弃同 call ID 的工具结果；血缘仅由有明确 sender 的 spawn 证据建立。
+- 删除已覆盖的身份墙/样本专用旧渲染器，提取共享核心、执行图和 C 页面；一个入口初始化。
+- 保留单 Session 步骤图和地图/证据交互；移除活跃样本专用摘要与硬编码 404。角色线索明确是待整理内容，不代表通用理解能力。
+- 固定样本检查仅为诊断，不读取历史 DSH 回执作为当前审核；默认测试不读取私人 Session。
 
-## Runtime Foundation
+## 仍未完成
+可读任务/变化/结果摘要、完整可视化 Trace、child 内部记录读取、Work 转折/关系交互和完整导航恢复。保留的旧界面不代表已经符合 Experience Star。
 
-Retained runtime capabilities are:
+## 下一步
+先出新实现方案，再独立 global review；reviewer 先看用户目标、批准参考和失败反例，再看有界提案，不继承作者的完整推理上下文。通过后才实施。
+Issue 入口：
+- https://github.com/kaiykk/project-runtime-console/issues/2
+- https://github.com/kaiykk/project-runtime-console/issues/3
+- https://github.com/kaiykk/project-runtime-console/issues/4
 
-- `packages/codex_runtime/`: read-only Codex app-server observation, native Thread identity, root-run grouping through `parentThreadId`, and native event projection.
-- `packages/runtime_events/`: transcript tool-result parsing and stable event identity.
-- `packages/judge_deepseek/`, `packages/judgment_sidecar/`, and `packages/judgment_ledger/`: bounded shadow judgment provider, receipt, sidecar, and replayable JSONL persistence.
-
-No runtime, identity, lineage, or judgment semantics were changed by the cleanup.
-
-## V1 Reuse Probe
-
-Target: real Codex Run `01a0eca4-7029-7f92-b5a9-2006edb08721`.
-
-Observed native shape from the read-only app-server observer: `1 root / 26 children`, `4,251` native events, and `69` turns. The sanitized fixture is retained at `experiments/v1-reuse-compatibility/evidence/prc-27-agent-sanitized-v2.json`.
-
-Trajectory local-only probe:
-
-- Binary: Trajectory `0.6.0`, commit `f03a74b21d31e9d95e491f35cc4646d5262e3f76`.
-- Local backfill/indexing completed against the Codex rollout corpus in an isolated temporary home; no remote MCP, OAuth, or Datadog publishing was used.
-- `patterns session <ID> --json` produced real structured output: `codex`, `42` turns, `26` subagent invocations, `task_count: 0`, `19` commits, `124` Markdown files, and `9` test files in deliverable evidence.
-- `patterns estimate --since 2026-09-29 --json` produced a no-inference cost estimate for `14` unclassified sessions. `patterns analyze --yes` was not run.
-
-The session report did not produce human work/task boundaries. Therefore the probe is `PARTIAL`: it confirms local Codex recognition, backfill, indexing, turn/subagent/deliverable extraction, but not the required Planning, Research, Validation, Correction, Prototype, or Review segmentation.
-
-Evidence:
-
-- `experiments/v1-reuse-compatibility/evidence/trajectory-patterns-session-01a0eca4-7029-7f92-b5a9-2006edb08721.json`
-- `experiments/v1-reuse-compatibility/evidence/trajectory-patterns-estimate-2026-09-29.json`
-- `experiments/v1-reuse-compatibility/evidence/datadog-capability-probe.json`
-- `experiments/v1-reuse-compatibility/V1_REUSE_MATRIX.md`
-- `experiments/v1-reuse-compatibility/WORKSTAGE_COMPATIBILITY.md`
-
-## Verdict
-
-Overall V1 reuse verdict remains `INCONCLUSIVE`. The Trajectory probe is stronger than the earlier command-not-found observation, but it still does not establish WorkStage compatibility.
-
-## V2.5 UI Fidelity Recovery
-
-The approved Work B2 spatial map and Agents/Trace C v0.2 reading structure are
-served from `apps/console/`. Work uses the original B2 `caseData` positions,
-relations, translations, and evidence index. Agents and Trace keep the C-style
-Run rail, spatial field, Focus Inspector, Turn groups, and native record modal.
-
-```text
-local Codex rollout JSONL
-  -> read-only Session adapter
-  -> shared Work / Agents / Trace shell
-  -> B2 curated case or C native records
-  -> source path + line + byte offset
-```
-
-The default real source is AISailing recruitment-related Session
-`019faced-f11a-75e1-ac20-8b95e24d4628`: 5 turns, 313 native records, 35 tool
-calls, and no confirmed native child-agent lineage. Work remains explicitly
-`CURATED_CASE / REFERENCE_CASE`; it is not a claim that this Session produced
-the AISailing evolution map.
-
-Browser verification completed at 1366x900 and 1600x900 for Work, Agents, and
-Trace. Verified Work node selection and return, cross-surface navigation, Turn
-expand, and Raw Native Record opening. Browser console reported zero errors and
-warnings.
-
-Remaining product boundary: the current native source does not expose confirmed
-child-Agent identity, so the Agents surface intentionally remains an explicit
-empty/unknown state. Work is still a curated reference surface rather than an
-automatically reconstructed project history.
-
-Reference screenshots are under `output/playwright/reference-*`; final browser
-screenshots are kept under the same ignored output directory.
-
-## Validation
-
-The retained Python smoke suite covers native observer projection, stable transcript event identity, shadow judgment, DSH receipt handling, and JSONL ledger replay.
+## 历史与权限
+Git 历史保留；本机原文、旧未提交状态说明及过程证据保留在本机忽略目录，不上传私人内容。
+用户授权本轮清理后的 commit/push；未授权合并、强推或重写历史。Claude Code 是 PRC 唯一产品写入者。

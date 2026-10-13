@@ -1,29 +1,17 @@
 # Project Runtime Console
 
-PRC V1 是一个本地只读产品闭环：从本机 Codex rollout JSONL 读取真实运行记录，在一个共享 shell 中提供 Work、Agents、Trace 三个入口，并让每条可读证据回到原始 Session 的路径、行号和 byte offset。
+PRC 是本地只读的 Agent 工作可视化阅读器。当前是尚未通过产品验收的工作基线，不是完成产品。
 
-## North Star
+## North Star / Experience Star
 
-让 Human 能从项目参考地图进入真实 Agent 执行记录，理解发生过什么，并在证据不足时看到明确的 `UNKNOWN / UNAVAILABLE`，而不是被推断的工作意义、结果或 lineage 误导。
+让非底层调试使用者通过统一可视化理解项目如何推进、执行者如何行动、一次请求怎样变成结果，并能随时核对依据。
 
-## Experience Star
+- Work：工作内容演变；B2 人工案例是明确标注的参考，不冒充自动重建。
+- Agents：执行结构和过程；没有子 Agent 仍应有请求、动作、结果的有用执行图。
+- Trace：所选工作的具体执行；原始记录列表不是最终体验。
+- 侧栏：任务、这一步带来的变化、实际结果；身份与原文是展开依据。
 
-```text
-Work reference / real activity
-        -> Agent identity boundary
-        -> Turn / tool records
-        -> sanitized native envelope
-        -> source path + line + byte offset
-        -> return through browser history
-```
-
-## V1 Scope
-
-- 本地 Codex Session only；不读取远程 Codex App，不上传 Session。
-- Work 使用 AISailing B2 作为明确标注的 `CURATED_CASE / REFERENCE_CASE`，同时展示当前真实 Session 的独立活动入口。
-- Agents 只展示本地源能证明的 native identity 和 lineage；没有 child identity 时保持 `NO_NATIVE_LINEAGE / UNKNOWN`。
-- Trace 按 Turn 展示真实 JSONL records；reasoning 不进入 Human-facing records；raw modal 展示常见凭证脱敏后的 native envelope。
-- 三个 Surface 共用 `session_id`、`turn_id`、`event_id` 和 URL history，不使用 iframe 或静态截图拼接。
+B2/C 是批准的体验基础，Langfuse/ThoughtDAG 仅在明确补充层级后使用。当前任务摘要与完整 Trace 仍未完成，不能将保留的预览实现当作目标已经达成。
 
 ## Run
 
@@ -31,24 +19,23 @@ Work reference / real activity
 python3 apps/console/server.py 4173
 ```
 
-打开 <http://127.0.0.1:4173>。默认目标 Session 为：
+打开 http://127.0.0.1:4173 。读取本机 `~/.codex/sessions` 和 `~/.codex/archived_sessions`，源文件只读。可以在 URL 指定 `session_id`；没有对应本机记录就报告缺失，不使用 mock 数据回退。当前保留的默认样本在其他机器上可能不存在。
 
-```text
-019faced-f11a-75e1-ac20-8b95e24d4628
-```
+前端：共享 `prc-core.js`、单 Session `prc-execution.js`、C 预览 `prc-agents.js`、父侧适配 `prc-c-data.js`。只初始化一次。Work 仍读 B2 caseData；当前 Trace/历史返回和可读摘要有已知缺口，详见 [当前状态](docs/current-state.md)。
 
-本地 adapter 会从 `~/.codex/sessions` 和 `~/.codex/archived_sessions` 读取 JSONL，原始文件保持只读。页面中的 Session 列表可以切换本地 AISailing Session，URL 会保留 `session_id`。
-
-默认 Session 是 AISailing 招聘相关对话：5 个 Turn、313 条 native records；它没有可确认的原生 child-Agent lineage，因此 Agents 页面明确显示 `UNKNOWN / UNAVAILABLE`，不会从工具调用推断 Agent。
-
-## Verification
+## Checks
 
 ```bash
 python3 -m unittest discover -s tests -v
+node tests/test_c_data.cjs
+python3 -m compileall -q apps packages tests
+git diff --check
 ```
 
-浏览器截图和本轮执行回执位于 `output/playwright/` 与 `docs/PRC_V1_VERTICAL_SLICE_RECEIPT.md`。`output/` 默认被 Git 忽略，截图保留在本机作为验收 artifact。
+默认测试仅使用合成/公开结构。固定私人样本诊断须显式设置 `PRC_LOCAL_DIAGNOSTICS=1` 且有相应数据访问许可；文件存在不等于样本 hash 和规则通过。`/acceptance.html` 只做历史案例诊断，其 PASS 不是产品认可，也不代表当前代码获得 DSH/global review。
 
-## Explicit boundaries
+## Boundaries
 
-本轮没有实现自动 Project Evolution reconstruction、WorkStage classifier、远程 provider、完整 multi-agent lineage 恢复或 Diagnostic White-box。Work 的 curated case 不是当前 Session 的自动结论；运行记录的数量不能证明贡献、因果、完成或 outcome。
+不上传原始 Session、凭证、隐藏推理或私人截图。常见凭证替换不是完整隐私保证。所有派发/步骤/顺序关系与摘要必须有来源；通知、助手自述与已验证结果分开。隐藏推理不作为说明来源。
+
+不迁移 Rust，不构建自动干预平台，不宣称完整自动跨 Session 重建。新实施前需要方案和独立、有界的 global review。项目 Issue 入口：https://github.com/kaiykk/project-runtime-console/issues/2

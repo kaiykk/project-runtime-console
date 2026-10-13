@@ -15,3 +15,13 @@ screenshots/
 *.key
 *.pem
 secrets/
+# Review bundles and scratch planning are local by default. A reviewed receipt
+# may be added explicitly with `git add -f` after provenance/sensitivity review.
+reviews/
+.scratch/
+# DSH transport streams may contain private transcripts or hidden reasoning.
+reviews/**/dsh-output/**/*.raw
+
+# Local conversational handoffs and temporary task reports are not publication artifacts.
+devlog/
+.claude/settings.local.json

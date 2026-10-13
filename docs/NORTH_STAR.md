@@ -1,22 +1,19 @@
-# North Star
+# 产品方向（2026-10-13 已确认）
 
-Project Runtime Console helps a Human inspect a real Agent run as it happens
-and after it ends:
+## North Star
 
-```text
-Project
-  -> Run
-    -> Agent Topology
-      -> Trace
-        -> Shadow Judgment
-```
+把 Agent 工作的真实依据连接到人的理解：理解项目目标与演变、执行结构和行动、请求怎样形成结果。长期跨 Session 理解是方向，不自动成为当前实现范围。
 
-The durable value is a trustworthy bridge from runtime evidence to Human
-understanding. A Human should be able to see which Agents participated, what
-runtime events occurred, and which independent shadow judgments were attached
-to those events without mistaking a judgment for an intervention or an
-engineering outcome.
+## Experience Star
 
-This document is a product anchor. It is not a data schema, ontology,
-orchestration design, or claim that the runtime input path has already been
-validated.
+让一个不是为了调试底层代码而来的使用者，通过统一的可视化界面，理解项目如何推进、执行者如何行动、一次请求怎样变化成结果，并能随时核对依据。
+
+## 产品职责
+
+Work 讲工作内容如何演变；Agents 讲执行结构与过程；Trace 讲选定工作的具体执行；侧栏回答它在解决什么、这一步改变了什么、实际结果是什么。
+单 Agent 默认请求→行动→结果→继续处理，不因没有 child 而空白。身份、日志计数和原文不替代可理解说明。
+
+## 边界
+
+B2/C 是已批准体验基础；新参考改变哪个层次必须明确，不冻结冲突标准。所有可见解释可查证，缺少来源不造关系/结果。工程 PASS 与历史诊断/DSH 回执不等于产品 PASS。
+只读真实运行；保留已有 shadow judgment 的非干预边界，不将它扩张为当前产品主线。此文是目标，不是数据 schema 或已实现能力声明。
